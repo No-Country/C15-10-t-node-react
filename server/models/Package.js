@@ -1,17 +1,18 @@
 const { mongoose } = require("../db");
 const slugify = require("slugify");
 
-const productSchema = new mongoose.Schema({
+const packageSchema = new mongoose.Schema({
   price: Number,
   stock: Number,
   featured: Boolean,
+  photos: Array,
   updatedAt: {
     type: Date,
     default: Date.now,
   },
   name: String,
 });
-productSchema.set("toJSON", { virtuals: true });
+packageSchema.set("toJSON", { virtuals: true });
 
 // productSchema.methods.toJSON = function () {
 //   const product = this._doc;
@@ -20,7 +21,7 @@ productSchema.set("toJSON", { virtuals: true });
 //   return product;
 // };
 
-productSchema.virtual("slug").get(function () {
+packageSchema.virtual("slug").get(function () {
   return slugify(this.name, {
     replacement: "-", // replace spaces with replacement character, defaults to `-`
     remove: undefined, // remove characters that match regex, defaults to `undefined`
@@ -31,4 +32,4 @@ productSchema.virtual("slug").get(function () {
   });
 });
 
-module.exports = mongoose.model("Product", productSchema);
+module.exports = mongoose.model("Package", packageSchema);

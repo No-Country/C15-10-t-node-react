@@ -3,7 +3,7 @@ const { mongoose, Schema } = require("../db");
 const orderSchema = new mongoose.Schema(
   {
     user: {},
-    products: [],
+    packages: [],
     totalAmount: Number,
     totalQuantity: Number,
     paymentMethod: String,

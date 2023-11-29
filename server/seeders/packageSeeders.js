@@ -1,12 +1,12 @@
-const Product = require("../models/Product");
+const Package = require("../models/Package");
 const { faker } = require("@faker-js/faker");
 
 module.exports = async () => {
-  const products = [];
+  const packages = [];
 
   for (let i = 0; i < 10; i++) {
-    products.push(
-      new Product({
+    packages.push(
+      new Package({
         stock: 100,
         name: faker.name.jobTitle(),
         photos: [],
@@ -14,6 +14,6 @@ module.exports = async () => {
     );
   }
 
-  await Product.insertMany(products);
-  console.log("[Database] Se corrió el seeder de Productos.");
+  await Package.insertMany(packages);
+  console.log("[Database] Se corrió el seeder de Paquetes.");
 };
