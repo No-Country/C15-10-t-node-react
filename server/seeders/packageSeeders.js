@@ -9,6 +9,7 @@ module.exports = async () => {
       new Package({
         stock: 100,
         name: faker.name.jobTitle(),
+        price: Math.random() * 10000,
         photos: [],
       }),
     );
