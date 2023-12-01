@@ -1,5 +1,5 @@
 const Order = require("../models/Order");
-const Product = require("../models/Product");
+const Package = require("../models/Package");
 const { sendEmail } = require("../middlewares/sendMailOrders");
 
 async function index(req, res) {

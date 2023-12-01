@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+    <title>Hello, world!</title>
+  </head>
+  <body>
+    <main class="container">
+      <h1>Hello, world!</h1>
+      <h1>Testing Backend</h1>
+
+      <h2>Método HTTP GET rutabase/packages</h2>
+      <p>Obtiene paquetes (paquetes random, 10 cargados).</p>
+      <p>Ejemplo de respuesta:</p>
+      <pre>
+  {
+      "_id": "6567ce2e822d10a2e5878e35",
+      "name": "Chile",
+      "price": 2000,
+      "stock": 500,
+      "photos": [
+          "https://content.skyscnr.com/m/6f62a7b1a8f3dc5a/original/eyeem_105010376-jpg.jpg?crop=1224px:647px&quality=100&position=attention"
+      ],
+      "updatedAt": "2023-12-01T11:12:02.422Z",
+      "slug": "chile",
+      "id": "6567ce2e822d10a2e5878e35"
+  }
+      </pre>
+  
+      <h2>Método HTTP GET rutabase/orders</h2>
+      <p>Obtiene órdenes de compra. Devuelve un array vacío ([]), a menos que se llegue por POST a la carga de alguna orden.</p>
+  
+      <h2>Método HTTP GET rutabase/admins</h2>
+      <p>Obtiene usuarios con privilegios de ADMIN en la base de datos.</p>
+      <p>Ejemplo de respuesta:</p>
+      <pre>
+  [
+      {
+          "email": "fmuzaber@gmail.com",
+          "name": "Fernando Muzaber",
+          "__v": 0,
+          "id": "6564cfaa2c4e55ed731a976e"
+      },
+      {
+          "email": "test@test.com",
+          "name": "Admin Test",
+          "__v": 0,
+          "id": "6564cfaa2c4e55ed731a9770"
+      },
+      {
+          "email": "nicomar2004@gmail.com",
+          "name": "Nicolas Martinez",
+          "__v": 0,
+          "id": "6564cfaa2c4e55ed731a976f"
+      }
+  ]
+      </pre>
+    </main>
+  </body>
+</html>

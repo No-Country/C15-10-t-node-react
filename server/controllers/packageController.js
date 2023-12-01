@@ -1,27 +1,27 @@
-const Product = require("../models/Product");
+const Package = require("../models/Package");
 
 async function index(req, res) {
-  const products = await Product.find()
+  const packages = await Package.find();
 
-  return res.status(200).json(products);
+  return res.status(200).json(packages);
 }
 
 async function show(req, res) {
-  const product = await Product.findById(req.params.id)
+  const package = await Package.findById(req.params.id);
 
-  return res.json(product);
+  return res.json(package);
 }
 
 async function store(req, res) {
   try {
-    const newProduct = await Product.create({
+    const newPackage = await Package.create({
       stock: req.body.stock,
       featured: req.body.featured,
       name: req.body.name,
       price: price,
     });
-    const product = await Product.findOne(newProduct)
-    return res.status(200).json(product);
+    const package = await Package.findOne(newPackage);
+    return res.status(200).json(package);
   } catch (err) {
     res.status(400).json(err);
   }
@@ -29,12 +29,12 @@ async function store(req, res) {
 
 async function update(req, res) {
   try {
-    await Product.findByIdAndUpdate(req.params.id, {
+    await Package.findByIdAndUpdate(req.params.id, {
       stock: req.body.stock,
     });
-    const productToFront = await Product.findById(req.params.id);
+    const packageToFront = await Package.findById(req.params.id);
 
-    res.status(201).json(productToFront);
+    res.status(201).json(packageToFront);
   } catch (err) {
     res.status(404).json(err);
   }
@@ -42,9 +42,9 @@ async function update(req, res) {
 
 async function destroy(req, res) {
   try {
-    await Product.findByIdAndDelete(req.body.productId);
+    await Package.findByIdAndDelete(req.body.packageId);
 
-    return res.status(200).send({ message: "Product deleted" });
+    return res.status(200).send({ message: "Package deleted" });
   } catch (err) {
     return res.status(404).send({ message: "Something went wrong, try again later" });
   }

@@ -1,7 +1,7 @@
 const { mongoose } = require("../db");
 const slugify = require("slugify");
 
-const productSchema = new mongoose.Schema({
+const packageSchema = new mongoose.Schema({
   price: Number,
   stock: Number,
   featured: Boolean,
@@ -11,16 +11,16 @@ const productSchema = new mongoose.Schema({
   },
   name: String,
 });
-productSchema.set("toJSON", { virtuals: true });
+packageSchema.set("toJSON", { virtuals: true });
 
-// productSchema.methods.toJSON = function () {
-//   const product = this._doc;
-//   product.id = this._id.toString();
-//   delete product._id;
-//   return product;
+// packageSchema.methods.toJSON = function () {
+//   const package = this._doc;
+//   package.id = this._id.toString();
+//   delete package._id;
+//   return package;
 // };
 
-productSchema.virtual("slug").get(function () {
+packageSchema.virtual("slug").get(function () {
   return slugify(this.name, {
     replacement: "-", // replace spaces with replacement character, defaults to `-`
     remove: undefined, // remove characters that match regex, defaults to `undefined`
@@ -31,4 +31,4 @@ productSchema.virtual("slug").get(function () {
   });
 });
 
-module.exports = mongoose.model("Product", productSchema);
+module.exports = mongoose.model("packages", packageSchema);
