@@ -29,7 +29,7 @@ async function runAllSeeders() {
   // Seeders:
 
   await require("./adminSeeders")();
-  await require("./productSeeders")();
+  await require("./packageSeeders")();
   await require("./userSeeder")();
 
   /**
