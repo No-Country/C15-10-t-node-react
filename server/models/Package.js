@@ -5,6 +5,7 @@ const packageSchema = new mongoose.Schema({
   price: Number,
   stock: Number,
   featured: Boolean,
+  photos: Array,
   updatedAt: {
     type: Date,
     default: Date.now,
@@ -31,4 +32,4 @@ packageSchema.virtual("slug").get(function () {
   });
 });
 
-module.exports = mongoose.model("packages", packageSchema);
+module.exports = mongoose.model("Package", packageSchema);

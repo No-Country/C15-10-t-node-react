@@ -18,15 +18,15 @@ async function store(req, res) {
   try {
     const order = await Order.create({
       user: req.body.user,
-      products: req.body.products,
+      packages: req.body.packages,
       totalAmount: req.body.totalAmount,
       totalQuantity: req.body.totalQuantity,
       status: req.body.status,
       paymentMethod: req.body.paymentMethod,
     });
-    for (const product of req.body.products) {
-      await Product.findByIdAndUpdate(product.id, {
-        stock: product.stock - product.quantity,
+    for (const package of req.body.packages) {
+      await Package.findByIdAndUpdate(package.id, {
+        stock: package.stock - package.quantity,
       });
     }
     sendEmail(order, updated);
@@ -44,7 +44,7 @@ async function update(req, res) {
   const order = await Order.findByIdAndUpdate(
     req.body.orderId,
     {
-      products: req.body.products,
+      package: req.body.package,
       totalAmount: req.body.totalAmount,
       totalQuantity: req.body.totalQuantity,
       status: req.body.status,
