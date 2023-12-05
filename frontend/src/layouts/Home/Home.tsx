@@ -1,7 +1,7 @@
 function Home() {
   return (
     <div className="container-md mx-auto lg:max-w-screen-lg">
-      <button className="btn">Hello daisyUI</button>
+      <button className="btn">HELLO daisyUI</button>
     </div>
   );
 }
