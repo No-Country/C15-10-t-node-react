@@ -21,10 +21,10 @@ function PrimaryButton({
   return (
     <a href={url} target="_blank" rel="noopener noreferrer">
       <button
-        className={`flex items-center ${colorVariants[bgColor]} font-bold py-3 px-5 transition duration-300 ease-in-out rounded-full`}
+        className={`flex items-center ${colorVariants[bgColor]} font-bold py-3 px-5 transition duration-300 ease-in-out rounded-xl`}
       >
         {iconName ? <Icon name={iconName} size={20} /> : <></>}
-        <span className="ml-2">{text}</span>
+        <span className="mx-auto px-1">{text}</span>
       </button>
     </a>
   );
