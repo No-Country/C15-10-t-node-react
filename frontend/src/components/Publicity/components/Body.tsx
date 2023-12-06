@@ -19,9 +19,9 @@ function Body({
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const colorVariants: any = {
     violet: "bg-violet-400",
-    orange: "bg-orange-400",
+    orange: "bg-orange-300",
     green: "bg-green-500",
-    cyan: "bg-cyan-400",
+    emerald: "bg-emerald-400",
   };
   return (
     <section id="publicity" className="py-5">

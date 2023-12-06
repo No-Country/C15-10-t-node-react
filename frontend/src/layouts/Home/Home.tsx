@@ -1,3 +1,4 @@
+import Footer from "../../components/Footer/Footer";
 import Publicity from "../../components/Publicity/Publicity";
 import FeaturedDestinations from "./components/FeaturedDestinations/FeaturedDestinations";
 
@@ -6,6 +7,7 @@ function Home() {
     <div className="container-md mx-auto lg:max-w-screen-lg">
       <FeaturedDestinations />
       <Publicity />
+      <Footer />
     </div>
   );
 }
