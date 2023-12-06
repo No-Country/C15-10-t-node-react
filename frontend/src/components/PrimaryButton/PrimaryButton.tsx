@@ -1,5 +1,3 @@
-import Icon from "../Icon/Icon";
-
 interface PrimaryButtonProps {
   text: string;
   bgColor?: "black" | "white";
@@ -11,7 +9,6 @@ function PrimaryButton({
   bgColor = "black",
   text,
   url,
-  iconName,
 }: Readonly<PrimaryButtonProps>) {
   const colorVariants = {
     black: "bg-black text-white hover:bg-gray-900 hover:text-white",
@@ -23,7 +20,6 @@ function PrimaryButton({
       <button
         className={`flex items-center ${colorVariants[bgColor]} font-bold py-3 px-5 transition duration-300 ease-in-out rounded-xl`}
       >
-        {iconName ? <Icon name={iconName} size={20} /> : <></>}
         <span className="mx-auto px-1">{text}</span>
       </button>
     </a>
