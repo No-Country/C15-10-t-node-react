@@ -25,7 +25,7 @@ async function store(req, res) {
       paymentMethod: req.body.paymentMethod,
     });
     for (const package of req.body.packages) {
-      await Package.findByIdAndUpdate(package.id, {
+      await package.findByIdAndUpdate(package.id, {
         stock: package.stock - package.quantity,
       });
     }
@@ -44,7 +44,7 @@ async function update(req, res) {
   const order = await Order.findByIdAndUpdate(
     req.body.orderId,
     {
-      package: req.body.package,
+      packages: req.body.packages,
       totalAmount: req.body.totalAmount,
       totalQuantity: req.body.totalQuantity,
       status: req.body.status,

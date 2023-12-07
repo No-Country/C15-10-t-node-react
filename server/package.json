@@ -6,7 +6,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node .",
+    "dev": "nodemon . ",
     "seeders": "node seeders/runAllSeeders.js"
+  },
+  "engines": {
+    "node": "18.x"
   },
   "keywords": [],
   "author": "Nicolas Martinez, Fernando Ariel Muzaber",
