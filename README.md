@@ -40,4 +40,4 @@ Te invitamos a unirte a la comunidad de FreeWind y ser parte de una revolución 
 
 ### Deploy Back-End
 
-https://fullstackapp-dev-nqhh.2.us-1.fl0.io
+https://freewind-dev-tssj.3.us-1.fl0.io/
