@@ -1,0 +1,35 @@
+[
+    {
+      "title": "La guía esencial de vida nocturna en los parques nacionales de Estados Unidos.",
+      "paragraph": "La verdadera diversión comienza una vez que las multitudes se van de estos seis parques nacionales.",
+      "image": "https://dam.ngenespanol.com/wp-content/uploads/2021/01/yellowstone-parque-nacional.jpg",
+      "color": "violet",
+      "text": "Leer ahora",
+      "url" : "https://www.tripadvisor.com/Tourism-g60999-Yellowstone_National_Park_Wyoming-Vacations.html"
+    },
+    {
+      "title": "Escapada a las Cimas",
+      "paragraph": "Sumérgete en la majestuosidad de las montañas con nuestra experiencia única en senderismo y paisajes impresionantes.",
+      "image": "https://i.blogs.es/0c1707/escalada/1366_2000.jpeg",
+      "color": "green",
+      "text": "Explorar ahora",
+      "url" : "https://www.tripadvisor.com/Tourism-g294311-Peru-Vacations.html"
+    },
+    {
+      "title": "Viaje Cultural a Europa",
+      "paragraph": "Sumérgete en la rica historia y cultura de ciudades europeas con nuestro paquete de viaje especializado.",
+      "image": "https://res.cloudinary.com/worldpackers/image/upload/c_limit,f_auto,q_auto,w_1140/jcuvc6ikv1zhmoigxelb",
+      "color": "orange",
+      "text": "Ver ahora",
+      "url" : "https://www.tripadvisor.com/Tourism-g4-Europe-Vacations.html"
+    },
+    {
+      "title": "La mejor época para visitar Japón",
+      "paragraph": "Un poco de planificación ayuda mucho.",
+      "image": "https://lonelyplanetes.cdnstatics2.com/sites/default/files/styles/max_1300x1300/public/blog/japon_fujiyoshida_montefuji_shutterstock_712981048_patrick_foto_shutterstock.jpg?itok=CXj500zA",
+      "color": "emerald",
+      "text": "Leer ahora",
+      "url" : "https://www.tripadvisor.com/Tourism-g294232-Japan-Vacations.html"
+    }
+  ]
+  
