@@ -16,7 +16,7 @@ function FeaturedDestinations() {
   };
 
   return (
-    <section className="py-5 overflow-hidden">
+    <section className="mb-10 py-12 overflow-hidden">
       <TitleSection title={"Descubre estos lugares increibles"} />
       <SubtitleSection
         subtitle={
