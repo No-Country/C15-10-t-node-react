@@ -16,7 +16,7 @@ function FeaturedDestinations() {
   };
 
   return (
-    <section className="mb-10 py-12 overflow-hidden">
+    <section className="py-4 overflow-hidden">
       <TitleSection title={"Descubre estos lugares increibles"} />
       <SubtitleSection
         subtitle={
@@ -28,7 +28,7 @@ function FeaturedDestinations() {
           className="carousel carousel-center rounded-box"
           style={{
             transform: `translateX(-${
-              slideIndex * (50 / TouristSpotsData.length)
+              slideIndex * (55 / TouristSpotsData.length)
             }%)`,
             width: `${TouristSpotsData.length * 25}rem`,
           }}

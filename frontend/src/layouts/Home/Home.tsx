@@ -4,15 +4,17 @@ import Navbar from "../../components/Navbar/Navbar";
 import Publicity from "../../components/Publicity/Publicity";
 import FeaturedDestinations from "./components/FeaturedDestinations/FeaturedDestinations";
 
-function Home() { 
+function Home() {
   return (
-    <div>
+    <>
       <Navbar />
       <Hero />
-      <FeaturedDestinations />
-      <Publicity />
-      <Footer />
-    </div>
+      <div className="container-md mx-auto lg:max-w-screen-lg">
+        <FeaturedDestinations />
+        <Publicity />
+        <Footer />
+      </div>
+    </>
   );
 }
 

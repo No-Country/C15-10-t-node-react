@@ -24,7 +24,7 @@ function CardContent({
   };
 
   return (
-    <div className="card card-compact md:w-72 w-56 bg-green-600 shadow-xl mx-1 mt-3 h-96">
+    <div className="card card-compact md:w-72 w-56 bg-green-600 shadow-xl mx-1 mt-3 md:h-96 h-80">
       <figure className="relative overflow-hidden group">
         <img
           src={image}
