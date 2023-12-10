@@ -18,20 +18,24 @@ function Body({
 }: Readonly<PublicityProps>) {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const colorVariants: any = {
-    violet: "bg-violet-200",
-    orange: "bg-orange-200",
+    violet: "bg-violet-400",
+    orange: "bg-orange-300",
     green: "bg-green-500",
-    cyan: "bg-cyan-400",
+    emerald: "bg-emerald-400",
   };
   return (
-    <section id="publicity">
+    <section id="publicity" className="py-5">
       <div
         className={`container-md flex flex-col sm:flex-row ${colorVariants[color]} sm:h-[250px] h-[400px]`}
       >
         {/* Columna Izquierda - Texto*/}
         <div className="flex-1 p-6 flex flex-col justify-center">
-          <h2 className="text-md md:text-xl font-bold mb-2">{title}</h2>
-          <p className="mb-4 text-sm md:text-md">{paragraph}</p>
+          <h2 className="text-lg md:text-xl font-bold mb-2 dark:text-black">
+            {title}
+          </h2>
+          <p className="mb-4 text-base md:text-md dark:text-black">
+            {paragraph}
+          </p>
           <PrimaryButton text={text} bgColor="black" url={url} />
         </div>
 
