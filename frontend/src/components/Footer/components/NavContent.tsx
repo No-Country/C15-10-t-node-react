@@ -5,7 +5,7 @@ interface FooterNavProps {
 
 function NavContent({ title, links }: Readonly<FooterNavProps>) {
   return (
-    <nav>
+    <nav className="md:mx-auto">
       <header className="footer-title">{title}</header>
       {links.map((link, index) => (
         <a key={index} className="link link-hover">
