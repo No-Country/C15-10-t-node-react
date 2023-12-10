@@ -7,7 +7,6 @@ import Logo from "../../assets/wind.png";
 
 export const Navbar: React.FC = () => {
   const [menu, setMenu] = useState(false);
-
   const handleChange = () => {
     setMenu(!menu);
   };
@@ -15,6 +14,7 @@ export const Navbar: React.FC = () => {
   const closeMenu = () => {
     setMenu(false);
   };
+
   return (
     <div className="fixed w-full z-50">
       <div>
@@ -55,7 +55,7 @@ export const Navbar: React.FC = () => {
                   duration={500}
                   className="hover:bg-gray-200 px-4 py-2 rounded-full transition-all cursor-pointer text-center"
                 >
-                  Escribir opinion
+                  Escribir opinión
                 </Link>
               </div>
             </div>
@@ -68,124 +68,139 @@ export const Navbar: React.FC = () => {
                   duration={500}
                   className="hover:bg-gray-200 px-4 py-2 rounded-full transition-all cursor-pointer"
                 >
-                  Mas
+                  Más
                 </Link>
               </div>
             </div>
             <span className="flex flex-row hover:bg-gray-200 px-4 py-2 rounded-full transition-all cursor-pointer">
               <TbWorld className="mt-1.5" />
-              <span>|Ars</span>
+              <span>|EUR</span>
             </span>
             <button className="px-4 py-2 border-2 border-black bg-black text-white hover:text-white hover:bg-gray-900 transition-all rounded-full">
-              Iniciar sesion
+              Iniciar sesión
             </button>
           </nav>
           <div className="md:hidden flex items-center">
-            {menu ? (
+            <TiThMenu
+              size={25}
+              onClick={handleChange}
+              className="cursor-pointer"
+            />
+          </div>
+        </div>
+
+        {menu && (
+          <div
+            className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 z-50"
+            onClick={handleChange}
+          >
+            <div
+              className={`${
+                menu ? "translate-x-0" : "-translate-x-full"
+              } lg:hidden fixed top-0 left-0 z-40 h-screen py-10 px-7 overflow-y-auto transition-transform bg-white w-72 sm:w-96 flex items-center flex-col`}
+            >
               <IoClose
                 size={25}
                 onClick={handleChange}
-                className="cursor-pointer"
+                className="cursor-pointer fixed top-0 right-0 m-4 text-black"
               />
-            ) : (
-              <TiThMenu
-                size={25}
-                onClick={handleChange}
-                className="cursor-pointer"
-              />
-            )}
+              <div className="w-full flex items-start flex-col">
+                <button className="text-base mx-auto w-full md:px-16 py-2 border-2 border-black bg-black hover:bg-gray-900 text-white transition-all rounded-full">
+                  Iniciar sesión
+                </button>
+                <span className="flex flex-row py-6 rounded-full transition-all cursor-pointer text-black font-bold">
+                  <TbWorld className="mt-1.5" />
+                  <p>España, ES</p>
+                  <div className="border-l border-gray-300 h-full mx-1"></div>
+                  <p>EUR</p>
+                </span>
+              </div>
+              <div className="border-b border-gray-300 my-4 w-full"></div>
+              <div className="flex flex-col text-gray-700 w-full items-start">
+                <Link
+                  to="home"
+                  spy={true}
+                  smooth={true}
+                  duration={500}
+                  className="text-base font-semibold transition-all cursor-pointer my-3 hover:text-gray-900"
+                  onClick={closeMenu}
+                >
+                  Home
+                </Link>
+                <Link
+                  to="hoteles"
+                  spy={true}
+                  smooth={true}
+                  duration={500}
+                  className="text-base font-semibold transition-all cursor-pointer my-3 hover:text-gray-900"
+                  onClick={closeMenu}
+                >
+                  Hoteles
+                </Link>
+                <Link
+                  to="cosas que hacer"
+                  spy={true}
+                  smooth={true}
+                  duration={500}
+                  className="text-base font-semibold transition-all cursor-pointer my-3 hover:text-gray-900"
+                  onClick={closeMenu}
+                >
+                  Cosas que hacer
+                </Link>
+                <Link
+                  to="restaurantes"
+                  spy={true}
+                  smooth={true}
+                  duration={500}
+                  className="text-base font-semibold transition-all cursor-pointer my-3 hover:text-gray-900"
+                  onClick={closeMenu}
+                >
+                  Restaurantes
+                </Link>
+                <Link
+                  to="alquiler de auto"
+                  spy={true}
+                  smooth={true}
+                  duration={500}
+                  className="text-base font-semibold transition-all cursor-pointer my-3 hover:text-gray-900"
+                  onClick={closeMenu}
+                >
+                  Alquiler de vacaciones
+                </Link>
+                <Link
+                  to="vuelos"
+                  spy={true}
+                  smooth={true}
+                  duration={500}
+                  className="text-base font-semibold transition-all cursor-pointer my-3 hover:text-gray-900"
+                  onClick={closeMenu}
+                >
+                  Vuelos
+                </Link>
+                <Link
+                  to="cruceros"
+                  spy={true}
+                  smooth={true}
+                  duration={500}
+                  className="text-base font-semibold transition-all cursor-pointer my-3 hover:text-gray-900"
+                  onClick={closeMenu}
+                >
+                  Cruceros
+                </Link>
+                <Link
+                  to="alquiler autos"
+                  spy={true}
+                  smooth={true}
+                  duration={500}
+                  className="text-base font-semibold transition-all cursor-pointer my-3 hover:text-gray-900"
+                  onClick={closeMenu}
+                >
+                  Alquiler de Autos
+                </Link>
+              </div>
+            </div>
           </div>
-        </div>
-        <div
-          className={`${
-            menu ? "translate-x-0" : "-translate-x-full"
-          } lg:hidden flex flex-col absolute bg-white text-black left-0 top-20 font-semibold text-3xl  pt-8 pb-4 gap-6 w-full h-fit transition-transform duration-300`}
-        >
-          <button className="text-sm mx-auto px-16 py-2 border-2 border-black bg-black text-white transition-all rounded-full">
-            Iniciar sesion
-          </button>
-          <Link
-            to="home"
-            spy={true}
-            smooth={true}
-            duration={500}
-            className="text-sm ml-4 font-bold transition-all cursor-pointer"
-            onClick={closeMenu}
-          >
-            Home
-          </Link>
-          <Link
-            to="hoteles"
-            spy={true}
-            smooth={true}
-            duration={500}
-            className="text-sm ml-4 font-bold transition-all cursor-pointer"
-            onClick={closeMenu}
-          >
-            Hoteles
-          </Link>
-          <Link
-            to="cosas que hacer"
-            spy={true}
-            smooth={true}
-            duration={500}
-            className="text-sm ml-4 font-bold transition-all cursor-pointer"
-            onClick={closeMenu}
-          >
-            Cosas que hacer
-          </Link>
-          <Link
-            to="restaurantes"
-            spy={true}
-            smooth={true}
-            duration={500}
-            className="text-sm ml-4 font-bold transition-all cursor-pointer"
-            onClick={closeMenu}
-          >
-            Restaurantes
-          </Link>
-          <Link
-            to="alquiler de auto"
-            spy={true}
-            smooth={true}
-            duration={500}
-            className="text-sm ml-4 font-bold transition-all cursor-pointer"
-            onClick={closeMenu}
-          >
-            Alquiler de vacaciones
-          </Link>
-          <Link
-            to="vuelos"
-            spy={true}
-            smooth={true}
-            duration={500}
-            className="text-sm ml-4 font-bold transition-all cursor-pointer"
-            onClick={closeMenu}
-          >
-            Vuelos
-          </Link>
-          <Link
-            to="cruceros"
-            spy={true}
-            smooth={true}
-            duration={500}
-            className="text-sm ml-4 font-bold transition-all cursor-pointer"
-            onClick={closeMenu}
-          >
-            Cruceros
-          </Link>
-          <Link
-            to="alquiler autos"
-            spy={true}
-            smooth={true}
-            duration={500}
-            className="text-sm ml-4 font-bold transition-all cursor-pointer"
-            onClick={closeMenu}
-          >
-            Alquiler de Autos
-          </Link>
-          <br></br>
-        </div>
+        )}
       </div>
     </div>
   );

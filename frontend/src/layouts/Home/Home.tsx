@@ -9,11 +9,11 @@ function Home() {
     <>
       <Navbar />
       <Hero />
-      <div className="container-md mx-auto lg:max-w-screen-lg">
+      <div className="container-md mx-auto lg:max-w-screen-lg overflow-hidden">
         <FeaturedDestinations />
         <Publicity />
-        <Footer />
       </div>
+      <Footer />
     </>
   );
 }
