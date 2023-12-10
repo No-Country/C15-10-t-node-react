@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import {Link} from "react-scroll";
 import { IoClose } from "react-icons/io5";
 import { TiThMenu } from "react-icons/ti";
-import { TbWorld } from "react-icons/tb";
 import Logo from "../../assets/wind.png";
+import Contac from '../../models/Contact'
 
 
-export const Navbar:React.FC = () => {
+
+
+  const Navbar =()=> {
   const [menu, setMenu] = useState(false);
+  const [showForm, setShowForm] = useState(false);
 
   const handleChange = () =>{
     setMenu(!menu);
@@ -16,8 +19,18 @@ export const Navbar:React.FC = () => {
   const closeMenu = () =>{
     setMenu(false);
   }
+
+  const openForm = () => {
+    setShowForm(true);
+    setMenu(false);
+  };
+
+  const closeForm = () => {
+    setShowForm(false);
+  };
+
   return (
-    <div className='fixed w-full'>
+    <div className='fixed z-10 w-full'>
       <div>
         <div className='flex flex-row justify-between p-5 md:px-32 px-5 mb-15 text-black font-bold bg-green-600 shadow-[0_3px_10px_rgba(0,0,0,0.2)]'>
             <div className='flex flex-row items-center cursor-pointer'>
@@ -71,21 +84,23 @@ export const Navbar:React.FC = () => {
                 </Link>
                 </div>
                  </div>
-                 <span className='flex flex-row hover:bg-gray-200 px-4 py-2 rounded-full transition-all cursor-pointer'>
-                  <TbWorld className='mt-1.5' /><span>|Ars</span>
-                 </span>
-                 <Link 
-                 to='planificar'
-                 spy={true} 
-                 smooth={true} 
-                 duration={500} 
-                 className='hover:bg-gray-200 px-4 py-2 rounded-full transition-all cursor-pointer'>
-                </Link>
-                <button className='px-4 py-1 border-2 border-black bg-black text-white hover:text-white transition-all rounded-full'>
-                  Iniciar sesion
-                </button>
-
+                 
+               
             </nav>
+
+            <div className=" hidden lg:flex">
+            <button
+              className= 'text-center mx-auto px-6 py-2 border-2 border-black bg-black text-white hover:text-white transition-all rounded-full'
+              onClick={openForm}
+            >
+              Login
+            </button>
+          </div>
+
+          {showForm && <Contac closeForm={closeForm} title={function (): string {
+            throw new Error('Function not implemented.');
+          } } />}
+
             <div className='md:hidden flex items-center'>
                 {menu ? (
                     <IoClose size={25} onClick={handleChange} className='cursor-pointer'/>
@@ -94,10 +109,8 @@ export const Navbar:React.FC = () => {
                 )}
             </div>
         </div>
-        <div className={`${menu ? "translate-x-0" : "-translate-x-full"} lg:hidden flex flex-col absolute bg-white text-black left-0 top-20 font-semibold text-3xl  pt-8 pb-4 gap-6 w-full h-fit transition-transform duration-300`}>
-                <button className='text-sm mx-auto px-16 py-2 border-2 border-black bg-black text-white transition-all rounded-full'>
-                  Iniciar sesion
-                </button>
+        <div className={`${menu ? "translate-x-0" : "-translate-x-full"} lg:hidden flex flex-col absolute bg-emerald-400 text-black left-0 top-20 font-semibold text-3xl  pt-8 pb-4 gap-6 w-full h-fit transition-transform duration-300`}>
+                
             <Link
                  to='home'
                  spy={true} 
@@ -170,6 +183,14 @@ export const Navbar:React.FC = () => {
                  onClick={closeMenu}>
                  Alquiler de Autos
                 </Link>
+                <div className="flex  lg:hidden">
+            <button
+              className="text-center mx-auto text-xl bg-black text-white px-6 py-2 rounded-full hover:bg-white hover:text-black transition duration-300 ease-in-out"
+              onClick={openForm}
+            >
+              LOGIN
+            </button>
+          </div>
                 <br></br>
         </div>
       </div>

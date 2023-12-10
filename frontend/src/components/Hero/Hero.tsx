@@ -11,7 +11,7 @@ export const Hero:React.FC = () => {
            
         </p>
         <div className='lg:pl-44'>
-           <button className='border-2  bg-green-600 p-2 rounded-full text-black font-bold'>
+           <button className='border-black border-2  bg-green-600 p-2 rounded-full text-black font-bold'>
              <a href="#">Conocer  mas..</a>
            </button>
        </div>
