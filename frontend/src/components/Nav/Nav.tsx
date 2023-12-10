@@ -2,7 +2,6 @@ import React from 'react';
 import { RiHomeLine } from "react-icons/ri";
 import { MdOutlineHotel } from "react-icons/md";
 import { PiBagSimpleThin } from "react-icons/pi";
-import { IoSearchCircle } from "react-icons/io5";
 
 
 export const Nav:React.FC = () => {
