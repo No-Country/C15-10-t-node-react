@@ -6,9 +6,7 @@ const placeSchema = new mongoose.Schema({
   description: String,
   imgs: [],
   coords: [],
-  categories: [],
-  packages: [],
-  comments: [],
+  reviews: [],
 
 },
   { timestamps: true },

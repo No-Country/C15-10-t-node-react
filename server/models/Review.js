@@ -1,12 +1,11 @@
 const { mongoose, Schema } = require("../db");
+const User = require("./User")
 
 const reviewsSchema = new mongoose.Schema(
   {
-    userId: String,
-    userName: String,
-    points: Number,
-    comments: String,
-    status: String,
+    user: User,
+    rating: Number,
+    comment: String,
   },
   { timestamps: true },
 );
