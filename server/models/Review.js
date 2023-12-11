@@ -1,8 +1,10 @@
 const { mongoose, Schema } = require("../db");
+const Place = require("./Place");
 const User = require("./User")
 
 const reviewsSchema = new mongoose.Schema(
   {
+    place: Place,
     user: User,
     rating: Number,
     comment: String,
