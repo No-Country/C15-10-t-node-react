@@ -2,6 +2,7 @@ import React from "react";
 import { RiHomeLine } from "react-icons/ri";
 import { MdOutlineHotel } from "react-icons/md";
 import { PiBagSimpleThin } from "react-icons/pi";
+import { Link } from "react-router-dom";
 
 export const Nav: React.FC = () => {
   return (
@@ -13,19 +14,19 @@ export const Nav: React.FC = () => {
         <button className="flex text-center sm:text-sm items-center justify-center m-auto lg:text-xl p-2 rounded-full text-black font-bold gap-4">
           <span className="sm:gap-1 flex text-center items-center justify-center md:gap-1 lg:gap-2 hover:underline">
             <RiHomeLine className="mt-.5" />
-            <a href="#">Buscar todo</a>
+            <Link to={"#"}>Buscar todo</Link>
           </span>
           <span className="flex flex-row hover:underline">
             <MdOutlineHotel className="mt-1" />
-            <a href="#" className="mx-1">
+            <Link to={"#"} className="mx-1">
               Hoteles
-            </a>
+            </Link>
           </span>
           <span className="flex flex-row hover:underline">
             <PiBagSimpleThin className="mt-1" />
-            <a href="#" className="mx-1">
+            <Link to={"#"} className="mx-1">
               Cosas que hacer
-            </a>
+            </Link>
           </span>
         </button>
         <br></br>

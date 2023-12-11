@@ -14,7 +14,7 @@ const AccordionItem = ({
   content,
 }: Readonly<AccordionItemProps>) => {
   return (
-    <div className="collapse collapse-plus bg-base-300 mb-3">
+    <div className="collapse collapse-arrow bg-base-300 mb-3">
       <input
         type="radio"
         name="my-accordion-faq"

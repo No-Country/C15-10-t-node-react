@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 interface PrimaryButtonProps {
   text: string;
   bgColor?: "black" | "white";
@@ -16,13 +18,13 @@ function PrimaryButton({
   };
 
   return (
-    <a href={url} rel="noopener noreferrer">
+    <Link to={url} rel="noopener noreferrer">
       <button
         className={`flex items-center ${colorVariants[bgColor]} font-bold py-3 px-5 transition duration-300 ease-in-out rounded-xl`}
       >
         <span className="mx-auto px-1">{text}</span>
       </button>
-    </a>
+    </Link>
   );
 }
 

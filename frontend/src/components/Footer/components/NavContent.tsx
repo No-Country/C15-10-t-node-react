@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 interface FooterNavProps {
   title: string;
   links: string[];
@@ -7,10 +9,10 @@ function NavContent({ title, links }: Readonly<FooterNavProps>) {
   return (
     <nav className="md:mx-auto">
       <header className="footer-title">{title}</header>
-      {links.map((link, index) => (
-        <a key={index} className="link link-hover">
+      {links.map((link: string, index) => (
+        <Link to={link.replaceAll(" ", "-")} key={index} className="link link-hover">
           {link}
-        </a>
+        </Link>
       ))}
     </nav>
   );

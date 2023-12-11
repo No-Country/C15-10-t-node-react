@@ -4,7 +4,7 @@ import NavSocialIcons from "./components/NavSocialIcons";
 
 function Footer() {
   return (
-    <div className="bg-emerald-900 dark:bg-emerald-950 ">
+    <div className=" bg-emerald-900 dark:bg-emerald-950 ">
       <div className="container-md mx-auto lg:max-w-screen-lg">
         <footer className="footer p-10  text-emerald-100 sm:grid-cols-3 sm:gap-4">
           <NavContent

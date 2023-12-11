@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-scroll";
+import { Link } from "react-router-dom"
 import { IoClose } from "react-icons/io5";
 import { TiThMenu } from "react-icons/ti";
 import Logo from "../../assets/wind.png";
@@ -31,18 +31,19 @@ function Navbar() {
     <div className="fixed w-full z-50">
       <div>
         <div className="flex flex-row justify-between px-7 py-4 md:py-4 mb-15 text-black font-bold bg-green-600 shadow-[0_3px_10px_rgba(0,0,0,0.2)]">
-          <div className="flex flex-row items-center cursor-pointer">
-            <img src={Logo} alt="Logo FreeWind" className="w-11" />
-            <h1 className="text-2xl font-bold ml-1">FreeWind</h1>
+          <div className="cursor-pointer" >
+            <Link to={"/"} className="flex flex-row items-center ">
+
+              <img src={Logo} alt="Logo FreeWind" className="w-11" />
+              <h1 className="text-2xl font-bold ml-1">FreeWind</h1>
+            </Link>
           </div>
           <nav className="hidden md:flex flex-row items-center text-lg font-medium md:text-base mx-2">
             <div className="relative group">
               <div className="flex items-center gap-1">
                 <Link
-                  to="destinos"
-                  spy={true}
-                  smooth={true}
-                  duration={500}
+                  to="/search"
+
                   className="hover:bg-gray-200 px-4 py-2 rounded-full transition-all cursor-pointer"
                 >
                   Descubrir
@@ -51,9 +52,7 @@ function Navbar() {
             </div>
             <Link
               to="planificar"
-              spy={true}
-              smooth={true}
-              duration={500}
+
               className="hover:bg-gray-200  px-4 py-2 rounded-full transition-all cursor-pointer"
             >
               Viajes
@@ -62,18 +61,14 @@ function Navbar() {
               <div className="flex items-center gap-1">
                 <Link
                   to="opiniones"
-                  spy={true}
-                  smooth={true}
-                  duration={500}
+
                   className="hover:bg-gray-200 px-4 py-2 rounded-full transition-all cursor-pointer text-center"
                 >
                   Opinión
                 </Link>
                 <Link
                   to="opiniones"
-                  spy={true}
-                  smooth={true}
-                  duration={500}
+
                   className="hover:bg-gray-200 px-4 py-2 rounded-full transition-all cursor-pointer"
                 >
                   Más
@@ -118,9 +113,8 @@ function Navbar() {
             onClick={closeMenu}
           >
             <div
-              className={`${
-                menu ? "translate-x-0" : "-translate-x-full"
-              } lg:hidden fixed top-0 left-0 z-40 h-screen py-10 px-7 overflow-y-auto transition-transform -translate-x-full bg-white w-72 sm:w-96 flex items-center flex-col`}
+              className={`${menu ? "translate-x-0" : "-translate-x-full"
+                } lg:hidden fixed top-0 left-0 z-40 h-screen py-10 px-7 overflow-y-auto transition-transform -translate-x-full bg-white w-72 sm:w-96 flex items-center flex-col`}
               tabIndex={-1}
               aria-labelledby="drawer-left-label"
             >
@@ -147,9 +141,7 @@ function Navbar() {
               <div className="flex flex-col text-gray-700 w-full items-start">
                 <Link
                   to="home"
-                  spy={true}
-                  smooth={true}
-                  duration={500}
+
                   className="text-base font-semibold transition-all cursor-pointer my-3 hover:text-gray-900"
                   onClick={closeMenu}
                 >
@@ -157,9 +149,7 @@ function Navbar() {
                 </Link>
                 <Link
                   to="hoteles"
-                  spy={true}
-                  smooth={true}
-                  duration={500}
+
                   className="text-base font-semibold transition-all cursor-pointer my-3 hover:text-gray-900"
                   onClick={closeMenu}
                 >
@@ -167,9 +157,7 @@ function Navbar() {
                 </Link>
                 <Link
                   to="cosas que hacer"
-                  spy={true}
-                  smooth={true}
-                  duration={500}
+
                   className="text-base font-semibold transition-all cursor-pointer my-3 hover:text-gray-900"
                   onClick={closeMenu}
                 >
@@ -177,9 +165,7 @@ function Navbar() {
                 </Link>
                 <Link
                   to="restaurantes"
-                  spy={true}
-                  smooth={true}
-                  duration={500}
+
                   className="text-base font-semibold transition-all cursor-pointer my-3 hover:text-gray-900"
                   onClick={closeMenu}
                 >
@@ -187,9 +173,7 @@ function Navbar() {
                 </Link>
                 <Link
                   to="alquiler de auto"
-                  spy={true}
-                  smooth={true}
-                  duration={500}
+
                   className="text-base font-semibold transition-all cursor-pointer my-3 hover:text-gray-900"
                   onClick={closeMenu}
                 >
@@ -197,9 +181,7 @@ function Navbar() {
                 </Link>
                 <Link
                   to="vuelos"
-                  spy={true}
-                  smooth={true}
-                  duration={500}
+
                   className="text-base font-semibold transition-all cursor-pointer my-3 hover:text-gray-900"
                   onClick={closeMenu}
                 >
@@ -207,9 +189,7 @@ function Navbar() {
                 </Link>
                 <Link
                   to="cruceros"
-                  spy={true}
-                  smooth={true}
-                  duration={500}
+
                   className="text-base font-semibold transition-all cursor-pointer my-3 hover:text-gray-900"
                   onClick={closeMenu}
                 >
@@ -217,9 +197,7 @@ function Navbar() {
                 </Link>
                 <Link
                   to="alquiler autos"
-                  spy={true}
-                  smooth={true}
-                  duration={500}
+
                   className="text-base font-semibold transition-all cursor-pointer my-3 hover:text-gray-900"
                   onClick={closeMenu}
                 >
