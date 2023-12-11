@@ -3,18 +3,22 @@ import Hero from "../../components/Hero/Hero";
 import Nav from "../../components/Nav/Nav";
 import Navbar from "../../components/Navbar/Navbar";
 import Publicity from "../../components/Publicity/Publicity";
+import FAQSection from "./components/FAQSection/FAQSection";
 import FeaturedDestinations from "./components/FeaturedDestinations/FeaturedDestinations";
 
-function Home() { 
+function Home() {
   return (
-    <div>
+    <>
       <Navbar />
       <Nav />
       <Hero />
-      <FeaturedDestinations />
-      <Publicity />
+      <div className="container-md mx-auto lg:max-w-screen-lg overflow-hidden">
+        <FeaturedDestinations />
+        <Publicity />
+        <FAQSection />
+      </div>
       <Footer />
-    </div>
+    </>
   );
 }
 

@@ -14,11 +14,11 @@ const packageSchema = new mongoose.Schema({
 });
 packageSchema.set("toJSON", { virtuals: true });
 
-// packageSchema.methods.toJSON = function () {
-//   const package = this._doc;
-//   package.id = this._id.toString();
-//   delete package._id;
-//   return package;
+// productSchema.methods.toJSON = function () {
+//   const product = this._doc;
+//   product.id = this._id.toString();
+//   delete product._id;
+//   return product;
 // };
 
 packageSchema.virtual("slug").get(function () {

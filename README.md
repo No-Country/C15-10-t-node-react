@@ -38,6 +38,12 @@ Te invitamos a unirte a la comunidad de FreeWind y ser parte de una revolución 
 
 **FreeWind: Donde Cada Viaje Cuenta. ¡Únete y Comienza tu Aventura!**
 
+###Deploy Front-End 
+
+https://65739aa5bb45756e63524c8e--jovial-youtiao-fc9c1c.netlify.app/
+
 ### Deploy Back-End
 
-https://fullstackapp-dev-nqhh.2.us-1.fl0.io
+https://freewind-dev-tssj.3.us-1.fl0.io/
+
+

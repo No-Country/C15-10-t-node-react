@@ -6,8 +6,8 @@ import { PiBagSimpleThin } from "react-icons/pi";
 
 export const Nav:React.FC = () => {
   return (
-      <div className='text-center items-center sm:px-32 text-sm lg:px-26 py-8 px-5'>git
-        <h1 className= 'text-center items-center text-black m-8 mb-2 py-6 font-bold text-4xl'>¿Adonde?</h1>
+      <div className='text-center items-center sm:px-32 text-sm lg:px-26 py-6 px-5'>
+        <h1 className= 'text-center items-center text-black m-8 mb-2 py-8 font-bold text-4xl'>¿Adonde?</h1>
         <div className='text-center items-center justify-center'>
            <button className='flex text-center sm:text-sm items-center justify-center m-auto lg:text-xl hover:underline p-2 rounded-full text-black font-bold gap-4'>
              <span className='sm:gap-1 flex text-center items-center justify-center md:gap-1 lg:gap-2'>
