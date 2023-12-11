@@ -10,9 +10,9 @@ function Home() {
   return (
     <>
       <Navbar />
-      <Nav />
       <Hero />
       <div className="container-md mx-auto lg:max-w-screen-lg overflow-hidden">
+        <Nav />
         <FeaturedDestinations />
         <Publicity />
         <FAQSection />
