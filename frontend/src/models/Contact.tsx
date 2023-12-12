@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import Logo from "../assets/wind.png";
-import { IoIosEye } from "react-icons/io";
 
 export interface ContactProps {
   closeForm: () => void
