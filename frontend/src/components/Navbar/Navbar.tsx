@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import { IoClose } from "react-icons/io5";
 import { TiThMenu } from "react-icons/ti";
 import Logo from "../../assets/wind.png";
-import Contac from "../../models/Contact";
+import Login from "../../layouts/auth/login/Login";
 import { TbWorld } from "react-icons/tb";
 
 function Navbar() {
@@ -91,7 +91,7 @@ function Navbar() {
           </div>
 
           {showForm && (
-            <Contac
+            <Login
               closeForm={closeForm}
               title={function (): string {
                 throw new Error("Function not implemented.");
