@@ -22,9 +22,7 @@ function App() {
       </Routes>
       <Footer></Footer>
     </>
-  )
-
-
+  );
 }
 
 export default App;
