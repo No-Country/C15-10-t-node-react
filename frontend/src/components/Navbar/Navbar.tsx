@@ -1,14 +1,12 @@
 import { useState } from "react";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 import { IoClose } from "react-icons/io5";
 import { TiThMenu } from "react-icons/ti";
 import Logo from "../../assets/wind.png";
-import Login from "../../layouts/auth/login/Login";
 import { TbWorld } from "react-icons/tb";
 
 function Navbar() {
   const [menu, setMenu] = useState(false);
-  const [showForm, setShowForm] = useState(false);
 
   const handleChange = () => {
     setMenu(!menu);
@@ -19,21 +17,15 @@ function Navbar() {
   };
 
   const openForm = () => {
-    setShowForm(true);
     setMenu(false);
-  };
-
-  const closeForm = () => {
-    setShowForm(false);
   };
 
   return (
     <div className="fixed w-full z-50">
       <div>
         <div className="flex flex-row justify-between px-7 py-4 md:py-4 mb-15 text-black font-bold bg-green-600 shadow-[0_3px_10px_rgba(0,0,0,0.2)]">
-          <div className="cursor-pointer" >
+          <div className="cursor-pointer">
             <Link to={"/"} className="flex flex-row items-center ">
-
               <img src={Logo} alt="Logo FreeWind" className="w-11" />
               <h1 className="text-2xl font-bold ml-1">FreeWind</h1>
             </Link>
@@ -43,7 +35,6 @@ function Navbar() {
               <div className="flex items-center gap-1">
                 <Link
                   to="/search"
-
                   className="hover:bg-gray-200 px-4 py-2 rounded-full transition-all cursor-pointer"
                 >
                   Descubrir
@@ -52,7 +43,6 @@ function Navbar() {
             </div>
             <Link
               to="planificar"
-
               className="hover:bg-gray-200  px-4 py-2 rounded-full transition-all cursor-pointer"
             >
               Viajes
@@ -61,14 +51,12 @@ function Navbar() {
               <div className="flex items-center gap-1">
                 <Link
                   to="opiniones"
-
                   className="hover:bg-gray-200 px-4 py-2 rounded-full transition-all cursor-pointer text-center"
                 >
                   Opinión
                 </Link>
                 <Link
                   to="opiniones"
-
                   className="hover:bg-gray-200 px-4 py-2 rounded-full transition-all cursor-pointer"
                 >
                   Más
@@ -82,22 +70,13 @@ function Navbar() {
               <TbWorld className="mt-1.5" />
               <span>|EUR</span>
             </span>
-            <button
+            <Link
+              to="/login"
               className="px-4 py-2 border-2 border-none bg-black text-white hover:text-white hover:bg-gray-900 transition-all rounded-full"
-              onClick={openForm}
             >
               Iniciar sesión
-            </button>
+            </Link>
           </div>
-
-          {showForm && (
-            <Login
-              closeForm={closeForm}
-              title={function (): string {
-                throw new Error("Function not implemented.");
-              }}
-            />
-          )}
 
           <div className="md:hidden flex items-center">
             <TiThMenu
@@ -113,8 +92,9 @@ function Navbar() {
             onClick={closeMenu}
           >
             <div
-              className={`${menu ? "translate-x-0" : "-translate-x-full"
-                } lg:hidden fixed top-0 left-0 z-40 h-screen py-10 px-7 overflow-y-auto transition-transform -translate-x-full bg-white w-72 sm:w-96 flex items-center flex-col`}
+              className={`${
+                menu ? "translate-x-0" : "-translate-x-full"
+              } lg:hidden fixed top-0 left-0 z-40 h-screen py-10 px-7 overflow-y-auto transition-transform -translate-x-full bg-white w-72 sm:w-96 flex items-center flex-col`}
               tabIndex={-1}
               aria-labelledby="drawer-left-label"
             >
@@ -124,12 +104,13 @@ function Navbar() {
                 className="cursor-pointer fixed top-0 right-0 m-4 text-black"
               />
               <div className="w-full flex items-start flex-col">
-                <button
-                  className="text-base mx-auto w-full md:px-16 py-2 border-2 border-black bg-black text-white transition-all rounded-full"
+                <Link
+                  to="/login"
+                  className="text-base text-center mx-auto w-full md:px-16 py-2 border-2 border-black bg-black text-white transition-all rounded-full"
                   onClick={openForm}
                 >
                   Iniciar sesión
-                </button>
+                </Link>
                 <span className="flex flex-row py-6 rounded-full transition-all cursor-pointer text-black font-bold">
                   <TbWorld className="mt-1.5" />
                   <p>España, ES</p>
@@ -141,7 +122,6 @@ function Navbar() {
               <div className="flex flex-col text-gray-700 w-full items-start">
                 <Link
                   to="home"
-
                   className="text-base font-semibold transition-all cursor-pointer my-3 hover:text-gray-900"
                   onClick={closeMenu}
                 >
@@ -149,7 +129,6 @@ function Navbar() {
                 </Link>
                 <Link
                   to="hoteles"
-
                   className="text-base font-semibold transition-all cursor-pointer my-3 hover:text-gray-900"
                   onClick={closeMenu}
                 >
@@ -157,7 +136,6 @@ function Navbar() {
                 </Link>
                 <Link
                   to="cosas que hacer"
-
                   className="text-base font-semibold transition-all cursor-pointer my-3 hover:text-gray-900"
                   onClick={closeMenu}
                 >
@@ -165,7 +143,6 @@ function Navbar() {
                 </Link>
                 <Link
                   to="restaurantes"
-
                   className="text-base font-semibold transition-all cursor-pointer my-3 hover:text-gray-900"
                   onClick={closeMenu}
                 >
@@ -173,7 +150,6 @@ function Navbar() {
                 </Link>
                 <Link
                   to="alquiler de auto"
-
                   className="text-base font-semibold transition-all cursor-pointer my-3 hover:text-gray-900"
                   onClick={closeMenu}
                 >
@@ -181,7 +157,6 @@ function Navbar() {
                 </Link>
                 <Link
                   to="vuelos"
-
                   className="text-base font-semibold transition-all cursor-pointer my-3 hover:text-gray-900"
                   onClick={closeMenu}
                 >
@@ -189,7 +164,6 @@ function Navbar() {
                 </Link>
                 <Link
                   to="cruceros"
-
                   className="text-base font-semibold transition-all cursor-pointer my-3 hover:text-gray-900"
                   onClick={closeMenu}
                 >
@@ -197,7 +171,6 @@ function Navbar() {
                 </Link>
                 <Link
                   to="alquiler autos"
-
                   className="text-base font-semibold transition-all cursor-pointer my-3 hover:text-gray-900"
                   onClick={closeMenu}
                 >
