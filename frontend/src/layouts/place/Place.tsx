@@ -1,9 +1,5 @@
-import React from 'react'
-
 function Place() {
-    return (
-        <div>Place</div>
-    )
+  return <div>Place</div>;
 }
 
-export default Place
+export default Place;
