@@ -1,5 +1,5 @@
 function Place() {
-  return <div>Place</div>;
+  return <div>Aca van los places</div>;
 }
 
 export default Place;
