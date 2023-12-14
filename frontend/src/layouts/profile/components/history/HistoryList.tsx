@@ -3,9 +3,9 @@ import { history } from "./history";
 export default function HistoryList() {
   return (
     <>
-      {history && (
-        <div className="overflow-y-auto">
-          <table className="table">
+      <div className="overflow-y-auto">
+        <table className="table">
+          {history && (
             <thead>
               <tr>
                 <th></th>
@@ -16,18 +16,14 @@ export default function HistoryList() {
                 <th></th>
               </tr>
             </thead>
-          </table>
-        </div>
-      )}
-      {history &&
-        history.map((item) => {
-          return (
-            <div className="overflow-y-auto">
-              <table className="table">
+          )}
+          {history &&
+            history.map((item) => {
+              return (
                 <tbody>
                   <tr className="h-[10ch]">
-                    <th></th>
-                    <td>
+                    <th className="w-[2ch]"> 1 </th>
+                    <td className="w-[10ch]">
                       <h1 className="text-xl">{item.place}</h1>
                     </td>
                     <td>{item.rating}</td>
@@ -39,10 +35,10 @@ export default function HistoryList() {
                     </td>
                   </tr>
                 </tbody>
-              </table>
-            </div>
-          );
-        })}
+              );
+            })}
+        </table>
+      </div>
     </>
   );
 }
