@@ -1,44 +1,120 @@
-import React from "react";
+import React, { useState } from "react";
 import { RiHomeLine } from "react-icons/ri";
 import { MdOutlineHotel } from "react-icons/md";
 import { PiBagSimpleThin } from "react-icons/pi";
-import { Link } from "react-router-dom";
+import { Search } from "lucide-react";
+import TouristData from "../../data/TouristSpotsData.json";
+import AutoComplete from "./components/AutoComplete/AutoComplete";
 
 export const Nav: React.FC = () => {
+  const [menuSeleccionado, setMenuSeleccionado] = useState("¿Adónde vas?");
+  const [placeholderText, setPlaceHolderText] = useState(
+    "Lugares que visitar, cosas que hacer, hoteles..."
+  );
+  const [autoCompleteVisible, setAutoCompleteVisible] = useState(false);
+  const [value, setValue] = useState("");
+  const [text, setText] = useState("");
+  const handleMenuClick = (title: string, placeholder: string) => {
+    setMenuSeleccionado(title);
+    setPlaceHolderText(placeholder);
+  };
+
+  const handleActive = (open: boolean, text: string) => {
+    setAutoCompleteVisible(open);
+    setText(text);
+  };
+
   return (
-    <div className="text-center items-center sm:px-32 text-sm lg:px-26 py-6 px-5">
-      <h1 className="text-center items-center text-black m-8 mb-2 py-8 font-bold text-4xl">
-        ¿Adónde vas?
+    <div className="text-center items-center text-sm mx-auto py-5 sm:px-3 px-1">
+      <h1 className="items-center m-6 mb-2 py-6 font-bold md:text-6xl text-4xl">
+        {menuSeleccionado}
       </h1>
       <div className="text-center items-center justify-center">
-        <button className="flex text-center sm:text-sm items-center justify-center m-auto lg:text-xl p-2 rounded-full text-black font-bold gap-4">
-          <span className="sm:gap-1 flex text-center items-center justify-center md:gap-1 lg:gap-2 hover:underline">
-            <RiHomeLine className="mt-.5" />
-            <Link to={"#"}>Buscar todo</Link>
-          </span>
-          <span className="flex flex-row hover:underline">
-            <MdOutlineHotel className="mt-1" />
-            <Link to={"#"} className="mx-1">
-              Hoteles
-            </Link>
-          </span>
-          <span className="flex flex-row hover:underline">
-            <PiBagSimpleThin className="mt-1" />
-            <Link to={"#"} className="mx-1">
-              Cosas que hacer
-            </Link>
-          </span>
-        </button>
-        <br></br>
-        <div>
-          <input
-            className="flex items-center pl-3 bg-gray-300 text-black text-sm font-semibold rounded-3xl border-2 p-4 px-4 mb-2 mx-auto w-9/12 cursor-pointer"
-            type="text"
-            placeholder=" 🔍Lugares para visitar, cosas para hacer,hoteles..."
-          />
-          <button className="flex items-center justify-center text-xl font-bold mx-auto px-28 py-2 border-2 border-green-600 bg-green-600 text-black transition-all rounded-full">
-            Buscar
-          </button>
+        <div className="flex text-center sm:text-sm items-center justify-center m-auto lg:text-xl md:p-2 py-2 px-0 rounded-full font-bold sm:gap-4 gap-1 w-full">
+          <a
+            className="transition-all duration-300 border-b-2 border-transparent hover:border-base-content cursor-pointer"
+            onClick={() =>
+              handleMenuClick(
+                "¿Adónde vas?",
+                "Lugares que visitar, cosas que hacer, hoteles..."
+              )
+            }
+          >
+            <span className="flex flex-row items-center justify-center">
+              <RiHomeLine className="mt-1 md:text-lg sm:text-base text-sm" />
+              <p className="ml-1 md:text-xl sm:text-base text-sm font-normal hover:font-semibold">
+                Buscar todo
+              </p>
+            </span>
+          </a>
+          <a
+            className="transition-all duration-300 border-b-2 border-transparent hover:border-base-content cursor-pointer"
+            onClick={() =>
+              handleMenuClick(
+                "Alójate en algún sitio increíble",
+                "Nombre del hotel o destino"
+              )
+            }
+          >
+            <span className="flex flex-row items-center justify-center">
+              <MdOutlineHotel className="mt-1 md:text-lg sm:text-base text-sm" />
+              <p className="mx-1 md:text-xl sm:text-base text-sm font-normal hover:font-semibold">
+                Hoteles
+              </p>
+            </span>
+          </a>
+          <a
+            className="transition-all duration-300 border-b-2 border-transparent hover:border-base-content cursor-pointer"
+            onClick={() =>
+              handleMenuClick(
+                "Haz algo divertido",
+                "Atracción, actividad o destino"
+              )
+            }
+          >
+            <span className="flex flex-row items-center justify-center">
+              <PiBagSimpleThin className="mt-1 md:text-lg sm:text-base text-sm" />
+              <p className="ml-1 md:text-xl sm:text-base text-sm font-normal hover:font-semibold">
+                Cosas que hacer
+              </p>
+            </span>
+          </a>
+        </div>
+
+        <div className="md:mx-20 md:shadow-none shadow-xl">
+          {!autoCompleteVisible && (
+            <div className="relative flex flex-col items-stretch ">
+              <div className="relative items-center">
+                <div className="absolute inset-y-0 start-0 flex items-center ps-3 cursor-pointer">
+                  <Search />
+                </div>
+                <input
+                  type="search"
+                  id="default-search"
+                  className="block shadow-xl w-full p-5 ps-10 text-sm outline-none text-base-content border-2 border-gray-300 rounded-full ring-gray-300 placeholder:text-gray-500 placeholder:text-sm focus:ring-inset sm:text-sm sm:leading-6"
+                  placeholder={placeholderText}
+                  onClick={() => setAutoCompleteVisible(true)}
+                  defaultValue={text}
+                />
+              </div>
+              <button
+                type="submit"
+                onClick={() => setAutoCompleteVisible(true)}
+                className="md:absolute md:end-2.5 md:bottom-2 md:mt-0 mt-3 font-bold px-5 py-4 bg-emerald-400 hover:bg-emerald-300 text-emerald-950 transition-all rounded-full"
+              >
+                Buscar
+              </button>
+            </div>
+          )}
+          {autoCompleteVisible && (
+            <AutoComplete
+              value={value}
+              onChange={setValue}
+              items={TouristData}
+              placeholder={placeholderText}
+              onClick={handleActive}
+            />
+          )}
         </div>
       </div>
     </div>
