@@ -1,14 +1,14 @@
-const Comment = require("../models/Comment");
+const Review = require("../models/Review");
 
 
 async function store(req, res) {
   try {
-    const newComment = await Comment.create({
+    const newReview = await Review.create({
       content: req.body.content,
       userId: req.body.userId,
     });
-    const comment = await Comment.findOne(newComment);
-    return res.status(200).json(comment);
+    const review = await Review.findOne(newReview);
+    return res.status(200).json(review);
   } catch (err) {
     res.status(400).json(err);
   }
@@ -16,10 +16,10 @@ async function store(req, res) {
 
 async function update(req, res) {
   try {
-    await Comment.findByIdAndUpdate(req.params.commentId, {
+    await Review.findByIdAndUpdate(req.params.commentId, {
       content: req.body.content
     });
-    const commentUpdated = await Comment.findById(req.params.commentId);
+    const commentUpdated = await Review.findById(req.params.commentId);
 
     res.status(201).json(commentUpdated);
   } catch (err) {
@@ -29,9 +29,9 @@ async function update(req, res) {
 
 async function destroy(req, res) {
   try {
-    await Comment.findByIdAndDelete(req.body.commentId);
+    await Review.findByIdAndDelete(req.body.commentId);
 
-    return res.status(200).send({ message: "Comment deleted" });
+    return res.status(200).send({ message: "Review deleted" });
   } catch (err) {
     return res.status(404).send({ message: "Something went wrong, try again later" });
   }

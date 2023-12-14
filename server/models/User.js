@@ -2,12 +2,16 @@ const { mongoose, Schema } = require("../db");
 
 const userSchema = new mongoose.Schema(
   {
-    user: {},
-    packages: [],
-    totalAmount: Number,
-    totalQuantity: Number,
-    paymentMethod: String,
-    status: String,
+    firstname: String,
+    lastname: String,
+    email: {
+      type: String,
+      unique: true,
+    },
+    password: String,
+    phone: String,
+    address: String,
+
   },
   { timestamps: true },
 );

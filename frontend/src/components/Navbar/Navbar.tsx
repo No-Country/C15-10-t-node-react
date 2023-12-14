@@ -4,6 +4,7 @@ import { IoClose } from "react-icons/io5";
 import { TiThMenu } from "react-icons/ti";
 import Logo from "../../assets/wind.png";
 import { TbWorld } from "react-icons/tb";
+import ThemeController from "./ThemeController/ThemeController";
 
 function Navbar() {
   const [menu, setMenu] = useState(false);
@@ -65,7 +66,8 @@ function Navbar() {
             </div>
           </nav>
 
-          <div className=" hidden lg:flex">
+          <div className=" hidden lg:flex items-center justify-center">
+            <ThemeController />
             <span className="flex flex-row hover:bg-gray-200 px-4 py-2 rounded-full transition-all cursor-pointer font-semibold mx-1">
               <TbWorld className="mt-1.5" />
               <span>|EUR</span>
@@ -79,10 +81,11 @@ function Navbar() {
           </div>
 
           <div className="md:hidden flex items-center">
+            <ThemeController />
             <TiThMenu
               size={25}
               onClick={handleChange}
-              className="cursor-pointer"
+              className="cursor-pointer ml-1"
             />
           </div>
         </div>
@@ -115,7 +118,7 @@ function Navbar() {
                   <TbWorld className="mt-1.5" />
                   <p>España, ES</p>
                   <div className="border-l border-gray-300 h-full mx-1"></div>
-                  <p>URS</p>
+                  <p>EUR</p>
                 </span>
               </div>
               <div className="border-b border-gray-300 my-4 w-full"></div>
