@@ -1,6 +1,7 @@
 import classNames from "classnames";
 import { MapPin, Search, MapPinned } from "lucide-react";
 import { memo, useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 
 type Props = {
   items: {
@@ -83,7 +84,7 @@ function AutoComplete(props: Readonly<Props>) {
               }}
               className="border-b border-b-base-content/10 w-full"
             >
-              <a href={`/Search?q=${item.name}`}>
+              <Link to={`/search?q=${item.name}`}>
                 <div className="flex items-center">
                   <MapPin className="mr-1" />
                   <div>
@@ -91,14 +92,14 @@ function AutoComplete(props: Readonly<Props>) {
                     <p className="text-xs">{item.location}</p>
                   </div>
                 </div>
-              </a>
+              </Link>
             </li>
           ))}
           {filteredItems.length === 0 && (
             <li className="w-full">
-              <a href={`/search?q=${query}`}>
+              <Link to={`/search?q=${query}`}>
                 <Search /> Ver todos los resultados de {query}
-              </a>
+              </Link>
               <button>
                 <MapPinned /> Agregar un lugar faltante
               </button>

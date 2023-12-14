@@ -1,6 +1,7 @@
 import NavContent from "./components/NavContent";
 import Logo from "../../assets/wind.png";
 import NavSocialIcons from "./components/NavSocialIcons";
+import { Link } from "react-router-dom";
 
 function Footer() {
   return (
@@ -23,7 +24,9 @@ function Footer() {
 
         <footer className="flex items-center sm:justify-between sm:flex-row flex-col px-10 py-4 border-t text-emerald-100 border-emerald-300">
           <aside className="grid grid-flow-col gap-4 place-items-center mb-3">
-            <img src={Logo} alt="Logo FreeWind" className="w-11" />
+            <Link to={"/"}>
+              <img src={Logo} alt="Logo FreeWind" className="w-11" />
+            </Link>
             <p>
               <span className="font-bold text-lg">FreeWind</span>
               <br />

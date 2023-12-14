@@ -72,7 +72,7 @@ function Navbar() {
             </span>
             <Link
               to="/login"
-              className="px-4 py-2 border-2 border-none bg-black text-white hover:text-white hover:bg-gray-900 transition-all rounded-full"
+              className="px-4 py-2 border-2 border-none bg-black text-white hover:text-white hover:bg-gray-800 transition-all rounded-full"
             >
               Iniciar sesión
             </Link>
@@ -106,7 +106,7 @@ function Navbar() {
               <div className="w-full flex items-start flex-col">
                 <Link
                   to="/login"
-                  className="text-base text-center mx-auto w-full md:px-16 py-2 border-2 border-black bg-black text-white transition-all rounded-full"
+                  className="text-base text-center mx-auto w-full md:px-16 py-2 border-2 border-black bg-black hover:bg-gray-800 hover:border-gray-800 text-white transition-all rounded-full"
                   onClick={openForm}
                 >
                   Iniciar sesión
@@ -121,7 +121,7 @@ function Navbar() {
               <div className="border-b border-gray-300 my-4 w-full"></div>
               <div className="flex flex-col text-gray-700 w-full items-start">
                 <Link
-                  to="home"
+                  to="/"
                   className="text-base font-semibold transition-all cursor-pointer my-3 hover:text-gray-900"
                   onClick={closeMenu}
                 >
