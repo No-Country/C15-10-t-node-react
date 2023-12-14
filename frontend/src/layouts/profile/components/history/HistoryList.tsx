@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { history } from "./history";
 
 export default function HistoryList() {
@@ -5,19 +6,17 @@ export default function HistoryList() {
     <>
       <div className="overflow-y-auto">
         <table className="table">
-          {history && (
-            <thead>
-              <tr>
-                <th></th>
-                <th>Place</th>
-                <th>Rating</th>
-                <th>Description</th>
-                <th>Action</th>
-                <th></th>
-              </tr>
-            </thead>
-          )}
-          {history &&
+          <thead>
+            <tr>
+              <th></th>
+              <th>Place</th>
+              <th>Rating</th>
+              <th>Description</th>
+              <th>Action</th>
+              <th></th>
+            </tr>
+          </thead>
+          {(history &&
             history.map((item) => {
               return (
                 <tbody>
@@ -28,15 +27,17 @@ export default function HistoryList() {
                     </td>
                     <td>{item.rating}</td>
                     <td className="w-[24ch] overflow-hidden ">
-                      {item.description.slice(0, 100)}
+                      {item.description.slice(0, 72) + "..."}
                     </td>
                     <td>
-                      <button className="btn btn-primary">Buscar</button>
+                      <Link className="btn-link" to={`/search?=${item.place}`}>
+                        Buscar de nuevo
+                      </Link>
                     </td>
                   </tr>
                 </tbody>
               );
-            })}
+            })) || <h1 className="text-xl text-center">No hay historial</h1>}
         </table>
       </div>
     </>
