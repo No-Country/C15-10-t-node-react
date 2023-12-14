@@ -4,8 +4,8 @@ const User = require("./User")
 
 const reviewsSchema = new mongoose.Schema(
   {
-    place: Place,
-    user: User,
+    place: {},
+    user: {},
     rating: Number,
     comment: String,
   },

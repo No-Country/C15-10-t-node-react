@@ -32,4 +32,4 @@ packageSchema.virtual("slug").get(function () {
   });
 });
 
-module.exports = mongoose.model("Package", packageSchema);
+module.exports = mongoose.model("Packages", packageSchema);
