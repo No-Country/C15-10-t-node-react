@@ -1,7 +1,7 @@
 const Place = require("../models/Place");
 
 async function index(req, res) {
-    const places = await Place.find().populate("reviews");
+    const places = await Place.find();
 
     return res.status(200).json(places);
 }

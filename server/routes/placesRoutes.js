@@ -17,7 +17,7 @@ router.patch(
 );
 router.delete(
     "/",
-    checkJwt({ secret: process.env.JWT_CUSTOMER_SECRET_KEY, algorithms: ["HS256"] }),
+    checkJwt({ secret: process.env.JWT_ADMIN_SECRET_KEY, algorithms: ["HS256"] }),
     placesController.destroy,
 );
 
