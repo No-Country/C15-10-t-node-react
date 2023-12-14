@@ -32,10 +32,13 @@ export default function ReviewList() {
           reviews.map((review) => (
             <div className="card bg-base-100 border">
               <div className="card-body">
-                <h2 className="card-title">{review.place}</h2>
-                <StarsInputs stars={review.stars} />
+                <h2 className="card-title">{review.userName}</h2>
+                <div>
+                  <StarsInputs stars={review.stars} />
+                  <span>{review.stars}</span>
+                </div>
                 <QuoteIcon className="w-6 h-6" />
-                <p className="h-[12ch] overflow-hidden">{review.review}</p>
+                <p className="h-[12ch] overflow-hidden">{review.comments}</p>
                 <div className="card-actions justify-between">
                   <span>
                     <strong>Published at: </strong> {review.published}
