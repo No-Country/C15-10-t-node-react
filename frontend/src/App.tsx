@@ -11,7 +11,7 @@ import Place from "./layouts/place/Place";
 import Footer from "./components/Footer/Footer";
 
 function App() {
-  const user = useSelector((state: RootState) => state.auth.user)
+  const user = useSelector((state: RootState) => state.auth.user);
 
   return (
     <>
@@ -22,7 +22,8 @@ function App() {
         <Route path="/register" element={<Register></Register>}></Route>
         <Route path="/search" element={<Search></Search>}></Route>
         <Route path="/place/:id" element={<Place></Place>}></Route>
-        <Route path="/user/:id" element={user && user.token ? <Profile></Profile> : <Navigate to="/login" replace={true} />}></Route>
+        {/* <Route path="/user/:id" element={user && user.token ? <Profile></Profile> : <Navigate to="/login" replace={true} />}></Route> */}
+        <Route path="/user/:id" element={<Profile></Profile>}></Route>
       </Routes>
       <Footer></Footer>
     </>
