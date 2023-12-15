@@ -15,4 +15,4 @@ React, Vite, Typescript, Redux, MongoDB, JS, GitHub, NodeJS, CSS3, Bootstrap
 
 ##Data Model
 
-https://drive.google.com/file/d/13Mkgn3y1d-gTg4kuxAzrMUnPsQhwF3bA/view?usp=sharing" 
+https://drive.google.com/file/d/13Mkgn3y1d-gTg4kuxAzrMUnPsQhwF3bA/view?usp=sharing
