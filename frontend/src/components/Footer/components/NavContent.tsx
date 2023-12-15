@@ -10,7 +10,11 @@ function NavContent({ title, links }: Readonly<FooterNavProps>) {
     <nav className="md:mx-auto">
       <header className="footer-title">{title}</header>
       {links.map((link: string, index) => (
-        <Link to={link.replaceAll(" ", "-")} key={index} className="link link-hover">
+        <Link
+          to={link.replace(/ /g, "-")}
+          key={index}
+          className="link link-hover"
+        >
           {link}
         </Link>
       ))}
