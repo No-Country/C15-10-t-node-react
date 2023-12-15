@@ -1,7 +1,7 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "./store/store";
-import Home from "./layouts/home/Home";
+import Home from "./layouts/Home/Home";
 import Navbar from "./components/Navbar/Navbar";
 import Login from "./layouts/auth/login/Login";
 import Register from "./layouts/auth/register/Register";
