@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { Link } from "react-router-dom";
 import Logo from "../../../assets/wind.png";
 
@@ -91,10 +90,4 @@ export default Register
     
 
 
-=======
-function Register() {
-  return <div>Register</div>;
-}
 
-export default Register;
->>>>>>> 3d4802031b5ca0c41e3e7f5a33752ed46be63fd3
