@@ -38,6 +38,17 @@ Te invitamos a unirte a la comunidad de FreeWind y ser parte de una revolución 
 
 **FreeWind: Donde Cada Viaje Cuenta. ¡Únete y Comienza tu Aventura!**
 
+### Deploy Front-End 
+
+https://jovial-youtiao-fc9c1c.netlify.app/
+
 ### Deploy Back-End
 
 https://freewind-dev-tssj.3.us-1.fl0.io/
+
+###  Data Model (MongoDB)
+
+
+https://drive.google.com/file/d/13Mkgn3y1d-gTg4kuxAzrMUnPsQhwF3bA/view?usp=sharing
+
+

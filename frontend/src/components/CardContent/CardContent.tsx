@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Star } from "lucide-react";
+import { BsStarFill, BsStarHalf } from "react-icons/bs";
 import FavoriteButton from "../FavoriteButton/FavoriteButton";
 
 interface CardContentProps {
@@ -23,8 +23,24 @@ function CardContent({
     setIsFavorite(!isFavorite);
   };
 
+  const renderStars = () => {
+    const stars = [];
+    const integerPart = Math.floor(rating);
+    const hasDecimal = rating % 1 !== 0;
+
+    for (let i = 0; i < integerPart; i++) {
+      stars.push(<BsStarFill key={i} className="text-yellow-500" />);
+    }
+
+    if (hasDecimal) {
+      stars.push(<BsStarHalf key="half" className="text-yellow-500" />);
+    }
+
+    return stars;
+  };
+
   return (
-    <div className="card card-compact md:w-72 w-56 bg-green-600 shadow-xl mx-1 mt-3 h-96">
+    <div className="card card-compact w-full bg-green-600 shadow-xl mt-3 md:h-96 h-80 mx-1">
       <figure className="relative overflow-hidden group">
         <img
           src={image}
@@ -33,22 +49,19 @@ function CardContent({
         />
         <FavoriteButton isFavorite={isFavorite} onClick={toggleFavorite} />
       </figure>
-      <div className="card-body h-16">
-        <h2 className="card-title text-green-50 text-xl">
+      <div className="card-body sm:h-16 h-14">
+        <h2 className="card-title text-green-50 md:text-xl sm:text-lg text-base">
           {name} , {location}
         </h2>
       </div>
       <div className="p-4">
         <div className="card-actions">
-          <div className="flex items-center">
-            <Star color="yellow" size={17} />
-            <Star color="yellow" size={17} />
-            <Star color="yellow" size={17} />
-            <Star color="yellow" size={17} />
+          <div className="flex flex-row mx-auto items-center">
+            {renderStars()}
             <p className="text-base text-gray-200 mx-1">{rating}</p>
           </div>
         </div>
-        <p className="text-white pb-1">
+        <p className="text-white pb-1 md:text-lg sm:text-sm">
           Desde <strong className="text-green-100">${price}</strong> por adulto
         </p>
         <div className="card-actions">

@@ -1,31 +1,33 @@
 const Review = require("../models/Review");
 
+
+
 async function index(req, res) {
   try {
-    const reviews = await Review.find();
-    console.log(reviews);
+    const reviews = await Review.find()
     return res.status(200).json(reviews);
-  } catch (error) {
-    return res.status(401).json(err);
+  } catch (err) {
+    res.status(400).json(err);
   }
 }
 
-async function show(req, res) {
+async function userReviews(req, res) {
+  const userId = req.params.userId
   try {
-    const review = await Review.findOne({ userId: req.body._id });
-    return res.status(200).json(review);
-  } catch (error) {
-    return res.status(401).json(err);
+    const reviews = await Review.find({ userId: userId })
+    return res.status(200).json(reviews);
+  } catch (err) {
+    res.status(400).json(err);
   }
 }
 
 async function store(req, res) {
   try {
     const newReview = await Review.create({
+      comment: req.body.comment,
       userId: req.body.userId,
-      userName: req.body.name,
-      points: req.body.points,
-      comments: req.body.comments,
+      placeId: req.body.placeId,
+      rating: req.body.rating,
     });
     const review = await Review.findOne(newReview);
     return res.status(200).json(review);
@@ -34,14 +36,16 @@ async function store(req, res) {
   }
 }
 
+
+
 async function update(req, res) {
   try {
-    await Review.findByIdAndUpdate(req.params._id, {
-      stock: req.body.stock,
+    await Review.findByIdAndUpdate(req.params.commentId, {
+      content: req.body.content
     });
-    const reviewToFront = await Review.findById(req.params._id);
+    const commentUpdated = await Review.findById(req.params.commentId);
 
-    res.status(201).json(reviewToFront);
+    res.status(201).json(commentUpdated);
   } catch (err) {
     res.status(404).json(err);
   }
@@ -49,7 +53,7 @@ async function update(req, res) {
 
 async function destroy(req, res) {
   try {
-    await Review.findByIdAndDelete(req.body._id);
+    await Review.findByIdAndDelete(req.body.commentId);
 
     return res.status(200).send({ message: "Review deleted" });
   } catch (err) {
@@ -59,8 +63,8 @@ async function destroy(req, res) {
 
 module.exports = {
   index,
-  show,
   store,
+  userReviews,
   update,
   destroy,
 };

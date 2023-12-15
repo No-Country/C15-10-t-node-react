@@ -4,7 +4,7 @@ interface TitleProps {
 
 function TitleSection({ title }: Readonly<TitleProps>) {
   return (
-    <h2 className="text-3xl font-bold mb-3 px-2 md:text-left text-center">
+    <h2 className="text-3xl font-bold mb-4 px-2 md:text-left text-center">
       {title}
     </h2>
   );

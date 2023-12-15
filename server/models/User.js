@@ -2,12 +2,16 @@ const { mongoose, Schema } = require("../db");
 
 const userSchema = new mongoose.Schema(
   {
-    user: {},
-    packages: [],
-    totalAmount: Number,
-    totalQuantity: Number,
-    paymentMethod: String,
-    status: String,
+    firstname: String,
+    lastname: String,
+    email: {
+      type: String,
+      unique: true,
+    },
+    password: String,
+    phone: String,
+    address: String,
+
   },
   { timestamps: true },
 );
@@ -19,5 +23,24 @@ userSchema.methods.toJSON = function () {
   delete user._id;
   return user;
 };
+
+userSchema.pre("save", async function (next) {
+  // Solo hashear la contraseña si ha sido modificada o es nueva
+  if (!this.isModified("password")) {
+    return next();
+  }
+
+  try {
+    // Hashear la contraseña
+    const hashedPassword = await bcrypt.hash(this.password, 15);
+
+    // Reemplazar la contraseña en texto plano por la contraseña hasheada
+    this.password = hashedPassword;
+
+    next();
+  } catch (error) {
+    next(error);
+  }
+});
 
 module.exports = mongoose.model("users", userSchema);

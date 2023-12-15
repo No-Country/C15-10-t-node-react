@@ -2,15 +2,24 @@ import { ArrowRight } from "lucide-react";
 
 interface NextArrowProps {
   onClick: () => void;
+  disabled: boolean;
 }
 
-function NextArrow({ onClick }: Readonly<NextArrowProps>) {
+function NextArrow({ onClick, disabled }: Readonly<NextArrowProps>) {
+  const handleClick = () => {
+    if (!disabled) {
+      onClick();
+    }
+  };
+
   return (
     <div
-      className="rounded-full p-1 absolute top-1/2 right-2 transform -translate-y-1/2 bg-green-50 hover:bg-green-300"
-      onClick={onClick}
+      className={`rounded-full p-1 absolute top-1/3 right-2 transform -translate-y-1/2 ${
+        disabled ? "hidden" : "bg-green-50 hover:bg-green-300 cursor-pointer"
+      }`}
+      onClick={handleClick}
     >
-      <ArrowRight color="black" className="cursor-pointer" size={32} />
+      <ArrowRight color="black" size={32} />
     </div>
   );
 }
