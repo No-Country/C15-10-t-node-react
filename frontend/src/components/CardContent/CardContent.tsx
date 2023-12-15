@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Star } from "lucide-react";
+import { BsStarFill, BsStarHalf } from "react-icons/bs";
 import FavoriteButton from "../FavoriteButton/FavoriteButton";
 
 interface CardContentProps {
@@ -23,6 +23,22 @@ function CardContent({
     setIsFavorite(!isFavorite);
   };
 
+  const renderStars = () => {
+    const stars = [];
+    const integerPart = Math.floor(rating);
+    const hasDecimal = rating % 1 !== 0;
+
+    for (let i = 0; i < integerPart; i++) {
+      stars.push(<BsStarFill key={i} className="text-yellow-500" />);
+    }
+
+    if (hasDecimal) {
+      stars.push(<BsStarHalf key="half" className="text-yellow-500" />);
+    }
+
+    return stars;
+  };
+
   return (
     <div className="card card-compact w-full bg-green-600 shadow-xl mt-3 md:h-96 h-80 mx-1">
       <figure className="relative overflow-hidden group">
@@ -40,11 +56,8 @@ function CardContent({
       </div>
       <div className="p-4">
         <div className="card-actions">
-          <div className="flex flex-row mx-auto">
-            <Star color="yellow" size={17} />
-            <Star color="yellow" size={17} />
-            <Star color="yellow" size={17} />
-            <Star color="yellow" size={17} />
+          <div className="flex flex-row mx-auto items-center">
+            {renderStars()}
             <p className="text-base text-gray-200 mx-1">{rating}</p>
           </div>
         </div>

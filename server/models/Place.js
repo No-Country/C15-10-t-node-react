@@ -2,8 +2,8 @@ const { mongoose } = require("../db");
 const slugify = require("slugify");
 
 const placeSchema = new mongoose.Schema({
-  name: String,
-  description: String,
+  name: { type: String },
+  description: { type: String },
   imgs: [],
   coords: [],
   reviews: [],
@@ -25,4 +25,4 @@ placeSchema.virtual("slug").get(function () {
   });
 });
 
-module.exports = mongoose.model("place", placeSchema);
+module.exports = mongoose.model("places", placeSchema);

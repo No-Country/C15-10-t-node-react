@@ -1,8 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
-import Logo from "../../../assets/wind.png";
 import bgImg from '../../../assets/../images/img1.png';
 import { useForm } from 'react-hook-form';
-
 
 export function Login (){
 
@@ -30,18 +28,10 @@ export function Login (){
                 <NavLink to="/" className="text-sm  text-black font-bold"><button>cerrar</button></NavLink>
                 </div>
                 <br></br>
-            </div>
+              </div>
             </div>
     </section>
   );
-};
+}
 
-export default Login
-
-
-
-    
-        
-    
-
-
+export default Login;

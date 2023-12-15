@@ -13,7 +13,7 @@ function PrimaryButton({
   url,
 }: Readonly<PrimaryButtonProps>) {
   const colorVariants = {
-    black: "bg-black text-white hover:bg-gray-950 hover:text-white",
+    black: "bg-black text-white hover:bg-gray-800 hover:text-white",
     white: "bg-white text-dark hover:bg-gray-100 hover:text-dark",
   };
 
