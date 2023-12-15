@@ -46,4 +46,7 @@ https://jovial-youtiao-fc9c1c.netlify.app/
 
 https://freewind-dev-tssj.3.us-1.fl0.io/
 
+###Data Model 
+https://drive.google.com/file/d/13Mkgn3y1d-gTg4kuxAzrMUnPsQhwF3bA/view?usp=sharing
+
 
