@@ -1,84 +1,37 @@
-import { Link } from "react-router-dom";
-import Logo from "../../../assets/wind.png";
+import {  NavLink } from "react-router-dom";
+import bgImg from '../../../assets/../images/img3.png';
+import { useForm } from 'react-hook-form';
 
+export function Register (){
 
-export function Register () {
+  const { register, handleSubmit, formState: { errors } } = useForm()
+  const onSubmit = (data: any) => console.log(data);
+
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-      <div className="popup-form absolute mt-8 text-black">
-        <form className=" w-80 md:w-96 space-y-4 bg-white p-3 rounded-xl">
-          <img src={Logo} alt="Logo FreeWind" className="w-11" />
-          <h1 className="text-2xl font-semibold text-start text-black">
-            crear una 
-          </h1>
-          <div className=" flex flex-col">
-            <h3>Nombre</h3>
-            <input
-              className="py-2 px-2  bg-[#d5f2ec] rounded-lg"
-              type="text"
-              name="Nombre"
-              id="Nombre"
-              placeholder="Nombre"
-            />
-          </div>
-          <div className=" flex flex-col">
-            <h3>Apellido</h3>
-            <input
-              className="py-2 px-2  bg-[#d5f2ec] rounded-lg"
-              type="text"
-              name="Apellido"
-              id="Apellido"
-              placeholder="Apellido"
-            />
-          </div>
-          <div className=" flex flex-col">
-            <h3>email</h3>
-            <input
-              className="py-2 px-2  bg-[#d5f2ec] rounded-lg"
-              type="text"
-              name="Direccion de correo electronico"
-              id="Direccion de correo electronico"
-              placeholder="Direccion de correo electronico"
-            />
-          </div>
-          <div className=" flex flex-col">
-            <h3>Crear una contraseña</h3>
-            <input
-              className="py-2 px-2 bg-[#d5f2ec] rounded-lg"
-              type="text"
-              name="Contraseña"
-              id="Contraseña"
-              placeholder="Contraseña"
-            />
-          </div>
-          <Link to={"#"} className="text-start text-sm py-2 underline">¿Olvidaste la contraseña?</Link>
-          <div className=" flex gap-5">
-            <button
-              className=" text-center text-xs mx-auto bg-black text-white font-semibold px-24 py-2.5 rounded-full active:bg-black"
-            >
-              Unirse
-            </button>
-          </div>
-          <div className="flex flex-col text-center justify-center mx-auto text-sm">
-            <h2>¿Ya eres miembro?</h2>
-            <h2><span className="text-sm underline">Inicia sesion</span> con tu cuenta de </h2>
-            <h2>Tripadvisor.</h2>
-            <br></br>
-            <div className="text-xs">
-              <h2>Al continuar, declaras tu conformidad con nuestras</h2>
-              <h2><span>Condiciones de uso</span>y confirmas que has leido nuestra</h2>
-              <h2 className="underline text-xs">Declaracion de privacidad y cookies</h2>
-              <br></br>
-              <h2>Este sitio esta protegido por reCAPCHA y se aplican <span className="underline">Politica de</span></h2>
-              <h2><span className="underline">privacidad</span>y las<span className="underline">Condiciones del servicio</span>de Google.</h2>
+   <section className="h-full mx-auto py-20 gap-8">
+        <div className="flex flex-col h-auto lg:flex-row justify-center bg-green-600 text-2xl items-center lg:px-32 px-5 gap-12 mb-10">
+        <img className="sm:7/12 lg:w-11/12 mt-2" src={bgImg} alt="" />
+            <div className="space-y-2 lg:pt-16 mt-2">
+                <h2 className="flex flex-row mx-auto mb-4 text-center text-black justify-center items-center font-semibold text-2xl px-26">Crear cuenta</h2>
+                <span className="text-xl text-black">Disfruta de nuestros servicios</span>
+
+                <form id='form' className='flex flex-col gap-4' onSubmit={handleSubmit(onSubmit)}>
+                    <input className="border-2 border-green-500 rounded-md" type="text" {...register("username")} placeholder=' nombre' />
+                    <input className="border-2 border-green-500 rounded-md" type="text" {...register("password")} placeholder=' apellido' />
+                    <input className="border-2 border-green-500 rounded-md" type="email" {...register("confirmpwd")} placeholder=' email' />
+                    <input className="border-2 border-green-500 rounded-md" type="text" {...register("confirmpwd")} placeholder=' Crear contraseña' />
+                    {errors.mobile?.type === "maxLength" && "Max Length Exceed"}
+                    <button className='btn mx-auto text-sm font-bold border-2 border-black bg-black px-20 py-2 mt-4 mb-10 rounded-full text-white hover:text-black'>Inicio sesion</button>
+                </form>
+                <div className="text-center justify-center items-center">
+                <NavLink to="/" className="text-sm"><button><span className="text-black font-bold">Cerrar</span></button>
+                </NavLink>
+                </div>
+                <br></br>
             </div>
           </div>
-        </form>
-        <br></br>
-        <br></br>
-      </div>
-    </div>
-  );
-};
+      </section>
+  )           
+}
 
 export default Register;
