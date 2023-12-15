@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { Link } from "react-router-dom";
 import Logo from "../../../assets/wind.png";
 
@@ -10,7 +9,7 @@ export function Register () {
         <form className=" w-80 md:w-96 space-y-4 bg-white p-3 rounded-xl">
           <img src={Logo} alt="Logo FreeWind" className="w-11" />
           <h1 className="text-2xl font-semibold text-start text-black">
-            Crear cuenta
+            crear una 
           </h1>
           <div className=" flex flex-col">
             <h3>Nombre</h3>
@@ -33,7 +32,7 @@ export function Register () {
             />
           </div>
           <div className=" flex flex-col">
-            <h3>Direccion de correo electronico</h3>
+            <h3>email</h3>
             <input
               className="py-2 px-2  bg-[#d5f2ec] rounded-lg"
               type="text"
@@ -91,10 +90,3 @@ export default Register
     
 
 
-=======
-function Register() {
-  return <div>Register</div>;
-}
-
-export default Register;
->>>>>>> 3d4802031b5ca0c41e3e7f5a33752ed46be63fd3
