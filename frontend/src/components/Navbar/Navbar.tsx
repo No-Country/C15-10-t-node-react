@@ -6,7 +6,6 @@ import Logo from "../../assets/wind.png";
 import { TbWorld } from "react-icons/tb";
 import ThemeController from "./ThemeController/ThemeController";
 
-
 function Navbar() {
   const [menu, setMenu] = useState(false);
 

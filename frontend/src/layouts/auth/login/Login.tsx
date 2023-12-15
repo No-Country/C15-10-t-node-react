@@ -2,7 +2,6 @@ import { Link, NavLink } from "react-router-dom";
 import bgImg from '../../../assets/../images/img1.png';
 import { useForm } from 'react-hook-form';
 
-
 export function Login (){
 
   const { register, handleSubmit, formState: { errors } } = useForm()
@@ -32,8 +31,7 @@ export function Login (){
             </div>
           </div>
       </section>
-              
-  );
+  )           
 }
 
 export default Login;
