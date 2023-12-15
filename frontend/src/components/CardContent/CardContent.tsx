@@ -4,15 +4,14 @@ import FavoriteButton from "../FavoriteButton/FavoriteButton";
 
 interface CardContentProps {
   name: string;
-  location: string;
   image: string;
   rating: number;
   price: number;
+  location: string;
 }
 
 function CardContent({
   name,
-  location,
   image,
   rating,
   price,
@@ -44,14 +43,14 @@ function CardContent({
       <figure className="relative overflow-hidden group">
         <img
           src={image}
-          alt={location}
+          alt={name}
           className="w-full transition-transform transform-gpu group-hover:scale-105"
         />
         <FavoriteButton isFavorite={isFavorite} onClick={toggleFavorite} />
       </figure>
       <div className="card-body sm:h-16 h-14">
         <h2 className="card-title text-green-50 md:text-xl sm:text-lg text-base">
-          {name} , {location}
+          {name}
         </h2>
       </div>
       <div className="p-4">
