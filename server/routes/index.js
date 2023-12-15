@@ -12,7 +12,4 @@ module.exports = (app) => {
   app.use("/admins", adminRoutes);
   app.use("/users", userRoutes);
   app.use("/reviews", reviewsRoutes);
-  app.use("/", ((req, res) => {
-    res.status(200).json({ message: "Bienvenidos" });
-  }))
 };
