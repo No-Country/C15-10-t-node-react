@@ -1,8 +1,9 @@
 import Hero from "../../components/Hero/Hero";
 import Nav from "../../components/Nav/Nav";
 import Publicity from "../../components/Publicity/Publicity";
-import FAQSection from "./components/FAQSection/FAQSection";
-import FeaturedDestinations from "./components/FeaturedDestinations/FeaturedDestinations";
+import FAQSection from "../Home/components/FAQSection/FAQSection";
+import FeaturedDestinations from "../Home/components/FeaturedDestinations/FeaturedDestinations";
+
 
 function Home() {
   return (

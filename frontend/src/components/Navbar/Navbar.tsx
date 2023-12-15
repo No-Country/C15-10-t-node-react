@@ -3,8 +3,9 @@ import { Link } from "react-router-dom"
 import { IoClose } from "react-icons/io5";
 import { TiThMenu } from "react-icons/ti";
 import Logo from "../../assets/wind.png";
-import Login from "../../layouts/auth/login/Login";
+
 import { TbWorld } from "react-icons/tb";
+
 
 function Navbar() {
   const [menu, setMenu] = useState(false);
@@ -76,28 +77,20 @@ function Navbar() {
               </div>
             </div>
           </nav>
-
+           
           <div className=" hidden lg:flex">
             <span className="flex flex-row hover:bg-gray-200 px-4 py-2 rounded-full transition-all cursor-pointer font-semibold mx-1">
               <TbWorld className="mt-1.5" />
               <span>|EUR</span>
             </span>
+            <Link to="/Login">
             <button
               className="px-4 py-2 border-2 border-none bg-black text-white hover:text-white hover:bg-gray-900 transition-all rounded-full"
-              onClick={openForm}
             >
               Iniciar sesión
             </button>
+            </Link>
           </div>
-
-          {showForm && (
-            <Login
-              closeForm={closeForm}
-              title={function (): string {
-                throw new Error("Function not implemented.");
-              }}
-            />
-          )}
 
           <div className="md:hidden flex items-center">
             <TiThMenu
@@ -114,7 +107,7 @@ function Navbar() {
           >
             <div
               className={`${menu ? "translate-x-0" : "-translate-x-full"
-                } lg:hidden fixed top-0 left-0 z-40 h-screen py-10 px-7 overflow-y-auto transition-transform -translate-x-full bg-white w-72 sm:w-96 flex items-center flex-col`}
+                } lg:hidden fixed top-0 left-0 z-40  py-10 px-7 overflow-y-auto transition-transform -translate-x-full bg-white w-72 sm:w-96 flex items-center flex-col`}
               tabIndex={-1}
               aria-labelledby="drawer-left-label"
             >
@@ -124,12 +117,14 @@ function Navbar() {
                 className="cursor-pointer fixed top-0 right-0 m-4 text-black"
               />
               <div className="w-full flex items-start flex-col">
+              <Link to="/Login">
                 <button
-                  className="text-base mx-auto w-full md:px-16 py-2 border-2 border-black bg-black text-white transition-all rounded-full"
+                  className="flex text-center px-6 py-2 mx-auto w-full md:px-16 py-4 border-2 border-black bg-black text-white transition-all rounded-full"
                   onClick={openForm}
                 >
                   Iniciar sesión
                 </button>
+                </Link>
                 <span className="flex flex-row py-6 rounded-full transition-all cursor-pointer text-black font-bold">
                   <TbWorld className="mt-1.5" />
                   <p>España, ES</p>
@@ -177,7 +172,7 @@ function Navbar() {
                   className="text-base font-semibold transition-all cursor-pointer my-3 hover:text-gray-900"
                   onClick={closeMenu}
                 >
-                  Alquiler de vacaciones
+                  Alquiler de autos
                 </Link>
                 <Link
                   to="vuelos"
@@ -186,22 +181,6 @@ function Navbar() {
                   onClick={closeMenu}
                 >
                   Vuelos
-                </Link>
-                <Link
-                  to="cruceros"
-
-                  className="text-base font-semibold transition-all cursor-pointer my-3 hover:text-gray-900"
-                  onClick={closeMenu}
-                >
-                  Cruceros
-                </Link>
-                <Link
-                  to="alquiler autos"
-
-                  className="text-base font-semibold transition-all cursor-pointer my-3 hover:text-gray-900"
-                  onClick={closeMenu}
-                >
-                  Alquiler de Autos
                 </Link>
               </div>
             </div>
