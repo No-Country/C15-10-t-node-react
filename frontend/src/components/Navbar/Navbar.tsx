@@ -131,49 +131,42 @@ function Navbar() {
                   Home
                 </Link>
                 <Link
-                  to="hoteles"
+                  to="/search"
                   className="text-base font-semibold transition-all cursor-pointer my-3 hover:text-gray-900"
                   onClick={closeMenu}
                 >
-                  Hoteles
+                  Descubrir
                 </Link>
                 <Link
-                  to="cosas que hacer"
+                  to="#"
                   className="text-base font-semibold transition-all cursor-pointer my-3 hover:text-gray-900"
                   onClick={closeMenu}
                 >
-                  Cosas que hacer
+                  Viajes
                 </Link>
                 <Link
-                  to="restaurantes"
+                  to="#"
                   className="text-base font-semibold transition-all cursor-pointer my-3 hover:text-gray-900"
                   onClick={closeMenu}
                 >
-                  Restaurantes
+                  Opinión
                 </Link>
                 <Link
-                  to="alquiler de auto"
+                  to="#"
                   className="text-base font-semibold transition-all cursor-pointer my-3 hover:text-gray-900"
                   onClick={closeMenu}
                 >
-                  Alquiler de vacaciones
+                  Más
                 </Link>
                 <Link
-                  to="vuelos"
-                  className="text-base font-semibold transition-all cursor-pointer my-3 hover:text-gray-900"
-                  onClick={closeMenu}
-                >
-                  Vuelos
-                </Link>
-                <Link
-                  to="cruceros"
+                  to="#"
                   className="text-base font-semibold transition-all cursor-pointer my-3 hover:text-gray-900"
                   onClick={closeMenu}
                 >
                   Cruceros
                 </Link>
                 <Link
-                  to="alquiler autos"
+                  to="#"
                   className="text-base font-semibold transition-all cursor-pointer my-3 hover:text-gray-900"
                   onClick={closeMenu}
                 >
