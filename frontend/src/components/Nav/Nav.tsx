@@ -5,6 +5,7 @@ import { PiBagSimpleThin } from "react-icons/pi";
 import { Search } from "lucide-react";
 import TouristData from "../../data/TouristSpotsData.json";
 import AutoComplete from "./components/AutoComplete/AutoComplete";
+import { Link } from "react-router-dom";
 
 export const Nav: React.FC = () => {
   const [menuSeleccionado, setMenuSeleccionado] = useState("¿Adónde vas?");
@@ -86,7 +87,9 @@ export const Nav: React.FC = () => {
             <div className="relative flex flex-col items-stretch ">
               <div className="relative items-center">
                 <div className="absolute inset-y-0 start-0 flex items-center ps-3 cursor-pointer">
-                  <Search />
+                  <Link to={"/search"}>
+                    <Search />
+                  </Link>
                 </div>
                 <input
                   type="search"

@@ -4,7 +4,6 @@ import Publicity from "../../components/Publicity/Publicity";
 import FAQSection from "../Home/components/FAQSection/FAQSection";
 import FeaturedDestinations from "../Home/components/FeaturedDestinations/FeaturedDestinations";
 
-
 function Home() {
   return (
     <>
@@ -15,7 +14,6 @@ function Home() {
         <Publicity />
         <FAQSection />
       </div>
-
     </>
   );
 }
