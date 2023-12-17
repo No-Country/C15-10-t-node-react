@@ -1,0 +1,54 @@
+import renderStars from "../../../../utils/startsHelper";
+
+interface PlaceCardProps {
+  title: string;
+  titleImage: string;
+  rating: number;
+  location: string;
+  description: string;
+  image: string;
+}
+
+const PlaceCard = ({
+  title,
+  titleImage,
+  rating,
+  location,
+  description,
+  image,
+}: Readonly<PlaceCardProps>) => {
+  return (
+    <div className="flex items-center justify-between md:px-4 py-3 px-2.5">
+      <div className="relative w-full md:w-96 mx-auto lg:h-36 overflow-hidden">
+        <img
+          src={image}
+          alt={titleImage}
+          className="w-full h-auto md:h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40 flex flex-col justify-end sm:p-8 py-3 px-2">
+          <div className="z-10">
+            <h3 className="sm:text-lg text-base font-bold text-white">
+              {titleImage}
+            </h3>
+            <div className="overflow-hidden leading-6 text-gray-300 sm:text-base text-sm">
+              {location}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="md:ml-4 ml-2 w-full mx-auto lg:h-36 overflow-hidden">
+        <h3 className="md:text-xl sm:text-lg text-base font-bold">{title}</h3>
+        <div className="flex flex-row items-center sm:text-base text-sm">
+          {renderStars(rating)}
+          <span className="ml-1">{rating}</span>
+        </div>
+        <p className="sm:mt-2 mt-1 sm:text-base text-sm">{location}</p>
+        <div className="sm:mt-2 mt-1 truncate sm:text-base text-sm">
+          {description}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default PlaceCard;
