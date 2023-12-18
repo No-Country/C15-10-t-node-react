@@ -90,7 +90,7 @@ function FeaturedDestinations() {
           className="carousel-container relative flex overflow-hidden scroll-smooth snap-x snap-mandatory touch-pan-x z-0"
         >
           {array&& array.map(
-            ({ _id, name, imgs,price, description }) => (
+            ({ _id, name, imgs, description }) => (
               <div
                 key={_id}
                 className={`carousel-item text-center relative lg:w-1/4 md:w-1/3 sm:w-1/3 w-1/2 snap-start`}
