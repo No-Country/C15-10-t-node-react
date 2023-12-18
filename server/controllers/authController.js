@@ -44,9 +44,6 @@ async function signUp(req, res) {
       firstname: req.body.firstname,
       lastname: req.body.lastname,
       email: req.body.email,
-      phone: req.body.phone,
-      address: req.body.address,
-      shippingAddress: req.body.shippingAddress,
       password: req.body.password,
     });
 

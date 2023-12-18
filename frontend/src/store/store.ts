@@ -11,6 +11,7 @@ import {
     REGISTER,
 } from 'redux-persist';
 import authReducer from "../layouts/auth/reducers/authSlice"
+import placeReducer from "../layouts/home/reducer/placesSlice"
 
 
 const persistConfig = {
@@ -21,7 +22,8 @@ const persistConfig = {
 
 
 const rootReducer = combineReducers({
-    auth: authReducer
+    auth: authReducer,
+    places: placeReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

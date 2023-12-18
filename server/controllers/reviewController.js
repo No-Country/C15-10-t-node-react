@@ -11,6 +11,15 @@ async function index(req, res) {
   }
 }
 
+async function getReview(req, res) {
+  try {
+    const review = await Review.findById(req.body.id)
+    return res.status(200).json(review);
+  } catch (err) {
+    res.status(400).json(err);
+  }
+}
+
 async function userReviews(req, res) {
   const userId = req.params.userId
   try {
