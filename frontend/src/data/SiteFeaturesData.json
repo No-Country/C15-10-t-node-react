@@ -1,0 +1,27 @@
+[
+  {
+    "id": 1,
+    "title": "Buscar lugares",
+    "description": "Freewind tiene una base de datos con cientos de lugares en todo el mundo. Puedes buscar por destino, tipo de atracción, temporadas, etc."
+  },
+  {
+    "id": 2,
+    "title": "Guardar en agenda",
+    "description": "Cuando encuentres un lugar que te guste, puedes guardarlo en tu agenda para no olvidarlo."
+  },
+  {
+    "id": 3,
+    "title": "Hacer reseñas de los lugares",
+    "description": "Después de visitar un lugar, puedes escribir una reseña para ayudar a otros viajeros."
+  },
+  {
+    "id": 4,
+    "title": "Visualizar Cada detalle",
+    "description": "Freewind ofrece herramientas para ayudarte a organizar tus futuros viajes, como lugares de interes, itinerario, etc."
+  },
+  {
+    "id": 5,
+    "title": "Fácil de usar",
+    "description": "Freewind tiene toda la información que necesitas para tomar la mejor decisión. que titulo seria el indicado si sera un timeline."
+  }
+]

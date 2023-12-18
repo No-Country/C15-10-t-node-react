@@ -4,18 +4,19 @@ import FavoriteButton from "../FavoriteButton/FavoriteButton";
 
 interface CardContentProps {
   name: string;
-  location: string;
   image: string;
   rating: number;
   price: number;
+  location: string;
+  description: string;
 }
 
 function CardContent({
   name,
-  location,
   image,
   rating,
   price,
+  description,
 }: Readonly<CardContentProps>) {
   const [isFavorite, setIsFavorite] = useState(true);
 
@@ -44,16 +45,30 @@ function CardContent({
       <figure className="relative overflow-hidden group">
         <img
           src={image}
-          alt={location}
+          alt={name}
           className="w-full transition-transform transform-gpu group-hover:scale-105"
         />
         <FavoriteButton isFavorite={isFavorite} onClick={toggleFavorite} />
       </figure>
       <div className="card-body sm:h-16 h-14">
         <h2 className="card-title text-green-50 md:text-xl sm:text-lg text-base">
-          {name} , {location}
+          {name}
         </h2>
       </div>
+
+      {/* Acomodar esto porque queda fuera de la card sin acotar el string */}
+      
+      
+      {/* <div className="card-body sm:h-16 h-14">
+        <h2 className="card-title text-green-50 md:text-xl sm:text-lg text-base">
+          {}
+        </h2>
+      </div>       */}
+      <p className="text-white pb-1 md:text-lg sm:text-sm">
+         <strong className="text-green-100">{description.substring(0, 50)}</strong> 
+      </p>
+      
+
       <div className="p-4">
         <div className="card-actions">
           <div className="flex flex-row mx-auto items-center">
