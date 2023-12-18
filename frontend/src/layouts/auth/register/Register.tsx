@@ -1,5 +1,5 @@
 import {  NavLink } from "react-router-dom";
-import bgImg from '../../../assets/../images/img3.png';
+import bgImg from '../../../assets/../images/img4.png';
 import { useForm } from 'react-hook-form';
 
 export function Register (){
@@ -8,29 +8,33 @@ export function Register (){
   const onSubmit = (data: any) => console.log(data);
 
   return (
-   <section className="h-full mx-auto py-20 gap-8">
-        <div className="flex flex-col h-auto lg:flex-row justify-center bg-green-600 text-2xl items-center lg:px-32 px-5 gap-12 mb-10">
-        <img className="sm:7/12 lg:w-11/12 mt-2" src={bgImg} alt="" />
-            <div className="space-y-2 lg:pt-16 mt-2">
-                <h2 className="flex flex-row mx-auto mb-4 text-center text-black justify-center items-center font-semibold text-2xl px-26">Crear cuenta</h2>
-                <span className="text-xl text-black">Disfruta de nuestros servicios</span>
+    <section className="h-full mx-auto py-20 gap-8">
+    <div className="flex flex-col h-auto lg:flex-row justify-center bg-green-600 text-2xl items-center lg:px-32 px-5 gap-12 mb-10">
+    <img className="sm:7/12 lg:w-7/12 mt-2" src={bgImg} alt="" />
+        <div className="space-y-2 lg:pt-16 mt-0">
+            <h2 className="flex flex-row mx-auto mb-0 text-center text-black justify-center items-center font-semibold text-2xl px-26">Crear cuenta</h2>
+            <span className="text-xl text-black">Disfruta de nuestros servicios</span>
 
-                <form id='form' className='flex flex-col gap-4' onSubmit={handleSubmit(onSubmit)}>
-                    <input className="border-2 border-green-500 rounded-md" type="text" {...register("username")} placeholder=' nombre' />
-                    <input className="border-2 border-green-500 rounded-md" type="text" {...register("password")} placeholder=' apellido' />
-                    <input className="border-2 border-green-500 rounded-md" type="email" {...register("confirmpwd")} placeholder=' email' />
-                    <input className="border-2 border-green-500 rounded-md" type="text" {...register("confirmpwd")} placeholder=' Crear contraseña' />
-                    {errors.mobile?.type === "maxLength" && "Max Length Exceed"}
-                    <button className='btn mx-auto text-sm font-bold border-2 border-black bg-black px-20 py-2 mt-4 mb-10 rounded-full text-white hover:text-black'>Inicio sesion</button>
-                </form>
-                <div className="text-center justify-center items-center">
-                <NavLink to="/" className="text-sm"><button><span className="text-black font-bold">Cerrar</span></button>
-                </NavLink>
-                </div>
-                <br></br>
+            <form id='form' className='flex flex-col gap-1' onSubmit={handleSubmit(onSubmit)}>
+                <p className="text-sm text-black font-bold">Nombre</p>
+                <input className="border-2 border-green-500 rounded-md" type="text" {...register("username")} placeholder=' nombre' />
+                <p className="text-sm text-black font-bold">Apellido</p>
+                <input className="border-2 border-green-500 rounded-md" type="text" {...register("password")} placeholder=' apellido' />
+                <p className="text-sm text-black font-bold">email</p>
+                <input className="border-2 border-green-500 rounded-md" type="email" {...register("confirmpwd")} placeholder=' email' />
+                <p className="text-sm text-black font-bold">Crear contraseña</p>
+                <input className="border-2 border-green-500 rounded-md" type="text" {...register("confirmpwd")} placeholder=' Crear contraseña' />
+                {errors.mobile?.type === "maxLength" && "Max Length Exceed"}
+                <button className='btn mx-auto text-sm font-bold border-2 border-black bg-black px-20 py-2 mt-2 mb-0 rounded-full text-white hover:text-black'>Inicio sesion</button>
+            </form>
+            <div className="text-start">
+            <NavLink to="/" className="text-sm text-black font-bold "><button>Cerrar</button>
+            </NavLink>
             </div>
-          </div>
-      </section>
+            <br></br>
+        </div>
+      </div>
+  </section>
   )           
 }
 

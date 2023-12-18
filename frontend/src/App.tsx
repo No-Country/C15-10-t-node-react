@@ -6,7 +6,7 @@ import Navbar from "./components/Navbar/Navbar";
 import Login from "./layouts/auth/login/Login";
 import Register from "./layouts/auth/register/Register";
 import Profile from "./layouts/profile/Profile";
-import Search from "./layouts/search/Search";
+import Search from "./layouts/search/SearchPage";
 import Place from "./layouts/place/Place";
 import Footer from "./components/Footer/Footer";
 

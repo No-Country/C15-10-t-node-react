@@ -16,6 +16,7 @@ async function fetchDataAndLog() {
 
 // Llamada a la función de ejemplo
 fetchDataAndLog();
+import TimeLineSection from "./components/TimeLineSection/TimeLineSection";
 
 function Home() {
   return (
@@ -25,9 +26,9 @@ function Home() {
         <Nav />
         <FeaturedDestinations />
         <Publicity />
+        <TimeLineSection />
         <FAQSection />
       </div>
-
     </>
   );
 }
