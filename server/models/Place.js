@@ -25,4 +25,4 @@ placeSchema.virtual("slug").get(function () {
   });
 });
 
-module.exports = mongoose.model("place", placeSchema);
+module.exports = mongoose.model("places", placeSchema);

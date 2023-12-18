@@ -1,7 +1,8 @@
 import classNames from "classnames";
 import { MapPin, Search, MapPinned } from "lucide-react";
 import { memo, useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { KeyboardEvent } from "react";
 
 type Props = {
   items: {
@@ -23,6 +24,7 @@ function AutoComplete(props: Readonly<Props>) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [query, setQuery] = useState(value);
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
 
   const filteredItems = items.filter((item) =>
     item.name.toLowerCase().includes(query.toLowerCase())
@@ -38,6 +40,16 @@ function AutoComplete(props: Readonly<Props>) {
       onClick(false, query);
     }, 300);
   };
+  const handleSearch = (query: string) => {
+    navigate(`/search?q=${query}`);
+  };
+
+  const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      // Ejecutar búsqueda al presionar Enter
+      handleSearch(event.currentTarget.value);
+    }
+  };
 
   useEffect(() => {
     if (inputRef.current) inputRef.current.focus();
@@ -51,7 +63,7 @@ function AutoComplete(props: Readonly<Props>) {
       })}
     >
       <div className="absolute inset-y-0 start-0 ps-3 cursor-pointer flex items-center">
-        <Search />
+        <Search onClick={() => handleSearch(inputRef.current?.value ?? "")} />
       </div>
       <input
         ref={inputRef}
@@ -62,6 +74,7 @@ function AutoComplete(props: Readonly<Props>) {
           setQuery(e.target.value);
           onChange(e.target.value);
         }}
+        onKeyDown={handleKeyDown}
         placeholder={placeholder}
         tabIndex={0}
         maxLength={32}

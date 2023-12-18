@@ -11,3 +11,4 @@ FreeWind fue desarrollado durante 40 días por un equipo interdisciplinario bajo
 Qué tecnologías se utilizaron?
 
 React, Vite, Typescript, Redux, MongoDB, JS, GitHub, NodeJS, CSS3, Bootstrap
+<img src="https://drive.google.com/file/d/13Mkgn3y1d-gTg4kuxAzrMUnPsQhwF3bA/view?usp=sharing">

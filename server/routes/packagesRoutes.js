@@ -7,12 +7,12 @@ router.get("/", packageController.index);
 router.get("/:id", packageController.show);
 router.post(
   "/",
-  checkJwt({ secret: process.env.JWT_ADMIN_SECRET_KEY, algorithms: ["HS256"] }),
+  checkJwt({ secret: process.env.JWT_CUSTOMER_SECRET_KEY, algorithms: ["HS256"] }),
   packageController.store,
 );
 router.patch(
   "/:id",
-  checkJwt({ secret: process.env.JWT_ADMIN_SECRET_KEY, algorithms: ["HS256"] }),
+  checkJwt({ secret: process.env.JWT_CUSTOMER_SECRET_KEY, algorithms: ["HS256"] }),
   packageController.update,
 );
 router.delete(

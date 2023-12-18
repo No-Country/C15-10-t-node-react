@@ -1,11 +1,33 @@
 const Review = require("../models/Review");
 
 
+
+async function index(req, res) {
+  try {
+    const reviews = await Review.find()
+    return res.status(200).json(reviews);
+  } catch (err) {
+    res.status(400).json(err);
+  }
+}
+
+async function userReviews(req, res) {
+  const userId = req.params.userId
+  try {
+    const reviews = await Review.find({ userId: userId })
+    return res.status(200).json(reviews);
+  } catch (err) {
+    res.status(400).json(err);
+  }
+}
+
 async function store(req, res) {
   try {
     const newReview = await Review.create({
-      content: req.body.content,
+      comment: req.body.comment,
       userId: req.body.userId,
+      placeId: req.body.placeId,
+      rating: req.body.rating,
     });
     const review = await Review.findOne(newReview);
     return res.status(200).json(review);
@@ -13,6 +35,8 @@ async function store(req, res) {
     res.status(400).json(err);
   }
 }
+
+
 
 async function update(req, res) {
   try {
@@ -38,7 +62,9 @@ async function destroy(req, res) {
 }
 
 module.exports = {
+  index,
   store,
+  userReviews,
   update,
   destroy,
 };

@@ -1,58 +1,65 @@
 [
-    {
-      "id": 1,
-      "name": "Machu Picchu",
-      "location": "Perú",
-      "image": "https://historia.nationalgeographic.com.es/medio/2023/01/25/istock_bc3b04ec_930824730_230125152421_1280x853.jpg",
-      "rating": 4.8,
-      "price": 300
-    },
-    {
-      "id": 2,
-      "name": "Gran Barrera de Coral",
-      "location": "Australia",
-      "image": "https://greatbarrierreef.org/wp-content/uploads/2022/06/Lady-Musgrave-Island-Great-Barrier-Reef.jpg",
-      "rating": 4.7,
-      "price": 250
-    },
-    {
-      "id": 3,
-      "name": "Torre Eiffel",
-      "location": "Francia",
-      "image": "https://www.factorenergia.com/wp-content/uploads/2017/11/Depositphotos_12462950_XL.jpg",
-      "rating": 4.5,
-      "price": 150
-    },
-    {
-      "id": 4,
-      "name": "Gran Cañón",
-      "location": "Estados Unidos",
-      "image": "https://npf-prod.imgix.net/uploads/shutterstock_97706066_1.jpg",
-      "rating": 4.9,
-      "price": 200
-    },
-    {
-      "id": 5,
-      "name": "Santorini",
-      "location": "Grecia",
-      "image": "https://a.cdn-hotels.com/gdcs/production18/d1838/041ae6b1-0a88-4c22-a648-53a22dd4a006.jpg",
-      "rating": 4.6,
-      "price": 180
-    },
-    {
-      "id": 6,
-      "name": "Torre de Tokio",
-      "location": "Japón",
-      "image": "https://youinjapan.net/tokyo/pics/tokyo-tower.jpg",
-      "rating": 4.4,
-      "price": 120
-    },
-    {
-      "id": 7,
-      "name": "Cataratas Victoria",
-      "location": "Zimbabue",
-      "image": "https://content.r9cdn.net/rimg/dimg/b2/b3/b7371e2c-city-4426-166f46826b5.jpg",
-      "rating": 4.7,
-      "price": 220
-    }
-  ]  
+  {
+    "id": 1,
+    "name": "Machu Picchu",
+    "location": "Perú",
+    "image": "https://historia.nationalgeographic.com.es/medio/2023/01/25/istock_bc3b04ec_930824730_230125152421_1280x853.jpg",
+    "rating": 4.8,
+    "price": 300,
+    "description": "Explora las antiguas ruinas de Machu Picchu en Perú, un sitio declarado Patrimonio Mundial de la UNESCO, con una calificación notable de 4.8."
+  },
+  {
+    "id": 2,
+    "name": "Gran Barrera de Coral",
+    "location": "Australia",
+    "image": "https://greatbarrierreef.org/wp-content/uploads/2022/06/Lady-Musgrave-Island-Great-Barrier-Reef.jpg",
+    "rating": 4.7,
+    "price": 250,
+    "description": "Sumérgete en las maravillas de la Gran Barrera de Coral en Australia, un paraíso marino con una impresionante calificación de 4.7."
+  },
+  {
+    "id": 3,
+    "name": "Torre Eiffel",
+    "location": "Francia",
+    "image": "https://www.factorenergia.com/wp-content/uploads/2017/11/Depositphotos_12462950_XL.jpg",
+    "rating": 4.5,
+    "price": 150,
+    "description": "Disfruta de la icónica Torre Eiffel en Francia, una obra maestra arquitectónica con una calificación destacada de 4.5."
+  },
+  {
+    "id": 4,
+    "name": "Gran Cañón",
+    "location": "Estados Unidos",
+    "image": "https://npf-prod.imgix.net/uploads/shutterstock_97706066_1.jpg",
+    "rating": 4.9,
+    "price": 200,
+    "description": "Contempla la majestuosidad del Gran Cañón en Estados Unidos, con una calificación impresionante de 4.9."
+  },
+  {
+    "id": 5,
+    "name": "Santorini",
+    "location": "Grecia",
+    "image": "https://a.cdn-hotels.com/gdcs/production18/d1838/041ae6b1-0a88-4c22-a648-53a22dd4a006.jpg",
+    "rating": 4.6,
+    "price": 180,
+    "description": "Descubre la belleza de Santorini en Grecia, con sus encantadoras vistas y una calificación de 4.6."
+  },
+  {
+    "id": 6,
+    "name": "Torre de Tokio",
+    "location": "Japón",
+    "image": "https://youinjapan.net/tokyo/pics/tokyo-tower.jpg",
+    "rating": 4.4,
+    "price": 120,
+    "description": "Maravíllate con la moderna Torre de Tokio en Japón, con una calificación de 4.4."
+  },
+  {
+    "id": 7,
+    "name": "Cataratas Victoria",
+    "location": "Zimbabue",
+    "image": "https://content.r9cdn.net/rimg/dimg/b2/b3/b7371e2c-city-4426-166f46826b5.jpg",
+    "rating": 4.7,
+    "price": 220,
+    "description": "Embárcate en la majestuosidad de las Cataratas Victoria en Zimbabue, con una calificación impresionante de 4.7."
+  }
+]
