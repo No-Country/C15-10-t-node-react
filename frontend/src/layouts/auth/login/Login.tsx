@@ -1,5 +1,5 @@
 import { Link, NavLink } from "react-router-dom";
-import bgImg from '../../../assets/../images/img5.png';
+import bgImg from '../../../assets/../images/img9.png';
 import { useForm } from 'react-hook-form';
 
 export function Login (){
