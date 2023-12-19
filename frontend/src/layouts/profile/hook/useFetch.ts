@@ -1,15 +1,24 @@
 import axios, { AxiosError } from "axios";
 import { useEffect, useState } from "react";
 
-export default function useFetch({ url }: { url: string }) {
-  const [data, setData] = useState<unknown>();
+export default function useFetch({
+  url,
+  options,
+}: {
+  url: string;
+  options?: object | undefined;
+}) {
+  const [data, setData] = useState<any>();
   const [error, setError] = useState<string>();
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     axios
-      .get(url)
+      .get(url, options)
       .then((response) => {
+        if (response.data === null) {
+          throw new AxiosError("Data Not Found", "404");
+        }
         if (response.status === 200) {
           setData(response.data);
         }

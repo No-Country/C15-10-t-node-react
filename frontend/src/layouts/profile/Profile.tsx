@@ -2,13 +2,8 @@ import AgendaList from "./components/agenda/AgendaList";
 import HistoryList from "./components/history/HistoryList";
 import ReviewList from "./components/review/ReviewList";
 import UserData from "./components/userData/userData";
-import useFetch from "./hook/useFetch";
 
 export default function Profile() {
-  const { data, error, loading } = useFetch({
-    url: `${import.meta.env.VITE_API_URL}users/656a070027ff53e6041dfbc1`,
-  });
-  console.log(data, loading);
   return (
     <>
       <div className="min-h-[48rem] pt-20">
@@ -60,7 +55,6 @@ export default function Profile() {
             </div>
           </div>
         </section>
-        {error && <div>{error}</div>}
       </div>
     </>
   );

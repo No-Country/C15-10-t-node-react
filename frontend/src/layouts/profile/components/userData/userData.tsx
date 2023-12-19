@@ -1,7 +1,10 @@
 import { Suspense } from "react";
+import { useStore } from "react-redux";
+import { Store } from "../../store.type";
 
 export default function UserData() {
-  const { firstname, lastname, email, phone, address } = userData;
+  const store: Store = useStore();
+  const currentUser = store.getState().auth.user;
   return (
     <div>
       <section className="flex flex-col gap-5 h-full">
@@ -16,29 +19,17 @@ export default function UserData() {
         </div>
 
         <h2 className="text-3xl">
-          {firstname} {lastname}
+          {currentUser.firstname} {currentUser.lastname}
         </h2>
         <div className="flex flex-col gap-4 w-[16rem] border-2 rounded  h-full p-4">
           <button className="w-full btn btn-outline btn-sm">Actualizar</button>
           <ul className="flex flex-col gap-2">
-            <li>{address}</li>
-            <li>{email}</li>
-            <li>{phone}</li>
+            <li>{currentUser.address}</li>
+            <li>{currentUser.email}</li>
+            <li>{currentUser.phone}</li>
           </ul>
         </div>
       </section>
     </div>
   );
 }
-
-const userData = {
-  firstname: "Dale",
-  lastname: "Mohr",
-  email: "Claud46@gmail.com",
-  phone: "(948) 818-3182 x564",
-  address: "008 Stiedemann Knolls, South Isadore, Dominica",
-  __v: 0,
-  createdAt: "2023-12-01T16:17:05.284Z",
-  updatedAt: "2023-12-01T16:17:05.284Z",
-  id: "656a070027ff53e6041dfbc1",
-};
