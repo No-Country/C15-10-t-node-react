@@ -44,9 +44,6 @@ https://jovial-youtiao-fc9c1c.netlify.app/
 
 ### Deploy Front-End Db integration / main
 
-https://freewind.onrender.com/
-
-
 https://freewind-main.vercel.app/
 
 
