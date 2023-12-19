@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import { useStore } from "react-redux";
-import { Store } from "../../store.type";
+import { Store } from "../../profile.type";
 
 export default function UserData() {
   const store: Store = useStore();

@@ -2,7 +2,7 @@ import { PencilIcon, QuoteIcon, TrashIcon } from "lucide-react";
 import { Suspense } from "react";
 import useFetch from "../../hook/useFetch";
 import { useStore } from "react-redux";
-import { Store } from "../../store.type";
+import { Store, Reviews } from "../../profile.type";
 
 function StarsInputs({ stars }: { stars: number }) {
   return (
@@ -24,15 +24,6 @@ function StarsInputs({ stars }: { stars: number }) {
       })}
     </div>
   );
-}
-
-interface Reviews {
-  _id: string;
-  placeId: string;
-  userName: string;
-  rating: number;
-  comment: string;
-  updatedAt: string;
 }
 
 export default function ReviewList() {

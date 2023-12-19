@@ -13,3 +13,12 @@ export interface Store {
     };
   };
 }
+
+export interface Reviews {
+  _id: string;
+  placeId: string;
+  userName: string;
+  rating: number;
+  comment: string;
+  updatedAt: string;
+}
