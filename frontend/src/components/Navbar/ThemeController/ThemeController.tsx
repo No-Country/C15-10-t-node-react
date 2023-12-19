@@ -1,22 +1,18 @@
-import { useState, useEffect, ChangeEvent } from "react";
+import { ChangeEvent } from "react";
 
-function ThemeController() {
-  const [theme, setTheme] = useState(localStorage.getItem("theme") ?? "light");
-  const colorTheme = theme === "light" ? false : true;
+interface ThemeControllerProps {
+  theme: string;
+  onToggle: (newTheme: string) => void;
+}
 
+const ThemeController = ({
+  theme,
+  onToggle,
+}: Readonly<ThemeControllerProps>) => {
   const handleToggle = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.checked) {
-      setTheme("dark");
-    } else {
-      setTheme("light");
-    }
+    const newTheme = e.target.checked ? "dark" : "light";
+    onToggle(newTheme);
   };
-
-  useEffect(() => {
-    localStorage.setItem("theme", theme!);
-    const localTheme = localStorage.getItem("theme");
-    document.querySelector("html")?.setAttribute("data-theme", localTheme!);
-  }, [theme]);
 
   return (
     <label className="cursor-pointer grid place-items-center">
@@ -24,8 +20,8 @@ function ThemeController() {
         type="checkbox"
         value="dark"
         className="toggle theme-controller bg-base-content row-start-1 col-start-1 col-span-2"
+        checked={theme === "dark"}
         onChange={handleToggle}
-        checked={colorTheme}
       />
       <svg
         className="col-start-1 row-start-1 stroke-base-100 fill-base-100"
@@ -58,6 +54,6 @@ function ThemeController() {
       </svg>
     </label>
   );
-}
+};
 
 export default ThemeController;

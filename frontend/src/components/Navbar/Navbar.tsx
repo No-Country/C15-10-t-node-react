@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { IoClose } from "react-icons/io5";
 import { TiThMenu } from "react-icons/ti";
@@ -21,10 +21,22 @@ function Navbar() {
     setMenu(false);
   };
 
+  const storedTheme = localStorage.getItem("theme") ?? "light";
+  const [theme, setTheme] = useState(storedTheme);
+
+  const handleToggle = (newTheme: string) => {
+    setTheme(newTheme);
+    localStorage.setItem("theme", newTheme);
+  };
+
+  useEffect(() => {
+    document.querySelector("html")?.setAttribute("data-theme", theme);
+  }, [theme]);
+
   return (
     <div className="fixed w-full z-50">
       <div>
-        <div className="flex flex-row justify-between px-7 py-4 md:py-4 mb-15 text-black font-bold bg-green-600 shadow-[0_3px_10px_rgba(0,0,0,0.2)]">
+        <div className="flex flex-row justify-between md:px-2 lg:px-7 py-4 md:py-4 mb-15 text-black font-bold bg-green-600 shadow-[0_3px_10px_rgba(0,0,0,0.2)]">
           <div className="cursor-pointer">
             <Link to={"/"} className="flex flex-row items-center ">
               <img src={Logo} alt="Logo FreeWind" className="w-11" />
@@ -66,22 +78,22 @@ function Navbar() {
             </div>
           </nav>
 
-          <div className=" hidden lg:flex items-center justify-center">
-            <ThemeController />
+          <div className="hidden md:flex items-center justify-center">
+            <ThemeController theme={theme} onToggle={handleToggle} />
             <span className="flex flex-row hover:bg-gray-200 px-4 py-2 rounded-full transition-all cursor-pointer font-semibold mx-1">
               <TbWorld className="mt-1.5" />
               <span>|EUR</span>
             </span>
             <Link
               to="/login"
-              className="px-4 py-2 border-2 border-none bg-black text-white hover:text-white hover:bg-gray-800 transition-all rounded-full"
+              className="md:text-sm px-4 py-3 border-2 border-none bg-black text-white hover:text-white hover:bg-gray-800 transition-all rounded-full"
             >
               Iniciar sesión
             </Link>
           </div>
 
           <div className="md:hidden flex items-center">
-            <ThemeController />
+            <ThemeController theme={theme} onToggle={handleToggle} />
             <TiThMenu
               size={25}
               onClick={handleChange}
