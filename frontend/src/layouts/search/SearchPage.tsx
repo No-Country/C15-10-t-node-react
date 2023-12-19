@@ -37,35 +37,36 @@ function SearchPage() {
     const foundSimilarPlaces =
       searchQuery === ""
         ? placeData
-        : placeData.filter((spot) => {
-            const spotKeywords = spot.name.toLowerCase().split(" ");
-            const queryKeywords = searchQuery.toLowerCase().split(" ");
+        : placeData
+            .filter((spot) => {
+              const spotKeywords = spot.name.toLowerCase().split(" ");
+              const queryKeywords = searchQuery.toLowerCase().split(" ");
 
-            // Filtrar palabras clave coincidentes
-            const matchingKeywords = spotKeywords.filter((keyword) =>
-              queryKeywords.includes(keyword)
-            );
+              // Filtrar palabras clave coincidentes
+              const matchingKeywords = spotKeywords.filter((keyword) =>
+                queryKeywords.includes(keyword)
+              );
 
-            // Ordenar palabras clave coincidentes por longitud de mayor a menor
-            matchingKeywords.sort((a, b) => b.length - a.length);
-            // Tomar la palabra clave más larga como criterio de clasificación
-            const rankingKeyword = matchingKeywords[0];
-            // Verificar si al menos una palabra clave coincide
-            return rankingKeyword && (!foundPlace || spot.id !== foundPlace.id);
-          });
-
-    // Ordenar los resultados similares por la longitud total de palabras clave coincidentes
-    foundSimilarPlaces.sort((a, b) => {
-      const keywordA = a.name.toLowerCase();
-      const keywordB = b.name.toLowerCase();
-      const totalLengthA = keywordA
-        .split(" ")
-        .reduce((acc, val) => acc + val.length, 0);
-      const totalLengthB = keywordB
-        .split(" ")
-        .reduce((acc, val) => acc + val.length, 0);
-      return totalLengthA - totalLengthB;
-    });
+              // Ordenar palabras clave coincidentes por longitud de mayor a menor
+              matchingKeywords.sort((a, b) => b.length - a.length);
+              // Tomar la palabra clave más larga como criterio de clasificación
+              const rankingKeyword = matchingKeywords[0];
+              // Verificar si al menos una palabra clave coincide
+              return (
+                rankingKeyword && (!foundPlace || spot.id !== foundPlace.id)
+              );
+            })
+            .sort((a, b) => {
+              const keywordA = a.name.toLowerCase();
+              const keywordB = b.name.toLowerCase();
+              const totalLengthA = keywordA
+                .split(" ")
+                .reduce((acc, val) => acc + val.length, 0);
+              const totalLengthB = keywordB
+                .split(" ")
+                .reduce((acc, val) => acc + val.length, 0);
+              return totalLengthA - totalLengthB;
+            });
 
     setSimilarPlaces(foundSimilarPlaces);
   };
@@ -153,12 +154,12 @@ function SearchPage() {
               </Suspense>
             </div>
 
-            <div className="border-2 border-neutral-content rounded-md mt-2 bg-base-100">
-              <div className="my-2 px-4 font-semibold text-xl">
-                Resultados similares
-              </div>
-              <div className="border-b-2 border-gray-300 w-full mb-2"></div>
-              {similarPlaces.length > 0 ? (
+            {similarPlaces.length > 0 && (
+              <div className="border-2 border-neutral-content rounded-md mt-2 bg-base-100">
+                <div className="my-2 px-4 font-semibold text-xl">
+                  Resultados similares
+                </div>
+                <div className="border-b-2 border-gray-300 w-full mb-2"></div>
                 <div>
                   {similarPlaces.map((similarPlace, index) => (
                     <div key={similarPlace.id}>
@@ -171,10 +172,8 @@ function SearchPage() {
                     </div>
                   ))}
                 </div>
-              ) : (
-                <CardSkeleton />
-              )}
-            </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
