@@ -3,34 +3,19 @@ import CardSkeleton from "./components/CardSkeleton/CardSkeleton";
 import PlaceCard from "./components/PlaceCard/PlaceCard";
 import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import PlaceData from "../../data/TouristSpotsData.json";
 import AutoComplete from "../../components/Nav/components/AutoComplete/AutoComplete";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/store";
+import { Place } from "../home/reducer/placesSlice";
 
 function SearchPage() {
+  const placeData = useSelector((state: RootState) => state.places.places);
   const [searchParams] = useSearchParams();
   const q = searchParams.get("q");
   const [query, setQuery] = useState(q ?? "");
-  const [place, setPlace] = useState<{
-    id: number;
-    name: string;
-    location: string;
-    image: string;
-    rating: number;
-    price: number;
-    description: string;
-  } | null>(null);
+  const [place, setPlace] = useState<Place | null>(null);
 
-  const [similarPlaces, setSimilarPlaces] = useState<
-    Array<{
-      id: number;
-      name: string;
-      location: string;
-      image: string;
-      rating: number;
-      price: number;
-      description: string;
-    }>
-  >([]);
+  const [similarPlaces, setSimilarPlaces] = useState<Array<Place>>([]);
 
   const [autoCompleteVisible, setAutoCompleteVisible] = useState(false);
   const [value, setValue] = useState("");
@@ -43,7 +28,7 @@ function SearchPage() {
 
   const searchSpots = (searchQuery: string) => {
     // Encontrar Lugar principal
-    const foundPlace = PlaceData.find(
+    const foundPlace = placeData.find(
       (spot) => spot.name.toLowerCase() === searchQuery?.toLowerCase()
     );
     setPlace(foundPlace ?? null);
@@ -51,8 +36,8 @@ function SearchPage() {
     // Encontrar lugares similares
     const foundSimilarPlaces =
       searchQuery === ""
-        ? PlaceData
-        : PlaceData.filter((spot) => {
+        ? placeData
+        : placeData.filter((spot) => {
             const spotKeywords = spot.name.toLowerCase().split(" ");
             const queryKeywords = searchQuery.toLowerCase().split(" ");
 
@@ -86,7 +71,7 @@ function SearchPage() {
   };
 
   useEffect(() => {
-    const isQueryValid = PlaceData.some(
+    const isQueryValid = placeData.some(
       (spot) => spot.name.toLowerCase() === q?.toLowerCase()
     );
 
@@ -129,7 +114,7 @@ function SearchPage() {
           )}
           {autoCompleteVisible && (
             <AutoComplete
-              items={PlaceData}
+              items={placeData}
               value={value}
               onChange={setValue}
               placeholder={`Buscar ${q ?? "en Freewind"}`}
@@ -151,14 +136,7 @@ function SearchPage() {
 
               <Suspense fallback={<CardSkeleton />}>
                 {place !== null ? (
-                  <PlaceCard
-                    title={place.name}
-                    titleImage={place.name}
-                    rating={place.rating}
-                    location={place.location}
-                    description={place.description}
-                    image={place.image}
-                  />
+                  <PlaceCard place={place} />
                 ) : q !== null && q !== undefined && q.trim() !== "" ? (
                   <div className="text-lg mx-auto p-4">
                     Lo sentimos, no pudimos encontrar{" "}
@@ -185,14 +163,7 @@ function SearchPage() {
                   {similarPlaces.map((similarPlace, index) => (
                     <div key={similarPlace.id}>
                       <Suspense fallback={<CardSkeleton />}>
-                        <PlaceCard
-                          title={similarPlace.name}
-                          titleImage={similarPlace.name}
-                          rating={similarPlace.rating}
-                          location={similarPlace.location}
-                          description={similarPlace.description}
-                          image={similarPlace.image}
-                        />
+                        <PlaceCard place={similarPlace} />
                       </Suspense>
                       {index < similarPlaces.length - 1 && (
                         <div className="border-b-2 border-gray-300 w-full mb-2"></div>

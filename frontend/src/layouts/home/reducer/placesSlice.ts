@@ -1,9 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 
+export interface Place {
+    id: string;
+    name: string;
+    description: string;
+    imgs: string[];
+    coords: number[];
+    reviews: string[];
+}
 
 interface placesState {
-    places: string[]
+    places: Place[]
 }
 
 // Define the initial state using that type
@@ -15,7 +23,7 @@ export const placesSlice = createSlice({
     name: 'places',
     initialState,
     reducers: {
-        setPlaces: (state, action: PayloadAction<string[]>) => {
+        setPlaces: (state, action: PayloadAction<Place[]>) => {
             state.places = action.payload
         }
 

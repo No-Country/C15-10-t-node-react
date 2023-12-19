@@ -3,16 +3,10 @@ import { MapPin, Search, MapPinned } from "lucide-react";
 import { memo, useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { KeyboardEvent } from "react";
+import { Place } from "../../../../layouts/home/reducer/placesSlice";
 
 type Props = {
-  items: {
-    id: number;
-    name: string;
-    location: string;
-    image: string;
-    rating: number;
-    price: number;
-  }[];
+  items: Place[];
   value: string;
   placeholder: string;
   onChange(val: string): void;
@@ -102,7 +96,6 @@ function AutoComplete(props: Readonly<Props>) {
                   <MapPin className="mr-1" />
                   <div>
                     <p className="text-sm font-bold">{item.name}</p>
-                    <p className="text-xs">{item.location}</p>
                   </div>
                 </div>
               </Link>
