@@ -38,14 +38,12 @@ Te invitamos a unirte a la comunidad de FreeWind y ser parte de una revolución 
 
 **FreeWind: Donde Cada Viaje Cuenta. ¡Únete y Comienza tu Aventura!**
 
-### Deploy Front-End 
+
+### Deploy Front-End  main
+
+https://freewind.vercel.app/
 
 https://jovial-youtiao-fc9c1c.netlify.app/
-
-### Deploy Front-End Db integration / main
-
-https://freewind-main.vercel.app/
-
 
 ### Deploy Back-End
 
