@@ -7,9 +7,9 @@ async function index(req, res) {
 }
 
 async function show(req, res) {
-    const place = await Place.findById(req.body.placeId).populate("reviews");
+    const places = await Place.findById(req.params.id).populate("reviews");
 
-    return res.json(place);
+    return res.json(places);
 }
 
 async function store(req, res) {
