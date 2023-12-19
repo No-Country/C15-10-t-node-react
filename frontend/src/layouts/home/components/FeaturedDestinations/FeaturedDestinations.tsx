@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../../store/store";
 
 function FeaturedDestinations() {
-  const places = useSelector((state: RootState) => state.places.places)
+  const places = useSelector((state: RootState) => state.places.places);
 
   const maxScrollWidth = useRef(0);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -43,7 +43,7 @@ function FeaturedDestinations() {
   };
 
   useEffect(() => {
-    console.log(places)
+    console.log(places);
     if (carousel?.current) {
       carousel.current.scrollLeft =
         (carousel.current.offsetWidth ?? 0) * currentIndex;
@@ -55,9 +55,6 @@ function FeaturedDestinations() {
       ? carousel.current.scrollWidth - carousel.current.offsetWidth
       : 0;
   }, []);
-
-
-
 
   return (
     <section className="py-4 overflow-hidden">
@@ -73,23 +70,15 @@ function FeaturedDestinations() {
           ref={carousel}
           className="carousel-container relative flex overflow-hidden scroll-smooth snap-x snap-mandatory touch-pan-x z-0"
         >
-          {places && places.map(
-            (place) => (
+          {places &&
+            places.map((place) => (
               <div
                 key={place.id}
                 className={`carousel-item text-center relative lg:w-1/4 md:w-1/3 sm:w-1/3 w-1/2 snap-start`}
               >
-                <CardContent
-                  name={place.name}
-                  location={place.name}
-                  description={place.description}
-                  image={place.imgs[0]}
-                  rating={4.5}
-                  price={1000}
-                />
+                <CardContent place={place} />
               </div>
-            )
-          )}
+            ))}
         </div>
         <NextArrow onClick={moveNext} disabled={isDisabled("next")} />
       </div>
