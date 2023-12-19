@@ -1,7 +1,6 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "./store/store";
-import Home from "./layouts/Home/Home";
 import Navbar from "./components/Navbar/Navbar";
 import Login from "./layouts/auth/login/Login";
 import Register from "./layouts/auth/register/Register";
@@ -9,6 +8,7 @@ import Profile from "./layouts/profile/Profile";
 import Search from "./layouts/search/SearchPage";
 import Place from "./layouts/place/Place";
 import Footer from "./components/Footer/Footer";
+import Home from "./layouts/home/Home";
 
 function App() {
   const user = useSelector((state: RootState) => state.auth.user);
