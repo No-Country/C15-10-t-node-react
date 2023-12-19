@@ -1,7 +1,6 @@
 import { useState } from "react";
-import { BsStarFill, BsStarHalf } from "react-icons/bs";
+//import { BsStarFill, BsStarHalf } from "react-icons/bs";
 import FavoriteButton from "../FavoriteButton/FavoriteButton";
-import { Place } from "../../layouts/home/reducer/placesSlice";
 
 interface PlaceObj {
   place: { imgs: string[]; name: string; description: string };
