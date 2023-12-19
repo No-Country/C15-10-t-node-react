@@ -50,10 +50,10 @@ async function store(req, res) {
 
 async function update(req, res) {
   try {
-    await Review.findByIdAndUpdate(req.params.commentId, {
-      content: req.body.content
+    await Review.findByIdAndUpdate(req.params.id, {
+      comment: req.body.comment
     });
-    const commentUpdated = await Review.findById(req.params.commentId);
+    const commentUpdated = await Review.findById(req.params.id);
 
     res.status(201).json(commentUpdated);
   } catch (err) {
