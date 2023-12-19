@@ -18,7 +18,7 @@ const Hero: React.FC = () => {
             FreeWind te lleva a aventuras que nunca olvidarás.
           </p>
           <div className="flex items-center justify-center">
-            <PrimaryButton text="Regístrate ahora" url="#" />
+            <PrimaryButton text="Regístrate ahora" url="/register" />
           </div>
         </div>
       </div>
