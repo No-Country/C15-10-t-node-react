@@ -22,7 +22,7 @@ function App() {
         <Route path="/register" element={<Register></Register>}></Route>
         <Route path="/search" element={<Search></Search>}></Route>
         <Route path="/place/:id" element={<Place></Place>}></Route>
-        {/* <Route
+        <Route
           path="/user/:id"
           element={
             user && user.token ? (
@@ -31,9 +31,7 @@ function App() {
               <Navigate to="/login" replace={true} />
             )
           }
-        ></Route> */}
-        {/* <Route path="/user/:id" element={user && user.token ? <Profile></Profile> : <Navigate to="/login" replace={true} />}></Route> */}
-        <Route path="/user/:id" element={<Profile></Profile>}></Route>
+        ></Route>
       </Routes>
       <Footer></Footer>
     </>
