@@ -22,6 +22,7 @@ async function show(req, res) {
 
 async function userReviews(req, res) {
   const userId = req.params.userId
+  console.log(userId)
   try {
     const reviews = await Review.find({ userId: userId })
     return res.status(200).json(reviews);
