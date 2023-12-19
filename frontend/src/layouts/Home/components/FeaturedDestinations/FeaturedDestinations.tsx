@@ -4,13 +4,15 @@ import NextArrow from "../../../../components/NextArrow/NextArrow";
 import PrevArrow from "../../../../components/PrevArrow/PrevArrow";
 import SubtitleSection from "../../../../components/SubtitleSection/SubtitleSection";
 import TitleSection from "../../../../components/TitleSection/TitleSection";
-import TouristSpotsData from "../../../../data/TouristSpotsData.json";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../../store/store";
 
 function FeaturedDestinations() {
+  const places = useSelector((state: RootState) => state.places.places)
+
   const maxScrollWidth = useRef(0);
   const [currentIndex, setCurrentIndex] = useState(0);
   const carousel = useRef<HTMLDivElement>(null);
-
   const movePrev = () => {
     if (currentIndex > 0) {
       setCurrentIndex((prevState) => prevState - 1);
@@ -41,6 +43,7 @@ function FeaturedDestinations() {
   };
 
   useEffect(() => {
+    console.log(places)
     if (carousel?.current) {
       carousel.current.scrollLeft =
         (carousel.current.offsetWidth ?? 0) * currentIndex;
@@ -52,6 +55,9 @@ function FeaturedDestinations() {
       ? carousel.current.scrollWidth - carousel.current.offsetWidth
       : 0;
   }, []);
+
+
+
 
   return (
     <section className="py-4 overflow-hidden">
@@ -67,18 +73,19 @@ function FeaturedDestinations() {
           ref={carousel}
           className="carousel-container relative flex overflow-hidden scroll-smooth snap-x snap-mandatory touch-pan-x z-0"
         >
-          {TouristSpotsData.map(
-            ({ id, name, location, image, rating, price }) => (
+          {places && places.map(
+            (place) => (
               <div
-                key={id}
+                key={place.id}
                 className={`carousel-item text-center relative lg:w-1/4 md:w-1/3 sm:w-1/3 w-1/2 snap-start`}
               >
                 <CardContent
-                  name={name}
-                  location={location}
-                  image={image}
-                  rating={rating}
-                  price={price}
+                  name={place.name}
+                  location={place.name}
+                  description={place.description}
+                  image={place.imgs[0]}
+                  rating={4.5}
+                  price={1000}
                 />
               </div>
             )

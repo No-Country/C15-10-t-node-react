@@ -11,8 +11,13 @@ const placeSchema = new mongoose.Schema({
 },
   { timestamps: true },
 );
-placeSchema.set("toJSON", { virtuals: true });
 
+placeSchema.methods.toJSON = function () {
+  const place = this._doc;
+  place.id = this._id.toString();
+  delete place._id;
+  return place;
+};
 
 placeSchema.virtual("slug").get(function () {
   return slugify(this.name, {

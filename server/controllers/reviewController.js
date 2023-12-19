@@ -11,6 +11,15 @@ async function index(req, res) {
   }
 }
 
+async function show(req, res) {
+  try {
+    const review = await Review.findById(req.params.id)
+    return res.status(200).json(review);
+  } catch (err) {
+    res.status(400).json(err);
+  }
+}
+
 async function userReviews(req, res) {
   const userId = req.params.userId
   try {
@@ -64,6 +73,7 @@ async function destroy(req, res) {
 module.exports = {
   index,
   store,
+  show,
   userReviews,
   update,
   destroy,

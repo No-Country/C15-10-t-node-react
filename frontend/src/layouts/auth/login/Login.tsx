@@ -1,7 +1,9 @@
-import { Link } from "react-router-dom";
-import bgImg from "../../../assets/login.webp";
-import { useForm, SubmitHandler } from "react-hook-form";
-import logo from "../../../assets/wind.png";
+import React from "react";
+import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setUser } from "../reducers/authSlice";
+import bgImg from '../../../assets/../images/img5.png';
 
 interface IFormInput {
   confirmpwd: string;
@@ -9,183 +11,82 @@ interface IFormInput {
   email: string;
 }
 
-export function Login() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    watch,
-    reset,
-  } = useForm<IFormInput>();
+const Login: React.FC = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const onSubmit: SubmitHandler<IFormInput> = (data) => {
-    console.log(data);
-    alert("Se enviaron los Datos");
-    reset();
+  const handleSubmit = async (e: React.SyntheticEvent) => {
+    e.preventDefault();
+
+    const target = e.target as typeof e.target & {
+      email: { value: string };
+      password: { value: string };
+    };
+
+    try {
+      const response = await axios({
+        method: "POST",
+        url: `${import.meta.env.VITE_API_URL}/auth/token`,
+        data: { email: target.email.value, password: target.password.value },
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      console.log(response.data);
+      dispatch(setUser(response.data));
+      navigate(`/user/${response.data.id}`);
+    } catch (error) {
+      console.error("Error during login:", error);
+    }
   };
 
   return (
-    <div id="login" className="flex flex-col lg:flex-row w-full md:pt-12 pt-20">
-      {/* Primera Columna (Formulario de Inicio de Sesión) */}
-      <div className="lg:w-1/3 bg-base-200 lg:p-16 md:p-32 p-4">
-        <h2 className="text-center lg:text-xl md:text-2xl text-lg font-bold mb-6 flex items-center justify-center">
-          Bienvenido a{" "}
-          <div className="flex items-center">
-            <img
-              src={logo}
-              alt="logo"
-              className="lg:w-11 md:w-12 sm:w-11 w-7 mx-1"
-            />
-            <span className="text-emerald-600 lg:text-xl md:text-2xl text-xl">
-              FreeWind
-            </span>
-          </div>
-        </h2>
-        <form
-          noValidate
-          id="form"
-          className="flex flex-col gap-4 mx-auto"
-          onSubmit={handleSubmit(onSubmit)}
-          autoComplete="off"
-        >
-          <label className="block" htmlFor="email">
-            <span className="block text-sm text-base-content font-bold mb-2">
-              Email
-            </span>
+    <section className="h-full mx-auto py-20 gap-8">
+      <div className="flex flex-col h-auto lg:flex-row justify-center bg-green-600 text-2xl items-center lg:px-32 px-5 gap-12 mb-10">
+        <img className="sm:7/12 lg:w-7/12 mt-2" src={bgImg} alt="" />
+        <div className="space-y-2 lg:pt-16">
+          <h2 className="flex flex-row mx-auto text-center text-black justify-center items-center font-semibold text-2xl px-26">
+            Iniciar sesión
+          </h2>
+          <span className="text-xl text-black">
+            Disfruta de nuestros servicios
+          </span>
+
+          <form
+            id="form"
+            className="flex flex-col gap-1"
+            onSubmit={handleSubmit}
+            method="post"
+          >
+            <p className="text-sm text-black font-bold">Email</p>
             <input
+              className="border-2 border-green-500 rounded-md"
               type="email"
-              id="email"
-              className={`
-          border-2 rounded-md p-2 outline-none w-full
-          ${
-            errors.email
-              ? "invalid:border-red-500 border-red-500 placeholder:text-red-500 invalid:placeholder-red-500 invalid:text-red-600 focus:invalid:border-red-500 focus:invalid:ring-red-500"
-              : "border-green-500"
-          }
-        `}
-              autoComplete="off"
-              {...register("email", {
-                required: {
-                  value: true,
-                  message: "Email es requerido",
-                },
-                pattern: {
-                  value: /^[\w-ñÑ]+(\.[\w-ñÑ]+)*@[\w-ñÑ]+(\.[\w-ñÑ]+)+$/,
-                  message: "Por favor, ingrese un Email válido",
-                },
-              })}
-              placeholder="jhondoe@gmail.com"
-              defaultValue={""}
+              placeholder="Email"
+              name="email"
             />
-            {errors.email && (
-              <p className={`mt-2 text-red-500 text-sm`}>
-                {errors.email?.message}
-              </p>
-            )}
-          </label>
-          <label className="block" htmlFor="password">
-            <span className="block text-sm text-base-content font-bold mb-2">
-              Contraseña
-            </span>
+            <p className="text-sm text-black font-bold">Contraseña</p>
             <input
-              id="password"
-              className={`border-2 border-green-500 rounded-md p-2 outline-none w-full ${
-                errors.password
-                  ? "invalid:border-red-500 border-red-500 placeholder:text-red-500 invalid:placeholder-red-500 invalid:text-red-600 focus:invalid:border-red-500 focus:invalid:ring-red-500"
-                  : "border-green-500"
-              }
-            `}
+              className="border-2 border-green-500 rounded-md"
               type="password"
-              autoComplete="off"
-              {...register("password", {
-                required: {
-                  value: true,
-                  message: "Contraseña es requerido",
-                },
-                minLength: {
-                  value: 3,
-                  message: "La contraseña debe tener al menos 3 caracteres",
-                },
-              })}
-              placeholder="*********"
+              placeholder="Contraseña"
+              name="password"
             />
-            {errors.password && (
-              <p className={`mt-2 text-red-500 text-sm`}>
-                {errors.password?.message}
-              </p>
-            )}
-          </label>
-          <label className="block" htmlFor="confirmpwd">
-            <span className="block text-sm text-base-content font-bold mb-2">
-              Confirmar Contraseña
-            </span>
-            <input
-              id="confirmpwd"
-              className={`border-2 border-green-500 rounded-md p-2 outline-none w-full ${
-                errors.confirmpwd
-                  ? "invalid:border-red-500 border-red-500 placeholder:text-red-500 invalid:placeholder-red-500 invalid:text-red-600 focus:invalid:border-red-500 focus:invalid:ring-red-500"
-                  : "border-green-500"
-              }
-            `}
-              type="password"
-              autoComplete="off"
-              {...register("confirmpwd", {
-                required: {
-                  value: true,
-                  message: "Confirmar Contraseña es requerido",
-                },
-                minLength: {
-                  value: 3,
-                  message: "La contraseña debe tener al menos 3 caracteres",
-                },
-                validate: (value) => {
-                  if (value === watch("password")) {
-                    return true;
-                  } else {
-                    return "Las Contraseñas no coinciden";
-                  }
-                },
-              })}
-              placeholder="*********"
-            />
-            {errors.confirmpwd && (
-              <p className={`mt-2 text-red-500 text-sm`}>
-                {errors.confirmpwd?.message}
-              </p>
-            )}
-          </label>
-          <div className="flex flex-row justify-center items-center">
-            <Link
-              to={"#"}
-              className="text-emerald-600 hover:text-emerald-700 hover:underline font-semibold text-sm"
-            >
-              Olvidé mi contraseña
+            <button className="btn mx-auto text-sm font-bold border-2 border-black bg-black px-20 py-2 mt-6 mb-10 rounded-full text-white hover:text-black">
+              Iniciar sesión
+            </button>
+          </form>
+          <div className="text-start mb-6">
+            <Link to="/register" className="text-sm p-2 py-3">
+              No tengo cuenta{" "}
+              <span className="text-black font-bold">Registrarse</span>
             </Link>
           </div>
-          <button
-            type="submit"
-            className="btn bg-emerald-600 hover:bg-emerald-700 focus:ring-emerald-300 dark:bg-emerald-600 dark:hover:bg-emerald-700 dark:focus:ring-emerald-800 text-white border-none"
-          >
-            Iniciar sesión
-          </button>
-        </form>
-
-        <div className="text-center py-6">
-          <Link to="/register" className="text-sm p-2 text-base-content">
-            ¿Aún no tienes una cuenta?{" "}
-            <span className="font-bold text-emerald-600 hover:text-emerald-700 underline">
-              Registrate
-            </span>
-          </Link>
         </div>
       </div>
-
-      {/* Segunda Columna (Imagen) */}
-      <div className="lg:w-1/2 flex-grow">
-        <img className="w-full h-full" src={bgImg} alt="Login Background" />
-      </div>
-    </div>
+    </section>
   );
-}
+};
 
 export default Login;

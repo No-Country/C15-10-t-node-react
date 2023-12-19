@@ -42,6 +42,11 @@ Te invitamos a unirte a la comunidad de FreeWind y ser parte de una revolución 
 
 https://jovial-youtiao-fc9c1c.netlify.app/
 
+### Deploy Front-End Db integration / main
+
+https://freewind-main.vercel.app/
+
+
 ### Deploy Back-End
 
 https://freewind-dev-tssj.3.us-1.fl0.io/
