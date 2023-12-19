@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import bgImg from "../../../assets/login.webp";
 import { useForm, SubmitHandler } from "react-hook-form";
 import logo from "../../../assets/wind.png";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { useDispatch } from "react-redux";
 import { setUser } from "../reducers/authSlice";
 interface IFormInput {
@@ -21,17 +21,23 @@ export function Login() {
   const navigate = useNavigate();
 
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
-    const response = await axios({
-      method: "POST",
-      url: `${import.meta.env.VITE_API_URL}/auth/token`,
-      data: data,
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    console.log(response.data);
-    dispatch(setUser(response.data));
-    navigate(`/user/${response.data.id}`);
+    try {
+
+      const response = await axios({
+        method: "POST",
+        url: `${import.meta.env.VITE_API_URL}/auth/token`,
+        data: data,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      console.log(response.data);
+      dispatch(setUser(response.data));
+      navigate(`/user/${response.data.id}`);
+    } catch (error: any) {
+      alert(error.response.data.message)
+      console.log(error)
+    }
   };
 
   return (
@@ -67,11 +73,10 @@ export function Login() {
               id="email"
               className={`
           border-2 rounded-md p-2 outline-none w-full
-          ${
-            errors.email
-              ? "invalid:border-red-500 border-red-500 placeholder:text-red-500 invalid:placeholder-red-500 invalid:text-red-600 focus:invalid:border-red-500 focus:invalid:ring-red-500"
-              : "border-green-500"
-          }
+          ${errors.email
+                  ? "invalid:border-red-500 border-red-500 placeholder:text-red-500 invalid:placeholder-red-500 invalid:text-red-600 focus:invalid:border-red-500 focus:invalid:ring-red-500"
+                  : "border-green-500"
+                }
         `}
               autoComplete="off"
               {...register("email", {
@@ -99,11 +104,10 @@ export function Login() {
             </span>
             <input
               id="password"
-              className={`border-2 border-green-500 rounded-md p-2 outline-none w-full ${
-                errors.password
-                  ? "invalid:border-red-500 border-red-500 placeholder:text-red-500 invalid:placeholder-red-500 invalid:text-red-600 focus:invalid:border-red-500 focus:invalid:ring-red-500"
-                  : "border-green-500"
-              }
+              className={`border-2 border-green-500 rounded-md p-2 outline-none w-full ${errors.password
+                ? "invalid:border-red-500 border-red-500 placeholder:text-red-500 invalid:placeholder-red-500 invalid:text-red-600 focus:invalid:border-red-500 focus:invalid:ring-red-500"
+                : "border-green-500"
+                }
             `}
               type="password"
               autoComplete="off"
