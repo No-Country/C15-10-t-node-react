@@ -51,7 +51,8 @@ async function store(req, res) {
 async function update(req, res) {
   try {
     await Review.findByIdAndUpdate(req.params.id, {
-      comment: req.body.comment
+      comment: req.body.comment,
+      rating: req.body.rating
     });
     const commentUpdated = await Review.findById(req.params.id);
 
