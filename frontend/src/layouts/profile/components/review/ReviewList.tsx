@@ -1,8 +1,16 @@
-import { PencilIcon, QuoteIcon, TrashIcon } from "lucide-react";
-import { Suspense } from "react";
+import { CheckIcon, PencilIcon, QuoteIcon, TrashIcon, X } from "lucide-react";
+import { Suspense, useEffect, useState } from "react";
 import useFetch from "../../hook/useFetch";
-import { useStore } from "react-redux";
+import { useDispatch, useSelector, useStore } from "react-redux";
 import { Store, Reviews } from "../../profile.type";
+import {
+  destroyReview,
+  setReviews,
+  updateReview,
+} from "../../reducer/reviewsSlice";
+import axios from "axios";
+import { RootState } from "../../../../store/store";
+import { Rating } from "react-daisyui";
 
 function StarsInputs({ stars }: { stars: number }) {
   return (
@@ -27,24 +35,34 @@ function StarsInputs({ stars }: { stars: number }) {
 }
 
 export default function ReviewList() {
+  const [toggle, setToggle] = useState(false);
+  const [changes, setChanges] = useState("");
+  const [newRating, setNewRating] = useState<number>(1);
+
+  useEffect(() => {
+    console.log(newRating);
+  }, [newRating]);
+
+  const dispatch = useDispatch();
+  const reviews = useSelector((state: RootState) => state.reviews.reviews);
   const store: Store = useStore();
-  const { id } = store.getState().auth.user;
+  const { id, firstname, lastname, token } = store.getState().auth.user;
+
+  console.log(token);
   const {
-    data: reviewList,
     loading,
-    error,
   }: {
     data: Reviews[];
     loading: boolean;
     error: string | undefined;
   } = useFetch({
-    url: `${import.meta.env.VITE_API_URL}/reviews/${id}`,
+    url: `${import.meta.env.VITE_API_URL}/reviews/user-reviews/${id}`,
+    setter: setReviews as any,
   });
-  console.log(typeof reviewList);
-  if (reviewList) {
-    console.log(reviewList.length);
+  if (reviews) {
+    console.log(reviews.length);
   }
-  if (reviewList && reviewList.length < 1) {
+  if (reviews && reviews.length < 1) {
     return (
       <article className="flex flex-col gap-4">
         <div>
@@ -53,44 +71,144 @@ export default function ReviewList() {
       </article>
     );
   }
+
+  const toggleUpdate = () => {
+    setToggle(!toggle);
+  };
+
+  const handleUpdate = async (id: string) => {
+    try {
+      const response = await axios.patch(
+        `${import.meta.env.VITE_API_URL}/reviews/${id}`,
+        {
+          comment: changes,
+          rating: newRating,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      dispatch(updateReview(response.data));
+      setToggle(!toggle);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const handleDelete = async (id: string) => {
+    try {
+      await axios({
+        method: "DELETE",
+        url: `${import.meta.env.VITE_API_URL}/reviews`,
+        data: {
+          commentId: id,
+        },
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      dispatch(destroyReview(id));
+      setToggle(!toggle);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   return (
     <article className="flex flex-col gap-4">
       <Suspense fallback={<div className="skeleton card"></div>}>
         {loading && <div className="skeleton card"></div>}
-        {(reviewList &&
-          reviewList.map((review) => (
+        {reviews &&
+          reviews.map((review) => (
             <div key={review._id} className="card bg-base-100 border">
               <div className="card-body">
-                <h2 className="card-title">{review.userName}</h2>
+                <h2 className="card-title">
+                  {firstname} {lastname}
+                </h2>
                 <div>
                   <StarsInputs stars={review.rating} />
                   <span>{review.rating}</span>
                 </div>
                 <QuoteIcon className="w-6 h-6" />
-                <p className="h-[12ch] overflow-hidden">{review.comment}</p>
+                {toggle ? (
+                  <div className="flex flex-col gap-2">
+                    <textarea
+                      name="updatedComment"
+                      defaultValue={review.comment}
+                      onChange={(e) => setChanges(e.target.value)}
+                    ></textarea>
+                    <Rating value={newRating} onChange={setNewRating}>
+                      <Rating.Item
+                        name="rating-1"
+                        className="mask mask-star bg-orange-400"
+                      />
+                      <Rating.Item
+                        name="rating-1"
+                        className="mask mask-star bg-orange-400"
+                      />
+                      <Rating.Item
+                        name="rating-1"
+                        className="mask mask-star bg-orange-400"
+                      />
+                      <Rating.Item
+                        name="rating-1"
+                        className="mask mask-star bg-orange-400"
+                      />
+                      <Rating.Item
+                        name="rating-1"
+                        className="mask mask-star bg-orange-400"
+                      />
+                    </Rating>
+                  </div>
+                ) : (
+                  <p className="h-[12ch] overflow-hidden">{review.comment}</p>
+                )}
                 <div className="card-actions justify-between">
                   <span>
                     <strong>Publicado: </strong>{" "}
                     {new Date(review.updatedAt).toLocaleString()}
                   </span>
                   <div className="flex gap-2">
-                    <button className="rounded-full btn-outline btn btn-primary">
-                      <PencilIcon />
-                    </button>
-                    <button className="rounded-full btn-outline btn btn-error">
-                      <TrashIcon />
-                    </button>
+                    {!toggle ? (
+                      <>
+                        <button
+                          className="rounded-full btn-outline btn btn-primary"
+                          onClick={toggleUpdate}
+                        >
+                          <PencilIcon />
+                        </button>
+                        <button
+                          onClick={() => handleDelete(review._id)}
+                          className="rounded-full btn-outline btn btn-error"
+                        >
+                          <TrashIcon />
+                        </button>
+                      </>
+                    ) : (
+                      <>
+                        <button
+                          className="rounded-full btn-outline btn btn-success"
+                          onClick={() => handleUpdate(review._id)}
+                        >
+                          <CheckIcon />
+                        </button>
+                        <button
+                          className="rounded-full btn-outline btn btn-error"
+                          onClick={toggleUpdate}
+                        >
+                          <X />
+                        </button>
+                      </>
+                    )}
                   </div>
                 </div>
               </div>
             </div>
-          ))) || (
-          <>
-            <span>
-              {error ? "No hemos encontrado ninguna reseña." : "Cargando..."}
-            </span>
-          </>
-        )}
+          ))}
       </Suspense>
     </article>
   );

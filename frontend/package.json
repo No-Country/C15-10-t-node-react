@@ -15,6 +15,7 @@
     "classnames": "^2.3.2",
     "lucide-react": "^0.294.0",
     "react": "^18.2.0",
+    "react-daisyui": "^5.0.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.49.2",
     "react-icons": "^4.12.0",
