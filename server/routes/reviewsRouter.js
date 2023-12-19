@@ -3,9 +3,9 @@ const router = express.Router();
 const reviewController = require("../controllers/reviewController");
 const { expressjwt: checkJwt } = require("express-jwt");
 
-router.get("/:userId", reviewController.userReviews)
 router.get("/", reviewController.index)
-
+router.get("/:userId", reviewController.show)
+router.get("/reviews/:id", reviewController.index)
 router.post(
   "/",
   // checkJwt({ secret: process.env.JWT_CUSTOMER_SECRET_KEY, algorithms: ["HS256"] }),
