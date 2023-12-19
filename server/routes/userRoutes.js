@@ -4,6 +4,7 @@ const userController = require("../controllers/userController");
 var { expressjwt: checkJwt } = require("express-jwt");
 
 router.get("/", userController.index);
+router.get("/users/:id", userController.getUser);
 router.post("/resetPassword", userController.requestPass);
 router.patch("/resetPassword/:id", userController.resetPass);
 router.get(
