@@ -3,18 +3,21 @@ import { RiHomeLine } from "react-icons/ri";
 import { MdOutlineHotel } from "react-icons/md";
 import { PiBagSimpleThin } from "react-icons/pi";
 import { Search } from "lucide-react";
-import TouristData from "../../data/TouristSpotsData.json";
 import AutoComplete from "./components/AutoComplete/AutoComplete";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/store";
 
 export const Nav: React.FC = () => {
+  const places = useSelector((state: RootState) => state.places.places);
   const [menuSeleccionado, setMenuSeleccionado] = useState("¿Adónde vas?");
-  const [placeholderText, setPlaceHolderText] = useState(
+  const [placeHolderText, setPlaceHolderText] = useState(
     "Lugares que visitar, cosas que hacer, hoteles..."
   );
   const [autoCompleteVisible, setAutoCompleteVisible] = useState(false);
   const [value, setValue] = useState("");
   const [text, setText] = useState("");
+
   const handleMenuClick = (title: string, placeholder: string) => {
     setMenuSeleccionado(title);
     setPlaceHolderText(placeholder);
@@ -95,7 +98,7 @@ export const Nav: React.FC = () => {
                   type="search"
                   id="default-search"
                   className="block shadow-xl w-full p-5 ps-10 text-sm outline-none text-base-content border-2 border-gray-300 rounded-full ring-gray-300 placeholder:text-gray-500 placeholder:text-sm focus:ring-inset sm:text-sm sm:leading-6"
-                  placeholder={placeholderText}
+                  placeholder={placeHolderText}
                   onClick={() => setAutoCompleteVisible(true)}
                   defaultValue={text}
                 />
@@ -113,8 +116,8 @@ export const Nav: React.FC = () => {
             <AutoComplete
               value={value}
               onChange={setValue}
-              items={TouristData}
-              placeholder={placeholderText}
+              items={places}
+              placeholder={placeHolderText}
               onClick={handleActive}
             />
           )}

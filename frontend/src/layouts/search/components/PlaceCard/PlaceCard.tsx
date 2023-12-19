@@ -1,4 +1,4 @@
-import renderStars from "../../../../utils/startsHelper";
+//import renderStars from "../../../../utils/startsHelper";
 
 interface PlaceObj {
   place: { imgs: string[]; name: string; description: string };
