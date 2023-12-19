@@ -33,11 +33,6 @@ export function Login() {
     dispatch(setUser(response.data));
     navigate(`/user/${response.data.id}`);
   };
-    });
-    console.log(response.data);
-    dispatch(setUser(response.data));
-    navigate(`/user/${response.data.id}`);
-  };
 
   return (
     <div id="login" className="flex flex-col lg:flex-row w-full md:pt-12 pt-20">
