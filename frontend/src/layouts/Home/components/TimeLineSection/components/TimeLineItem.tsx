@@ -13,7 +13,7 @@ function TimeLineItem({ id, title, description }: Readonly<TimeLineItemProps>) {
         <li>
           <hr />
           <div className="timeline-start md:text-end mb-10 bg-base-300 p-3 rounded-md">
-            <div className="text-lg font-black">{title}</div>
+            <div className="text-lg font-semibold">{title}</div>
             {description}
           </div>
           <div className="timeline-middle">
@@ -51,7 +51,7 @@ function TimeLineItem({ id, title, description }: Readonly<TimeLineItemProps>) {
             </svg>
           </div>
           <div className="timeline-end mb-10 bg-base-300 p-3 rounded-md">
-            <div className="text-lg font-black">{title}</div>
+            <div className="text-lg font-semibold">{title}</div>
             {description}
           </div>
           <hr />
