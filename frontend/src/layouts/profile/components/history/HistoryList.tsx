@@ -10,8 +10,7 @@ export default function HistoryList() {
             <tr>
               <th></th>
               <th>Place</th>
-              <th>Rating</th>
-              <th>Description</th>
+              <th>Browsed on</th>
               <th>Action</th>
               <th></th>
             </tr>
@@ -19,16 +18,13 @@ export default function HistoryList() {
           {(history &&
             history.map((item) => {
               return (
-                <tbody>
+                <tbody key={item._id}>
                   <tr className="h-[10ch]">
                     <th className="w-[2ch]"> 1 </th>
                     <td className="w-[10ch]">
                       <h1 className="text-xl">{item.place}</h1>
                     </td>
-                    <td>{item.rating}</td>
-                    <td className="w-[24ch] overflow-hidden ">
-                      {item.description.slice(0, 72) + "..."}
-                    </td>
+                    <td>{item.time}</td>
                     <td>
                       <Link className="btn-link" to={`/search?=${item.place}`}>
                         Buscar de nuevo

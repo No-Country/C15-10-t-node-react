@@ -29,8 +29,11 @@ export default function ReviewList() {
     <article className="flex flex-col gap-4">
       <Suspense fallback={<div className="skeleton card"></div>}>
         {reviews &&
-          reviews.map((review) => (
-            <div className="card bg-base-100 border">
+          reviews.map((review, index) => (
+            <div
+              key={(review.comments, index)}
+              className="card bg-base-100 border"
+            >
               <div className="card-body">
                 <h2 className="card-title">{review.userName}</h2>
                 <div>

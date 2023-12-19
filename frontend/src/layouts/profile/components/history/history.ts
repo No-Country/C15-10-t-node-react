@@ -2,7 +2,7 @@ export const history = [
   {
     _id: "1",
     place: "Camboriu",
-    rating: 4,
+    time: "4/2/2023",
     description: `Camboriú es una ciudad costera ubicada en el estado de Santa Catarina, Brasil. Es conocida por sus hermosas playas, su vibrante vida nocturna y sus modernas atracciones turísticas.
 
     La playa más famosa de Camboriú es la Praia Central, una amplia playa de arena blanca con aguas cristalinas. La playa está rodeada de hoteles, restaurantes y bares, y es el lugar perfecto para tomar el sol, nadar y practicar deportes acuáticos.
