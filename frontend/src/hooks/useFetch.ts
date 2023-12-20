@@ -45,7 +45,7 @@ export default function useFetch({
       .finally(() => {
         setLoading(false);
       });
-  }, [url]);
+  }, [url, options, dispatch, setter]);
 
   return {
     data,

@@ -5,8 +5,13 @@ import { TiThMenu } from "react-icons/ti";
 import Logo from "../../assets/wind.png";
 import { TbWorld } from "react-icons/tb";
 import ThemeController from "./ThemeController/ThemeController";
+import { useStore } from "react-redux";
+import { Store } from "../../layouts/profile/profile.type";
 
 function Navbar() {
+  const store: Store = useStore();
+  const user = store.getState().auth.user;
+  const token = user.token;
   const [menu, setMenu] = useState(false);
 
   const handleChange = () => {
@@ -72,12 +77,26 @@ function Navbar() {
               <TbWorld className="mt-1.5" />
               <span>|EUR</span>
             </span>
-            <Link
-              to="/login"
-              className="px-4 py-2 border-2 border-none bg-black text-white hover:text-white hover:bg-gray-800 transition-all rounded-full"
-            >
-              Iniciar sesión
-            </Link>
+            {token ? (
+              <>
+                <Link to={`/user/${user.id}`} className="btn rounded-full">
+                  <img
+                    className="w-8 h-8 rounded-full"
+                    src={`https://source.unsplash.com/random/128x128?sig=${user.id}`}
+                  />
+                  <span className="ml-2">
+                    {user.firstname} {user.lastname}
+                  </span>
+                </Link>
+              </>
+            ) : (
+              <Link
+                to="/login"
+                className="px-4 py-2 border-2 border-none bg-black text-white hover:text-white hover:bg-gray-800 transition-all rounded-full"
+              >
+                Iniciar sesión
+              </Link>
+            )}
           </div>
 
           <div className="md:hidden flex items-center">

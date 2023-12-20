@@ -1,7 +1,9 @@
 //import renderStars from "../../../../utils/startsHelper";
 
+import { Link } from "react-router-dom";
+
 interface PlaceObj {
-  place: { imgs: string[]; name: string; description: string };
+  place: { imgs: string[]; name: string; description: string; id: string };
 }
 
 const PlaceCard = ({ place }: PlaceObj) => {
@@ -16,7 +18,7 @@ const PlaceCard = ({ place }: PlaceObj) => {
         <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40 flex flex-col justify-end sm:p-8 py-3 px-2">
           <div className="z-10">
             <h3 className="sm:text-lg text-base font-bold text-white">
-              {place.name}
+              <Link to={`/place/${place.id}`}>{place.name}</Link>
             </h3>
           </div>
         </div>
@@ -31,7 +33,11 @@ const PlaceCard = ({ place }: PlaceObj) => {
           {renderStars(rating)}
           <span className="ml-1">{rating}</span>
         </div> */}
-        <p className="sm:mt-2 mt-1 sm:text-base text-sm">{place.name}</p>
+
+        <p className="sm:mt-2 mt-1 font-bold text-3xl">
+          <Link to={`/place/${place.id}`}>{place.name}</Link>
+        </p>
+
         <div className="sm:mt-2 mt-1 truncate sm:text-base text-sm">
           {place.description}
         </div>

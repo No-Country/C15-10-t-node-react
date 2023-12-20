@@ -1,6 +1,6 @@
 import { CheckIcon, PencilIcon, QuoteIcon, TrashIcon, X } from "lucide-react";
-import { Suspense, useEffect, useState } from "react";
-import useFetch from "../../hook/useFetch";
+import { Suspense, useState } from "react";
+import useFetch from "../../../../hooks/useFetch";
 import { useDispatch, useSelector, useStore } from "react-redux";
 import { Store, Reviews } from "../../profile.type";
 import {
@@ -11,44 +11,18 @@ import {
 import axios from "axios";
 import { RootState } from "../../../../store/store";
 import { Rating } from "react-daisyui";
-
-function StarsInputs({ stars }: { stars: number }) {
-  return (
-    <div className="rating rating-xs">
-      {[...Array(5)].map((_, index) => {
-        const isChecked = index === Math.floor(stars) - 1;
-        const quantity = isChecked ? stars : 1;
-        return (
-          <input
-            key={index}
-            type="radio"
-            name={`rating-${index + stars + 1}`}
-            className="mask mask-star-2 bg-orange-400"
-            checked={isChecked}
-            value={quantity}
-            disabled
-          />
-        );
-      })}
-    </div>
-  );
-}
+import StarsInputs from "./starsInput";
 
 export default function ReviewList() {
   const [toggle, setToggle] = useState(false);
   const [changes, setChanges] = useState("");
   const [newRating, setNewRating] = useState<number>(1);
 
-  useEffect(() => {
-    console.log(newRating);
-  }, [newRating]);
-
   const dispatch = useDispatch();
   const reviews = useSelector((state: RootState) => state.reviews.reviews);
   const store: Store = useStore();
   const { id, firstname, lastname, token } = store.getState().auth.user;
 
-  console.log(token);
   const {
     loading,
   }: {
@@ -59,9 +33,6 @@ export default function ReviewList() {
     url: `${import.meta.env.VITE_API_URL}/reviews/user-reviews/${id}`,
     setter: setReviews as any,
   });
-  if (reviews) {
-    console.log(reviews.length);
-  }
   if (reviews && reviews.length < 1) {
     return (
       <article className="flex flex-col gap-4">
