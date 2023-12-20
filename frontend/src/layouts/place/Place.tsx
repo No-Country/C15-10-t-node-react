@@ -75,7 +75,10 @@ function Place() {
     [comment, id, userId, newRating]
   );
   return (
-    <main id="place" className="min-h-screen">
+    <main
+      id="place"
+      className="min-h-screen container-md mx-auto lg:max-w-screen-lg overflow-hidden"
+    >
       <section className="flex flex-col py-20 px-4 gap-10">
         <SearchInput setPlace={() => {}} setSimilarPlaces={() => {}} />
         <h1 className="text-7xl">
