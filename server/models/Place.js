@@ -1,6 +1,5 @@
 const { mongoose } = require("../db");
 const slugify = require("slugify");
-const Review = require("./Review");
 
 const placeSchema = new mongoose.Schema({
   name: { type: String },
