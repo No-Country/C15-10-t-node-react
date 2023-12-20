@@ -32,14 +32,36 @@ Conecta con otros amantes de los viajes, descubre búsquedas populares, y encuen
 
 En FreeWind, nos esforzamos por ofrecer una plataforma de calidad excepcional. Cada elemento, desde la interfaz de usuario hasta las funciones avanzadas, está diseñado para proporcionarte la mejor experiencia de viaje en línea.
 
-### Únete a Nosotros:
+### Presentación:
 
-Te invitamos a unirte a la comunidad de FreeWind y ser parte de una revolución en la forma en que experimentamos y compartimos nuestros viajes. Únete hoy mismo, descubre el mundo con nosotros y haz que cada viaje sea memorable.
+Nuestro equipo está formado por individuos apasionados y dedicados que aportan una combinación única de habilidades y experiencia. Trabajamos de la mano para superar desafíos y convertir ideas en realidad.
+
+#### 🧑💻 Developers:
+
+### ⚛️ Front End:
+
+|                                                                                                                                            <img src="https://github.com/jerick97.png" width=50>                                                                                                                                            |                                                                                                                                                      <img src="https://github.com/luismagnum.png" width=50>                                                                                                                                                      |
+| :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|                                                                                                                                                             **Emerson Suarez**                                                                                                                                                             |                                                                                                                                                                      **luis enrique diaz**                                                                                                                                                                       |
+| <a href="https://github.com/Jerick97"><img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/></a> <a href="https://pe.linkedin.com/in/emerson-suarez97"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> | <a href="https://github.com/luismagnum"><img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/></a> <a href="https://www.linkedin.com/in/luis-enrique-diaz-briceño-b4662124b"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> |
+
+### 🚀 Back End:
+
+|                                                                                                                                       <img src="https://github.com/fermuzadev.png" width=50>                                                                                                                                        |                                                                                                                                                      <img src="https://github.com/Martinez-Latorraca.png" width=50>                                                                                                                                                      |
+| :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|                                                                                                                                                     **Fernando Ariel Muzaber**                                                                                                                                                      |                                                                                                                                                                           **Nicolas Martinez**                                                                                                                                                                           |
+| <a href="https://github.com/fermuzadev"><img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/></a> <a href="https://linkedin.com/in/fermuzadev"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> | <a href="https://github.com/Martinez-Latorraca"><img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/></a> <a href="https://uy.linkedin.com/in/nicol%C3%A1s-mart%C3%ADnez-latorraca"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> |
+
+#### 🧑💻 QA Testers:
+
+|                                    <img src="https://cdn.discordapp.com/avatars/1176223182739472446/833baf0d420e9dddb5bbbc4d597306b3.webp" width=50>                                     |                                   <img src="https://cdn.discordapp.com/avatars/1171416737837764703/2831b0e1bae211ccbd4a80339c958560.webp" width=50>                                   |
+| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|                                                                                    **Gustavo Guido**                                                                                     |                                                                                   **Silvia Jobal**                                                                                    |
+| <a href="https://www.linkedin.com/in/gustavo-guido-ab604812b"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> | <a href="https://ar.linkedin.com/in/silvia-jobal-testerqa"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> |
 
 **FreeWind: Donde Cada Viaje Cuenta. ¡Únete y Comienza tu Aventura!**
 
-
-### Deploy Front-End  main
+### Deploy Front-End main
 
 https://freewind.vercel.app/
 
@@ -49,9 +71,6 @@ https://jovial-youtiao-fc9c1c.netlify.app/
 
 https://freewind-dev-tssj.3.us-1.fl0.io/
 
-###  Data Model (MongoDB)
-
+### Data Model (MongoDB)
 
 https://drive.google.com/file/d/13Mkgn3y1d-gTg4kuxAzrMUnPsQhwF3bA/view?usp=sharing
-
-
