@@ -4,20 +4,23 @@ import type { PayloadAction } from '@reduxjs/toolkit'
 // Define a type for the slice state
 interface User {
     token: string,
-    name: string
+    id: string,
+    email: string,
+    address: string,
+    phone: string,
+    firstname: string,
+    lastname: string,
 }
 
+
 interface authState {
-    user: User
+    user: User | null
 }
 
 
 // Define the initial state using that type
 const initialState: authState = {
-    user: {
-        token: "",
-        name: ""
-    }
+    user: null
 }
 
 export const authSlice = createSlice({

@@ -2,11 +2,12 @@ import useFetch from "../../hooks/useFetch";
 import StarsInputs from "../profile/components/review/starsInput";
 import SearchInput from "../search/components/SearchInput/SearchInput";
 import { useParams } from "react-router-dom";
-import { useStore } from "react-redux";
+import { useSelector, useStore } from "react-redux";
 import { Store } from "../profile/profile.type";
 import { useCallback, useState } from "react";
 import axios from "axios";
 import { Rating } from "react-daisyui";
+import { RootState } from "../../store/store";
 
 interface Place {
   id: string;
@@ -17,6 +18,7 @@ interface Place {
   reviews: string[];
 }
 function Place() {
+  const user = useSelector((state: RootState) => state.auth.user);
   const store: Store = useStore();
   const currentUser = store.getState().auth.user;
   const userId = currentUser.id;

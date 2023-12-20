@@ -1,13 +1,13 @@
 const { mongoose } = require("../db");
 const slugify = require("slugify");
-const Reviews = require("./Reviews");
+const Review = require("./Review");
 
 const placeSchema = new mongoose.Schema({
   name: { type: String },
   description: { type: String },
   imgs: [],
   coords: [],
-  reviews: [Reviews],
+  reviews: { type: [mongoose.Schema.Types.ObjectId], ref: "reviews" },
 
 },
   { timestamps: true },
