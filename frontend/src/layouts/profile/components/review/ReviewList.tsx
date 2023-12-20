@@ -100,9 +100,12 @@ export default function ReviewList() {
                 <h2 className="card-title">
                   {firstname} {lastname}
                 </h2>
-                <div>
-                  <StarsInputs stars={review.rating} />
-                  <span>{review.rating}</span>
+                <div className="flex ">
+                  <h3></h3>
+                  <div>
+                    <StarsInputs stars={review.rating} />
+                    <span>{review.rating}</span>
+                  </div>
                 </div>
                 <QuoteIcon className="w-6 h-6" />
                 {toggle ? (

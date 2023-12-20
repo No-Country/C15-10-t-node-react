@@ -1,3 +1,4 @@
+const Place = require("../models/Place");
 const Review = require("../models/Review");
 
 
@@ -24,7 +25,7 @@ async function userReviews(req, res) {
   const userId = req.params.userId
   console.log(userId)
   try {
-    const reviews = await Review.find({ userId: userId })
+    const reviews = await Review.find({ userId: userId }).populate("places")
     return res.status(200).json(reviews);
   } catch (err) {
     res.status(400).json(err);
@@ -40,6 +41,11 @@ async function store(req, res) {
       rating: req.body.rating,
     });
     const review = await Review.findOne(newReview);
+    const updatePlace = await Place.findById(review.placeId);
+
+    updatePlace.reviews.push(review._id);
+
+
     return res.status(200).json(review);
   } catch (err) {
     res.status(400).json(err);

@@ -1,13 +1,13 @@
 import useFetch from "../../hooks/useFetch";
 import StarsInputs from "../profile/components/review/starsInput";
 import SearchInput from "../search/components/SearchInput/SearchInput";
-import { useParams } from "react-router-dom";
-import { useSelector, useStore } from "react-redux";
-import { Store } from "../profile/profile.type";
+import { Link, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { useCallback, useState } from "react";
 import axios from "axios";
 import { Rating } from "react-daisyui";
 import { RootState } from "../../store/store";
+import { setPlace, updatePlaceReviews } from "../home/reducer/placesSlice";
 
 interface Place {
   id: string;
@@ -18,10 +18,9 @@ interface Place {
   reviews: string[];
 }
 function Place() {
+  const dispatch = useDispatch()
   const user = useSelector((state: RootState) => state.auth.user);
-  const store: Store = useStore();
-  const currentUser = store.getState().auth.user;
-  const userId = currentUser.id;
+  const place = useSelector((state: RootState) => state.places.place);
   const [comment, setComment] = useState("");
   const [newRating, setNewRating] = useState<number>(1);
   const [typeError, setTypeError] = useState("");
@@ -44,11 +43,11 @@ function Place() {
   };
 
   const {
-    data,
     error,
     loading,
   }: { data: Place; error: string | undefined; loading: boolean } = useFetch({
     url: `${import.meta.env.VITE_API_URL}/places/${id}`,
+    setter: setPlace as any
   });
 
   const handleSubmit = useCallback(
@@ -62,19 +61,22 @@ function Place() {
       }
       // TODO: Submit review
       try {
-        await axios.post(`${import.meta.env.VITE_API_URL}/reviews`, {
+        const response = await axios.post(`${import.meta.env.VITE_API_URL}/reviews`, {
           placeId: id,
-          userId: userId,
+          userId: user?.id,
           comment: comment,
           rating: newRating,
         });
+
+        dispatch(updatePlaceReviews(response.data))
+
       } catch (error) {
         setTypeError("No se pudo subir el review");
       }
       setComment("");
       setSubmitLoading(false);
     },
-    [comment, id, userId, newRating]
+    [comment, id, user, newRating]
   );
   return (
     <main
@@ -82,9 +84,9 @@ function Place() {
       className="min-h-screen container-md mx-auto lg:max-w-screen-lg overflow-hidden"
     >
       <section className="flex flex-col py-20 px-4 gap-10">
-        <SearchInput setPlace={() => {}} setSimilarPlaces={() => {}} />
+        <SearchInput setPlace={() => { }} setSimilarPlaces={() => { }} />
         <h1 className="text-7xl">
-          Explora {(data && data.name) || "un lugar"}
+          Explora {(place && place.name) || "un lugar"}
         </h1>
         {loading ? (
           <div className="skeleton artboard artboard-horizontal w-full h-[400px]"></div>
@@ -97,16 +99,16 @@ function Place() {
           </div>
         ) : (
           <figure className="grid grid-cols-2" style={gridStyle}>
-            {data && (
+            {place && (
               <>
                 <img
                   height={400}
                   width={"full"}
-                  src={data.imgs[0]}
-                  alt={data.name}
+                  src={place.imgs[0]}
+                  alt={place.name}
                 />
                 <div style={gridStyle.rest}>
-                  {data.imgs.map((img: string, index: number) => {
+                  {place.imgs.map((img: string, index: number) => {
                     if (index === 0) return null;
                     if (index > 2) return null;
                     return (
@@ -115,7 +117,7 @@ function Place() {
                         height={400}
                         width={"full"}
                         src={img}
-                        alt={data.name}
+                        alt={place.name}
                       />
                     );
                   })}
@@ -127,10 +129,10 @@ function Place() {
       </section>
       <article className="flex flex-col px-4 gap-4">
         <h2 className="px-2 text-3xl font-bold md:text-left text-center">
-          Conoce {(data && data.name) || "un lugar"}
+          Conoce {(place && place.name) || "un lugar"}
         </h2>
         <p className="text-lg px-2 md:text-left text-center">
-          {(data && data.description) ||
+          {(place && place.description) ||
             "Con nuestra aplicacion podras encontrar un destino para tus vacaciones"}
         </p>
       </article>
@@ -139,9 +141,9 @@ function Place() {
           Descubre las opiniones de los viajeros
         </h2>
         <div>
-          {(data &&
-            data.reviews.length > 0 &&
-            data.reviews.map((review) => {
+          {(place &&
+            place.reviews &&
+            place.reviews.map((review) => {
               return (
                 <div key={review} className="card px-2 border rounded p-4 my-4">
                   <div className="flex gap-4 p-4 artboard artboard-horizontal min-h-[128px]">
@@ -161,27 +163,27 @@ function Place() {
                 </div>
               );
             })) || (
-            <div className="flex items-baseline artboard artboard-horizontal w-full h-[400px] bg-[#0000008c] rounded">
-              <p className="text-2xl md:text-5xl p-4 text-center m-auto font-bold text-white">
-                Lo sentimos, no hay reviews para mostrar
-              </p>
-            </div>
-          )}
+              <div className="flex items-baseline artboard artboard-horizontal w-full h-[400px] bg-[#0000008c] rounded">
+                <p className="text-2xl md:text-5xl p-4 text-center m-auto font-bold text-white">
+                  Lo sentimos, no hay reviews para mostrar
+                </p>
+              </div>
+            )}
         </div>
       </article>
       <div className="divider my-4"></div>
       <div className="flex flex-col p-4 gap-10 border m-4 rounded">
-        {currentUser && (
+        {user ? (
           <form onSubmit={handleSubmit}>
             <div className="flex">
               <figure>
                 <img
                   className="rounded-full h-12 w-12"
-                  src={`https://source.unsplash.com/random/128x128?sig=${currentUser.id}`}
+                  src={`https://source.unsplash.com/random/128x128?sig=${user.id}`}
                 />
               </figure>
               <h2 className="text-3xl font-bold mb-4 px-2 md:text-left text-center">
-                <i>{currentUser.firstname}</i> Comparte tu opinion
+                <i>{user.firstname}</i> Comparte tu opinion
               </h2>
             </div>
             <Rating value={newRating} onChange={setNewRating}>
@@ -211,9 +213,8 @@ function Place() {
                 setComment(e.target.value);
                 setTypeError("");
               }}
-              className={`textarea textarea-bordered w-full ${
-                typeError ? "border-red-500" : "border-gray-300"
-              }`}
+              className={`textarea textarea-bordered w-full ${typeError ? "border-red-500" : "border-gray-300"
+                }`}
               placeholder="Escribe tu opinion"
             ></textarea>
             {typeError && <p className="text-red-500">{typeError}</p>}
@@ -237,7 +238,12 @@ function Place() {
               )}
             </div>
           </form>
-        )}
+        ) : (
+          <div className="flex items-baseline artboard artboard-horizontal w-full h-[400px] bg-[#0000008c] rounded">
+            <p className="text-2xl md:text-5xl p-4 text-center m-auto font-bold text-white">
+              Lo sentimos, debes <Link to="/login" className="link">iniciar sesión</Link> para publicar.
+            </p>
+          </div>)}
       </div>
     </main>
   );
