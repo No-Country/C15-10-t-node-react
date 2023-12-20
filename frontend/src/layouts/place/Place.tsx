@@ -137,7 +137,7 @@ function Place() {
           Descubre las opiniones de los viajeros
         </h2>
         <div>
-          {data &&
+          {(data &&
             data.reviews.length > 0 &&
             data.reviews.map((review) => {
               return (
@@ -158,7 +158,13 @@ function Place() {
                   <p className="text-lg">Publicado en: </p>
                 </div>
               );
-            })}
+            })) || (
+            <div className="flex items-baseline artboard artboard-horizontal w-full h-[400px] bg-[#0000008c] rounded">
+              <p className="text-2xl md:text-5xl p-4 text-center m-auto font-bold text-white">
+                Lo sentimos, no hay reviews para mostrar
+              </p>
+            </div>
+          )}
         </div>
       </article>
       <div className="divider my-4"></div>
