@@ -42,7 +42,7 @@ Nuestro equipo está formado por individuos apasionados y dedicados que aportan 
 
 |                                                                                                                                            <img src="https://github.com/jerick97.png" width=50>                                                                                                                                            |                                                                                                                                                      <img src="https://github.com/luismagnum.png" width=50>                                                                                                                                                      |
 | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-|                                                                                                                                                             **Emerson Suarez**                                                                                                                                                             |                                                                                                                                                                      **luis enrique diaz**                                                                                                                                                                       |
+|                                                                                                                                                             **Emerson Suarez**                                                                                                                                                             |                                                                                                                                                                      **Luis Enrique Diaz**                                                                                                                                                                       |
 | <a href="https://github.com/Jerick97"><img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/></a> <a href="https://pe.linkedin.com/in/emerson-suarez97"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> | <a href="https://github.com/luismagnum"><img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/></a> <a href="https://www.linkedin.com/in/luis-enrique-diaz-briceño-b4662124b"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> |
 
 ### 🚀 Back End:
@@ -58,6 +58,48 @@ Nuestro equipo está formado por individuos apasionados y dedicados que aportan 
 | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
 |                                                                                    **Gustavo Guido**                                                                                     |                                                                                   **Silvia Jobal**                                                                                    |
 | <a href="https://www.linkedin.com/in/gustavo-guido-ab604812b"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> | <a href="https://ar.linkedin.com/in/silvia-jobal-testerqa"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> |
+
+#### 🧑💻 PM:
+
+|                                                    <img src="https://github.com/kingDiegato.png" width=50>                                                    |
+| :-----------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|                                                                  **Diego Gonzalez Busnego**                                                                   |
+| <a href="https://github.com/kingDiegato/"><img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/></a> |
+
+#### 🧑💻 TL:
+
+|                                                    <img src="https://github.com/agomezjuan.png" width=50>                                                    |
+| :----------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|                                                                    **Alberto Gómez Juan**                                                                    |
+| <a href="https://github.com/agomezjuan/"><img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/></a> |
+
+<h2> Tecnologias Usadas</h2>
+<h3>Front-End</h3>
+
+![React](https://img.shields.io/static/v1?style=for-the-badge&message=React&color=222222&logo=React&logoColor=61DAFB&label) ![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white) ![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white) ![Redux](https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white)![AXIOS](https://img.shields.io/badge/AXIOS-%235A29E4?style=for-the-badge&logo=axios) ![DaisyUI](https://img.shields.io/badge/daisyui-5A0EF8?style=for-the-badge&logo=daisyui&logoColor=white) ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white) ![Vercel](https://img.shields.io/static/v1?style=for-the-badge&message=Vercel&color=000000&logo=Vercel&logoColor=FFFFFF&label=)
+
+<h3>Back-End</h3>
+
+![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white) ![JWT](https://img.shields.io/badge/JWT-black?style=for-the-badge&logo=JSON%20web%20tokens)
+
+<h3>Base de datos</h3>
+
+![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
+
+<h3>QA</h3>
+
+![Jira](https://img.shields.io/badge/Jira-FFF?style=for-the-badge&logo=jira&logoColor=blue)
+
+<div>
+<!-- Organización -->
+<h2> Organización
+</h2>
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Logo" width="60" height="60">
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/slack/slack-original.svg" alt="Logo" width="60" height="60">
+<img src="https://img.icons8.com/color/480/discord-new-logo.png" alt="Logo" width="60" height="60">
+</dvi>
+
+###
 
 **FreeWind: Donde Cada Viaje Cuenta. ¡Únete y Comienza tu Aventura!**
 
