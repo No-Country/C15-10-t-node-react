@@ -25,13 +25,11 @@ async function show(req, res) {
 async function userReviews(req, res) {
   const userId = req.params.userId
   const user = await User.findById(userId)
-  // console.log(user)
   try {
     const reviews = await Review.find({ user: userId }).populate({
       path: 'place',
-      select: "name"
+      select: ["name", "imgs"]
     });
-    // console.log(reviews)
 
     return res.status(200).json(reviews);
   } catch (err) {
@@ -48,7 +46,7 @@ async function store(req, res) {
       place: req.body.place,
       rating: req.body.rating,
     });
-    const review = await Review.findOne(newReview);
+    const review = await Review.findOne(newReview)
     const updatePlace = await Place.findById(review.place);
 
     updatePlace.reviews.push(review._id);
@@ -69,7 +67,10 @@ async function update(req, res) {
       comment: req.body.comment,
       rating: req.body.rating
     });
-    const commentUpdated = await Review.findById(req.params.id);
+    const commentUpdated = await Review.findById(req.params.id).populate({
+      path: 'place',
+      select: ["name", "imgs"]
+    });;
 
     res.status(201).json(commentUpdated);
   } catch (err) {

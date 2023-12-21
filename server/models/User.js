@@ -19,7 +19,6 @@ const userSchema = new mongoose.Schema(
 
 userSchema.methods.toJSON = function () {
   const user = this._doc;
-  console.log(user)
   user.id = this._id;
   delete user._id;
 
