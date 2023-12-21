@@ -1,8 +1,12 @@
 import { CheckIcon, PencilIcon, QuoteIcon, TrashIcon, X } from "lucide-react";
-import { Suspense, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useDispatch, useSelector, useStore } from "react-redux";
 import { Store } from "../../profile.type";
-import { destroyReview, updateReview } from "../../reducer/reviewsSlice";
+import {
+  destroyReview,
+  setReviews,
+  updateReview,
+} from "../../reducer/reviewsSlice";
 import axios from "axios";
 import { RootState } from "../../../../store/store";
 import { Rating } from "react-daisyui";
@@ -14,9 +18,19 @@ export default function ReviewList() {
   const [newRating, setNewRating] = useState<number>(1);
 
   const dispatch = useDispatch();
-  const reviews = useSelector((state: RootState) => state.places.place.reviews);
+  const reviews = useSelector((state: RootState) => state.reviews.reviews);
   const store: Store = useStore();
-  const { firstname, lastname, token } = store.getState().auth.user;
+  const { id, firstname, lastname, token } = store.getState().auth.user;
+
+  useEffect(() => {
+    const getReviews = async () => {
+      const response = await axios.get(
+        `${import.meta.env.VITE_API_URL}/reviews/user-reviews/${id}`
+      );
+      dispatch(setReviews(response.data));
+    };
+    getReviews();
+  }, []);
 
   if (!reviews) {
     return (
@@ -85,8 +99,8 @@ export default function ReviewList() {
                 <h2 className="card-title">
                   {firstname} {lastname}
                 </h2>
-                <div className="flex ">
-                  <h3></h3>
+                <div className="flex gap-3">
+                  <h3 className="font-bold">{review.place.name}</h3>
                   <div>
                     <StarsInputs stars={review.rating} />
                     <span>{review.rating}</span>

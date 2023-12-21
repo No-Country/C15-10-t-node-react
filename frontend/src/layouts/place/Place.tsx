@@ -90,13 +90,14 @@ function Place() {
         const response = await axios.post(
           `${import.meta.env.VITE_API_URL}/reviews`,
           {
-            placeId: id,
-            userId: user?.id,
+            place: id,
+            user: user?.id,
             comment: comment,
             rating: newRating,
           }
         );
         dispatch(updatePlaceReviews(response.data));
+        setComment("");
       } catch (error) {
         if (error instanceof AxiosError) {
           setTypeError(error.response?.data.message);
@@ -200,12 +201,12 @@ function Place() {
                 </div>
               );
             })) || (
-              <div className="flex items-baseline artboard artboard-horizontal w-full h-[400px] bg-[#0000008c] rounded">
-                <p className="text-2xl md:text-5xl p-4 text-center m-auto font-bold text-white">
-                  Lo sentimos, no hay reviews para mostrar
-                </p>
-              </div>
-            )}
+            <div className="flex items-baseline artboard artboard-horizontal w-full h-[400px] bg-[#0000008c] rounded">
+              <p className="text-2xl md:text-5xl p-4 text-center m-auto font-bold text-white">
+                Lo sentimos, no hay reviews para mostrar
+              </p>
+            </div>
+          )}
         </div>
       </article>
       <div className="divider my-4"></div>
@@ -246,12 +247,14 @@ function Place() {
               />
             </Rating>
             <textarea
+              value={comment}
               onChange={(e) => {
                 setComment(e.target.value);
                 setTypeError("");
               }}
-              className={`textarea textarea-bordered w-full ${typeError ? "border-red-500" : "border-gray-300"
-                }`}
+              className={`textarea textarea-bordered w-full ${
+                typeError ? "border-red-500" : "border-gray-300"
+              }`}
               placeholder="Escribe tu opinion"
             ></textarea>
             {typeError && <p className="text-red-500">{typeError}</p>}
