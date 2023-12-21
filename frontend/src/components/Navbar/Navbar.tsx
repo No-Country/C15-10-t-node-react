@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store/store";
 import { clearToken } from "../../layouts/auth/reducers/authSlice";
 
+
 function Navbar() {
   const dispatch = useDispatch();
   const user = useSelector((state: RootState) => state.auth.user);
@@ -30,7 +31,7 @@ function Navbar() {
 
   const handleLogout = async () => {
     dispatch(clearToken());
-    await axios.get(`${import.meta.env.VITE_API_URL}/logout`);
+    await axios.get(`${import.meta.env.VITE_API_URL}/auth/logout`);
   };
 
   return (
@@ -128,9 +129,8 @@ function Navbar() {
             onClick={closeMenu}
           >
             <div
-              className={`${
-                menu ? "translate-x-0" : "-translate-x-full"
-              } lg:hidden fixed top-0 left-0 z-40 h-screen py-10 px-7 overflow-y-auto transition-transform -translate-x-full bg-white w-72 sm:w-96 flex items-center flex-col`}
+              className={`${menu ? "translate-x-0" : "-translate-x-full"
+                } lg:hidden fixed top-0 left-0 z-40 h-screen py-10 px-7 overflow-y-auto transition-transform -translate-x-full bg-white w-72 sm:w-96 flex items-center flex-col`}
               tabIndex={-1}
               aria-labelledby="drawer-left-label"
             >

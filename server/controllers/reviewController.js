@@ -1,5 +1,6 @@
 const Place = require("../models/Place");
 const Review = require("../models/Review");
+const User = require("../models/User");
 
 
 
@@ -23,11 +24,18 @@ async function show(req, res) {
 
 async function userReviews(req, res) {
   const userId = req.params.userId
-  console.log(userId)
+  const user = await User.findById(userId)
+  // console.log(user)
   try {
-    const reviews = await Review.find({ user: userId }).populate("place")
+    const reviews = await Review.find({ user: userId }).populate({
+      path: 'place',
+      select: "name"
+    });
+    // console.log(reviews)
+
     return res.status(200).json(reviews);
   } catch (err) {
+    console.log(err)
     res.status(400).json(err);
   }
 }

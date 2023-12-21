@@ -19,9 +19,12 @@ const userSchema = new mongoose.Schema(
 
 userSchema.methods.toJSON = function () {
   const user = this._doc;
-  user.id = this._id.toString();
+  console.log(user)
+  user.id = this._id;
   delete user._id;
+
   return user;
+
 };
 
 userSchema.pre("save", async function (next) {

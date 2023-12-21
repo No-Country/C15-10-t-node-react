@@ -19,13 +19,14 @@ export default function ReviewList() {
 
   const dispatch = useDispatch();
   const reviews = useSelector((state: RootState) => state.reviews.reviews);
+  const user = useSelector((state: RootState) => state.auth.user);
   const store: Store = useStore();
   const { id, firstname, lastname, token } = store.getState().auth.user;
 
   useEffect(() => {
     const getReviews = async () => {
       const response = await axios.get(
-        `${import.meta.env.VITE_API_URL}/reviews/user-reviews/${id}`
+        `${import.meta.env.VITE_API_URL}/reviews/user-reviews/${user?.id}`
       );
       dispatch(setReviews(response.data));
     };

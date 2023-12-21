@@ -1,10 +1,22 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
+
+interface User {
+  token: string,
+  id: string,
+  email: string,
+  address: string,
+  phone: string,
+  firstname: string,
+  lastname: string,
+}
+
+
 export interface Review {
   _id: string;
-  placeId: string;
-  userId: string;
+  place: string;
+  user: User;
   rating: number;
   createdAt: string;
   updatedAt: string;

@@ -7,7 +7,13 @@ async function index(req, res) {
 }
 
 async function show(req, res) {
-    const places = await Place.findById(req.params.id).populate("reviews");
+    const places = await Place.findById(req.params.id).populate({
+        path: 'reviews',
+        populate: {
+            path: 'user',
+            model: 'users', // El nombre del modelo de usuarios
+        },
+    });
 
     return res.json(places);
 }

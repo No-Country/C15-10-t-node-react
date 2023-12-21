@@ -14,7 +14,7 @@ const placeSchema = new mongoose.Schema({
 
 placeSchema.methods.toJSON = function () {
   const place = this._doc;
-  place.id = this._id.toString();
+  place.id = this._id;
   delete place._id;
   return place;
 };
