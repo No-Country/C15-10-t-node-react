@@ -45,6 +45,8 @@ async function store(req, res) {
 
     updatePlace.reviews.push(review._id);
 
+    await updatePlace.save();
+
     return res.status(200).json(review);
   } catch (err) {
     res.status(400).json(err);
