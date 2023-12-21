@@ -7,6 +7,9 @@ import Place from "../../../place/Place";
 
 const PlaceCard = ({ place }: { place: Place }) => {
   const dispatch = useDispatch();
+  if (!place || !place.imgs) {
+    return null;
+  }
   return (
     <div className="flex items-center justify-between md:px-4 py-3 px-2.5">
       <div className="relative w-full md:w-96 mx-auto lg:h-36 overflow-hidden">
