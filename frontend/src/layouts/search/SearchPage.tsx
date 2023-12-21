@@ -34,7 +34,7 @@ function SearchPage() {
               <div className="border-b-2 border-gray-300 w-full"></div>
 
               <Suspense fallback={<CardSkeleton />}>
-                {place !== null ? (
+                {place !== null && place !== undefined ? (
                   <PlaceCard place={place} />
                 ) : q !== null && q !== undefined && q.trim() !== "" ? (
                   <div className="text-lg mx-auto p-4">
