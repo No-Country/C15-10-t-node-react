@@ -1,7 +1,7 @@
 import useFetch from "../../hooks/useFetch";
 import StarsInputs from "../profile/components/review/starsInput";
 import SearchInput from "../search/components/SearchInput/SearchInput";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useCallback, useState } from "react";
 import axios, { AxiosError } from "axios";
@@ -26,6 +26,13 @@ function Place() {
   const [typeError, setTypeError] = useState("");
   const [submitLoading, setSubmitLoading] = useState(false);
   const { id } = useParams();
+
+  const [searchParams] = useSearchParams();
+  const q = searchParams.get("q");
+  const searchPlace = useState<Place | null>(null);
+  const similarPlaces = useState<Array<Place>>([]);
+  const setSearchPlace = searchPlace[1];
+  const setSimilarPlaces = similarPlaces[1];
 
   const gridStyle = {
     display: "grid",
@@ -88,7 +95,12 @@ function Place() {
       className="min-h-screen container-md mx-auto lg:max-w-screen-lg overflow-hidden"
     >
       <section className="flex flex-col py-20 px-4 gap-10">
-        <SearchInput setPlace={() => {}} setSimilarPlaces={() => {}} />
+        <div className="mt-6"></div>
+        <SearchInput
+          setPlace={setSearchPlace}
+          setSimilarPlaces={setSimilarPlaces}
+          q={q}
+        />
         <h1 className="text-7xl">
           Explora {(place && place.name) || "un lugar"}
         </h1>
