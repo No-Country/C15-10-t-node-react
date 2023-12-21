@@ -36,15 +36,14 @@ async function store(req, res) {
   try {
     const newReview = await Review.create({
       comment: req.body.comment,
-      userId: req.body.userId,
-      placeId: req.body.placeId,
+      user: req.body.user,
+      place: req.body.place,
       rating: req.body.rating,
     });
     const review = await Review.findOne(newReview);
-    const updatePlace = await Place.findById(review.placeId);
+    const updatePlace = await Place.findById(review.place);
 
     updatePlace.reviews.push(review._id);
-
 
     return res.status(200).json(review);
   } catch (err) {
