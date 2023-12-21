@@ -36,8 +36,8 @@ async function store(req, res) {
   try {
     const newReview = await Review.create({
       comment: req.body.comment,
-      userId: req.body.userId,
-      placeId: req.body.placeId,
+      user: req.body.user,
+      place: req.body.place,
       rating: req.body.rating,
     });
     const review = await Review.findOne(newReview);
