@@ -4,11 +4,14 @@ import { Suspense, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { Place } from "../home/reducer/placesSlice";
 import SearchInput from "./components/SearchInput/SearchInput";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/store";
 
 function SearchPage() {
   const [searchParams] = useSearchParams();
   const q = searchParams.get("q");
-  const [place, setPlace] = useState<Place | null>(null);
+  // const [place, setPlace] = useState<Place | null>(null);
+  const place = useSelector((state: RootState) => state.places.place);
 
   const [similarPlaces, setSimilarPlaces] = useState<Array<Place>>([]);
 
@@ -16,11 +19,7 @@ function SearchPage() {
     <section id="search" className="min-h-screen">
       <div className="py-6 container-md mx-auto lg:max-w-screen-lg overflow-hidden">
         <div className="mt-16">
-          <SearchInput
-            setPlace={setPlace}
-            setSimilarPlaces={setSimilarPlaces}
-            q={q}
-          />
+          <SearchInput setSimilarPlaces={setSimilarPlaces} q={q} />
 
           <div className="py-5">
             <h1 className="text-2xl font-bold p-4">

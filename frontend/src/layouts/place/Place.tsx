@@ -29,9 +29,7 @@ function Place() {
 
   const [searchParams] = useSearchParams();
   const q = searchParams.get("q");
-  const searchPlace = useState<Place | null>(null);
   const similarPlaces = useState<Array<Place>>([]);
-  const setSearchPlace = searchPlace[1];
   const setSimilarPlaces = similarPlaces[1];
 
   const gridStyle = {
@@ -96,11 +94,7 @@ function Place() {
     >
       <section className="flex flex-col py-20 px-4 gap-10">
         <div className="mt-6"></div>
-        <SearchInput
-          setPlace={setSearchPlace}
-          setSimilarPlaces={setSimilarPlaces}
-          q={q}
-        />
+        <SearchInput setSimilarPlaces={setSimilarPlaces} q={q} />
         <h1 className="text-7xl">
           Explora {(place && place.name) || "un lugar"}
         </h1>

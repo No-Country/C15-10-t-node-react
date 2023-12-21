@@ -1,12 +1,12 @@
 //import renderStars from "../../../../utils/startsHelper";
 
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { setPlace } from "../../../home/reducer/placesSlice";
+import Place from "../../../place/Place";
 
-interface PlaceObj {
-  place: { imgs: string[]; name: string; description: string; id: string };
-}
-
-const PlaceCard = ({ place }: PlaceObj) => {
+const PlaceCard = ({ place }: { place: Place }) => {
+  const dispatch = useDispatch();
   return (
     <div className="flex items-center justify-between md:px-4 py-3 px-2.5">
       <div className="relative w-full md:w-96 mx-auto lg:h-36 overflow-hidden">
@@ -35,7 +35,14 @@ const PlaceCard = ({ place }: PlaceObj) => {
         </div> */}
 
         <p className="sm:mt-2 mt-1 font-bold text-3xl">
-          <Link to={`/place/${place.id}`}>{place.name}</Link>
+          <Link
+            to={`/place/${place.id}`}
+            onClick={() => {
+              dispatch(setPlace(place));
+            }}
+          >
+            {place.name}
+          </Link>
         </p>
 
         <div className="sm:mt-2 mt-1 truncate sm:text-base text-sm">

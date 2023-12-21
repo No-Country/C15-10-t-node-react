@@ -1,17 +1,19 @@
 import { Search } from "lucide-react";
 import AutoComplete from "../../../../components/Nav/components/AutoComplete/AutoComplete";
 import { useCallback, useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../../store/store";
 import { Place } from "../../../home/reducer/placesSlice";
+import { setPlace } from "../../../home/reducer/placesSlice";
 
 interface Props {
-  setPlace: React.Dispatch<React.SetStateAction<Place | null>>;
   setSimilarPlaces: React.Dispatch<React.SetStateAction<Place[]>>;
   q?: string | null;
 }
-export default function SearchInput({ setPlace, setSimilarPlaces, q }: Props) {
+export default function SearchInput({ setSimilarPlaces, q }: Props) {
   const placeData = useSelector((state: RootState) => state.places.places);
+  const singlePlace = useSelector((state: RootState) => state.places.place);
+  const dispatch = useDispatch();
 
   const [query, setQuery] = useState(q ?? "");
   const [autoCompleteVisible, setAutoCompleteVisible] = useState(false);
@@ -29,7 +31,7 @@ export default function SearchInput({ setPlace, setSimilarPlaces, q }: Props) {
       const foundPlace = placeData.find(
         (spot) => spot.name.toLowerCase() === searchQuery?.toLowerCase()
       );
-      setPlace(foundPlace ?? null);
+      dispatch(setPlace(foundPlace || singlePlace));
 
       // Encontrar lugares similares
       const foundSimilarPlaces =
@@ -68,7 +70,7 @@ export default function SearchInput({ setPlace, setSimilarPlaces, q }: Props) {
 
       setSimilarPlaces(foundSimilarPlaces);
     },
-    [placeData, setPlace, setSimilarPlaces]
+    [placeData, setSimilarPlaces, dispatch, singlePlace]
   );
 
   useEffect(() => {
