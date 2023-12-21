@@ -41,7 +41,7 @@ async function store(req, res) {
       rating: req.body.rating,
     });
     const review = await Review.findOne(newReview);
-    const updatePlace = await Place.findById(review.placeId);
+    const updatePlace = await Place.findById(review.place);
 
     updatePlace.reviews.push(review._id);
 
