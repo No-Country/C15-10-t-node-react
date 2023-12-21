@@ -1,7 +1,19 @@
 import { Link } from "react-router-dom";
-import { history } from "./history";
+
+interface History {
+  q: string;
+  time: string;
+}
+
+type LocalHistory = History[];
 
 export default function HistoryList() {
+  // get item history from localstorage
+
+  const history: LocalHistory = JSON.parse(
+    localStorage.getItem("history") || "[]"
+  );
+
   return (
     <>
       <div className="overflow-y-auto">
@@ -9,24 +21,24 @@ export default function HistoryList() {
           <thead>
             <tr>
               <th></th>
-              <th>Place</th>
-              <th>Browsed on</th>
-              <th>Action</th>
+              <th>Lugar</th>
+              <th>Buscado el</th>
+              <th>Accion</th>
               <th></th>
             </tr>
           </thead>
           {(history &&
-            history.map((item) => {
+            history.map((item, index) => {
               return (
-                <tbody key={item._id}>
+                <tbody key={index}>
                   <tr className="h-[10ch]">
-                    <th className="w-[2ch]"> 1 </th>
+                    <th className="w-[2ch]"> {index + 1} </th>
                     <td className="w-[10ch]">
-                      <h1 className="text-xl">{item.place}</h1>
+                      <h1 className="text-xl">{item.q}</h1>
                     </td>
-                    <td>{item.time}</td>
+                    <td>{new Date(item.time).toLocaleString()}</td>
                     <td>
-                      <Link className="btn-link" to={`/search?=${item.place}`}>
+                      <Link className="btn-link" to={`/search?=${item.q}`}>
                         Buscar de nuevo
                       </Link>
                     </td>

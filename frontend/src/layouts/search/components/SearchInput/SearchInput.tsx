@@ -82,6 +82,14 @@ export default function SearchInput({ setPlace, setSimilarPlaces, q }: Props) {
     } else {
       setQuery(q);
       searchSpots(q);
+      // Carga en local storage el q
+      localStorage.setItem(
+        "history",
+        JSON.stringify([
+          { q: q, time: new Date().getTime() },
+          ...JSON.parse(localStorage.getItem("history") ?? "[]"),
+        ])
+      );
     }
   }, [q, query, placeData, searchSpots]);
 

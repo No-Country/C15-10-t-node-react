@@ -3,11 +3,7 @@ import { Suspense, useState } from "react";
 import useFetch from "../../../../hooks/useFetch";
 import { useDispatch, useSelector, useStore } from "react-redux";
 import { Store, Reviews } from "../../profile.type";
-import {
-  destroyReview,
-  setReviews,
-  updateReview,
-} from "../../reducer/reviewsSlice";
+import { destroyReview, updateReview } from "../../reducer/reviewsSlice";
 import axios from "axios";
 import { RootState } from "../../../../store/store";
 import { Rating } from "react-daisyui";
@@ -19,7 +15,7 @@ export default function ReviewList() {
   const [newRating, setNewRating] = useState<number>(1);
 
   const dispatch = useDispatch();
-  const reviews = useSelector((state: RootState) => state.reviews.reviews);
+  const reviews = useSelector((state: RootState) => state.places.place.reviews);
   const store: Store = useStore();
   const { id, firstname, lastname, token } = store.getState().auth.user;
 
@@ -31,7 +27,6 @@ export default function ReviewList() {
     error: string | undefined;
   } = useFetch({
     url: `${import.meta.env.VITE_API_URL}/reviews/user-reviews/${id}`,
-    setter: setReviews as any,
   });
   if (reviews && reviews.length < 1) {
     return (
@@ -111,6 +106,7 @@ export default function ReviewList() {
                 {toggle ? (
                   <div className="flex flex-col gap-2">
                     <textarea
+                      className="textarea textarea-bordered"
                       name="updatedComment"
                       defaultValue={review.comment}
                       onChange={(e) => setChanges(e.target.value)}
