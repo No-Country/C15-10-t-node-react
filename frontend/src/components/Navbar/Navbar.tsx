@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { IoClose, IoLogOut, IoLogOutOutline } from "react-icons/io5";
+import { IoClose, IoLogOutOutline } from "react-icons/io5";
 import { TiThMenu } from "react-icons/ti";
 import Logo from "../../assets/wind.png";
 import { TbWorld } from "react-icons/tb";
@@ -29,9 +29,9 @@ function Navbar() {
   };
 
   const handleLogout = async () => {
-    dispatch(clearToken())
-    await axios.get(`${import.meta.env.VITE_API_URL}/logout`)
-  }
+    dispatch(clearToken());
+    await axios.get(`${import.meta.env.VITE_API_URL}/logout`);
+  };
 
   return (
     <div className="fixed w-full z-50">
@@ -86,7 +86,6 @@ function Navbar() {
             </span>
             {token ? (
               <div className="flex items-center gap-3">
-
                 <div className="flex">
                   <Link to={`/user/${user.id}`} className="btn rounded-full">
                     <img
@@ -98,7 +97,11 @@ function Navbar() {
                     </span>
                   </Link>
                 </div>
-                <IoLogOutOutline size={25} className="cursor-pointer " onClick={handleLogout}></IoLogOutOutline>
+                <IoLogOutOutline
+                  size={25}
+                  className="cursor-pointer "
+                  onClick={handleLogout}
+                ></IoLogOutOutline>
               </div>
             ) : (
               <Link
@@ -125,8 +128,9 @@ function Navbar() {
             onClick={closeMenu}
           >
             <div
-              className={`${menu ? "translate-x-0" : "-translate-x-full"
-                } lg:hidden fixed top-0 left-0 z-40 h-screen py-10 px-7 overflow-y-auto transition-transform -translate-x-full bg-white w-72 sm:w-96 flex items-center flex-col`}
+              className={`${
+                menu ? "translate-x-0" : "-translate-x-full"
+              } lg:hidden fixed top-0 left-0 z-40 h-screen py-10 px-7 overflow-y-auto transition-transform -translate-x-full bg-white w-72 sm:w-96 flex items-center flex-col`}
               tabIndex={-1}
               aria-labelledby="drawer-left-label"
             >
