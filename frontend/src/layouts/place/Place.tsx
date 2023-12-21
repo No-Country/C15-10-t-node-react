@@ -4,10 +4,10 @@ import SearchInput from "../search/components/SearchInput/SearchInput";
 import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useCallback, useState } from "react";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { Rating } from "react-daisyui";
 import { RootState } from "../../store/store";
-import { setPlace, updatePlaceReviews } from "../home/reducer/placesSlice";
+import { Review, updatePlaceReviews } from "../home/reducer/placesSlice";
 
 interface Place {
   id: string;
@@ -15,12 +15,12 @@ interface Place {
   description: string;
   imgs: string[];
   coords: number[];
-  reviews: string[];
+  reviews: Review[];
 }
 function Place() {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const user = useSelector((state: RootState) => state.auth.user);
-  const place = useSelector((state: RootState) => state.places.place);
+  const place: Place = useSelector((state: RootState) => state.places.place);
   const [comment, setComment] = useState("");
   const [newRating, setNewRating] = useState<number>(1);
   const [typeError, setTypeError] = useState("");
@@ -47,7 +47,6 @@ function Place() {
     loading,
   }: { data: Place; error: string | undefined; loading: boolean } = useFetch({
     url: `${import.meta.env.VITE_API_URL}/places/${id}`,
-    setter: setPlace as any
   });
 
   const handleSubmit = useCallback(
@@ -61,22 +60,27 @@ function Place() {
       }
       // TODO: Submit review
       try {
-        const response = await axios.post(`${import.meta.env.VITE_API_URL}/reviews`, {
-          placeId: id,
-          userId: user?.id,
-          comment: comment,
-          rating: newRating,
-        });
-
-        dispatch(updatePlaceReviews(response.data))
-
+        const response = await axios.post(
+          `${import.meta.env.VITE_API_URL}/reviews`,
+          {
+            placeId: id,
+            userId: user?.id,
+            comment: comment,
+            rating: newRating,
+          }
+        );
+        dispatch(updatePlaceReviews([response.data]));
       } catch (error) {
-        setTypeError("No se pudo subir el review");
+        if (error instanceof AxiosError) {
+          setTypeError(error.response?.data.message);
+        }
+        console.log(error);
+        setTypeError("Ocurrio un error al enviar el comentario");
       }
       setComment("");
       setSubmitLoading(false);
     },
-    [comment, id, user, newRating]
+    [comment, id, user, newRating, dispatch]
   );
   return (
     <main
@@ -84,7 +88,7 @@ function Place() {
       className="min-h-screen container-md mx-auto lg:max-w-screen-lg overflow-hidden"
     >
       <section className="flex flex-col py-20 px-4 gap-10">
-        <SearchInput setPlace={() => { }} setSimilarPlaces={() => { }} />
+        <SearchInput setPlace={() => {}} setSimilarPlaces={() => {}} />
         <h1 className="text-7xl">
           Explora {(place && place.name) || "un lugar"}
         </h1>
@@ -145,30 +149,35 @@ function Place() {
             place.reviews &&
             place.reviews.map((review) => {
               return (
-                <div key={review} className="card px-2 border rounded p-4 my-4">
+                <div
+                  key={review._id}
+                  className="card px-2 border rounded p-4 my-4"
+                >
                   <div className="flex gap-4 p-4 artboard artboard-horizontal min-h-[128px]">
                     <img
                       height={128}
                       width={128}
-                      src={`https://source.unsplash.com/random/128x128?sig=${review}`}
+                      src={`https://source.unsplash.com/random/128x128?sig=${review._id}`}
                       className="avatar rounded-full h-32 w-32"
                     />
                     <div>
-                      <h2>{review}</h2>
-                      <StarsInputs stars={5} />
-                      <p>Comentario</p>
+                      <h2 className="text-2xl">Anonimo</h2>
+                      <p>{review.comment}</p>
+                      <StarsInputs stars={review.rating} />
                     </div>
                   </div>
-                  <p className="text-lg">Publicado en: </p>
+                  <p className="text-lg">
+                    Publicado el: {new Date(review.createdAt).toLocaleString()}{" "}
+                  </p>
                 </div>
               );
             })) || (
-              <div className="flex items-baseline artboard artboard-horizontal w-full h-[400px] bg-[#0000008c] rounded">
-                <p className="text-2xl md:text-5xl p-4 text-center m-auto font-bold text-white">
-                  Lo sentimos, no hay reviews para mostrar
-                </p>
-              </div>
-            )}
+            <div className="flex items-baseline artboard artboard-horizontal w-full h-[400px] bg-[#0000008c] rounded">
+              <p className="text-2xl md:text-5xl p-4 text-center m-auto font-bold text-white">
+                Lo sentimos, no hay reviews para mostrar
+              </p>
+            </div>
+          )}
         </div>
       </article>
       <div className="divider my-4"></div>
@@ -213,8 +222,9 @@ function Place() {
                 setComment(e.target.value);
                 setTypeError("");
               }}
-              className={`textarea textarea-bordered w-full ${typeError ? "border-red-500" : "border-gray-300"
-                }`}
+              className={`textarea textarea-bordered w-full ${
+                typeError ? "border-red-500" : "border-gray-300"
+              }`}
               placeholder="Escribe tu opinion"
             ></textarea>
             {typeError && <p className="text-red-500">{typeError}</p>}
@@ -241,9 +251,14 @@ function Place() {
         ) : (
           <div className="flex items-baseline artboard artboard-horizontal w-full h-[400px] bg-[#0000008c] rounded">
             <p className="text-2xl md:text-5xl p-4 text-center m-auto font-bold text-white">
-              Lo sentimos, debes <Link to="/login" className="link">iniciar sesión</Link> para publicar.
+              Lo sentimos, debes{" "}
+              <Link to="/login" className="link">
+                iniciar sesión
+              </Link>{" "}
+              para publicar.
             </p>
-          </div>)}
+          </div>
+        )}
       </div>
     </main>
   );
