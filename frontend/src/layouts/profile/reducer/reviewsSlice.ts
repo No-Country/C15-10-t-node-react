@@ -1,17 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
+import { Place } from "../../home/reducer/placesSlice";
 
 export interface Review {
   _id: string;
-  placeId: string;
-  userId: string;
+  place: Place;
+  user: string;
   rating: number;
   createdAt: string;
   updatedAt: string;
   comment: string;
-  place: {
-    name: string;
-  };
+
 }
 
 interface reviewState {

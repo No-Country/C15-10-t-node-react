@@ -6,33 +6,17 @@ import { useState } from "react";
 import { destroyReview, updateReview } from "../../reducer/reviewsSlice";
 import { Rating } from "react-daisyui";
 import StarsInputs from "./starsInput";
-import { Place } from "../../../home/reducer/placesSlice";
+import { Review } from "../../reducer/reviewsSlice";
 
-interface User {
-    token: string,
-    id: string,
-    email: string,
-    address: string,
-    phone: string,
-    firstname: string,
-    lastname: string,
-}
 
-export interface Review {
-    _id: string;
-    place: Place;
-    user: User;
-    rating: number;
-    createdAt: string;
-    updatedAt: string;
-    comment: string;
-}
 
-function ReviewItem({ item }: { item: Review }) {
+
+
+const ReviewItem: React.FC<{ review: Review }> = ({ review }) => {
     const dispatch = useDispatch();
     const user = useSelector((state: RootState) => state.auth.user);
     const [toggle, setToggle] = useState(false);
-    const [changes, setChanges] = useState(item.comment);
+    const [changes, setChanges] = useState(review.comment);
     const [newRating, setNewRating] = useState<number>(1);
 
     const toggleUpdate = () => {
@@ -86,23 +70,23 @@ function ReviewItem({ item }: { item: Review }) {
 
 
     return (
-        <div key={item._id} className="card bg-base-100 border">
+        <div key={review._id} className="card bg-base-100 border">
             <div className="card-body">
                 <h2 className="card-title">
                     {user?.firstname} {user?.lastname}
                 </h2>
                 <div className="flex gap-3">
-                    <h3 className="font-bold">{item.place.name}</h3>
+                    <h3 className="font-bold">{review.place.name}</h3>
                     <div className="flex items-center gap-3">
-                        <StarsInputs stars={item.rating} />
-                        <span>{item.rating}</span>
+                        <StarsInputs stars={review.rating} />
+                        <span>{review.rating}</span>
                     </div>
                 </div>
                 <div className="flex items-start  gap-10">
                     <img
                         className="w-48 h-48 object-cover"
-                        src={item.place.imgs[0]}
-                        alt={item.place.name}
+                        src={review.place.imgs[0]}
+                        alt={review.place.name}
                     />
 
 
@@ -115,7 +99,7 @@ function ReviewItem({ item }: { item: Review }) {
                                 <textarea
                                     className="textarea textarea-bordered"
                                     name="updatedComment"
-                                    defaultValue={item.comment}
+                                    defaultValue={review.comment}
                                     onChange={(e) => setChanges(e.target.value)}
                                 ></textarea>
                                 <Rating value={newRating} onChange={setNewRating}>
@@ -142,12 +126,12 @@ function ReviewItem({ item }: { item: Review }) {
                                 </Rating>
                             </div>
                         ) : (
-                            <p className="h-[12ch] overflow-hidden">{item.comment}</p>
+                            <p className="h-[12ch] overflow-hidden">{review.comment}</p>
                         )}
                         <div className="card-actions justify-between items-baseline">
                             <span>
                                 <strong>Publicado: </strong>{" "}
-                                {new Date(item.updatedAt).toLocaleString()}
+                                {new Date(review.updatedAt).toLocaleString()}
                             </span>
                             <div className="flex gap-2">
                                 {!toggle ? (
@@ -159,7 +143,7 @@ function ReviewItem({ item }: { item: Review }) {
                                             <PencilIcon />
                                         </button>
                                         <button
-                                            onClick={() => handleDelete(item._id)}
+                                            onClick={() => handleDelete(review._id)}
                                             className="rounded-full btn-outline btn btn-error"
                                         >
                                             <TrashIcon />
@@ -169,7 +153,7 @@ function ReviewItem({ item }: { item: Review }) {
                                     <>
                                         <button
                                             className="rounded-full btn-outline btn btn-success"
-                                            onClick={() => handleUpdate(item._id)}
+                                            onClick={() => handleUpdate(review._id)}
                                         >
                                             <CheckIcon />
                                         </button>

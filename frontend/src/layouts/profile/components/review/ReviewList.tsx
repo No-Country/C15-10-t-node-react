@@ -32,14 +32,16 @@ export default function ReviewList() {
       </article>
     );
   }
-  
+
   return (
     <article className="flex flex-col gap-4">
       <Suspense fallback={<div className="skeleton card"></div>}>
         {/* {loading && <div className="skeleton card"></div>} */}
         {reviews &&
           reviews.map((review) => (
-            <ReviewItem item={review} key={review._id}></ReviewItem>
+            <div key={review._id}>
+              <ReviewItem review={review}></ReviewItem>
+            </div>
           ))}
       </Suspense>
     </article>
