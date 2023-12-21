@@ -3,11 +3,11 @@ import StarsInputs from "../profile/components/review/starsInput";
 import SearchInput from "../search/components/SearchInput/SearchInput";
 import { Link, useParams, useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import axios, { AxiosError } from "axios";
 import { Rating } from "react-daisyui";
 import { RootState } from "../../store/store";
-import { Review, updatePlaceReviews } from "../home/reducer/placesSlice";
+import { setPlace, updatePlaceReviews } from "../home/reducer/placesSlice";
 
 interface Place {
   id: string;
@@ -16,6 +16,15 @@ interface Place {
   imgs: string[];
   coords: number[];
   reviews: Review[];
+}
+interface Review {
+  _id: string;
+  placeId: string;
+  userId: string;
+  rating: number;
+  createdAt: string;
+  updatedAt: string;
+  comment: string;
 }
 function Place() {
   const dispatch = useDispatch();
@@ -54,6 +63,20 @@ function Place() {
     url: `${import.meta.env.VITE_API_URL}/places/${id}`,
   });
 
+  useEffect(() => {
+    const getPalces = async () => {
+      const response = await axios({
+        method: "Get",
+        url: `${import.meta.env.VITE_API_URL}/places/${id}`,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      dispatch(setPlace(response.data));
+    };
+    getPalces();
+  }, []);
+
   const handleSubmit = useCallback(
     async (e: React.FormEvent) => {
       e.preventDefault();
@@ -63,7 +86,6 @@ function Place() {
         setSubmitLoading(false);
         return;
       }
-      // TODO: Submit review
       try {
         const response = await axios.post(
           `${import.meta.env.VITE_API_URL}/reviews`,
@@ -153,7 +175,7 @@ function Place() {
         <div>
           {(place &&
             place.reviews &&
-            place.reviews.map((review) => {
+            place.reviews.map((review: Review) => {
               return (
                 <div
                   key={review._id}
@@ -178,12 +200,12 @@ function Place() {
                 </div>
               );
             })) || (
-            <div className="flex items-baseline artboard artboard-horizontal w-full h-[400px] bg-[#0000008c] rounded">
-              <p className="text-2xl md:text-5xl p-4 text-center m-auto font-bold text-white">
-                Lo sentimos, no hay reviews para mostrar
-              </p>
-            </div>
-          )}
+              <div className="flex items-baseline artboard artboard-horizontal w-full h-[400px] bg-[#0000008c] rounded">
+                <p className="text-2xl md:text-5xl p-4 text-center m-auto font-bold text-white">
+                  Lo sentimos, no hay reviews para mostrar
+                </p>
+              </div>
+            )}
         </div>
       </article>
       <div className="divider my-4"></div>
@@ -228,9 +250,8 @@ function Place() {
                 setComment(e.target.value);
                 setTypeError("");
               }}
-              className={`textarea textarea-bordered w-full ${
-                typeError ? "border-red-500" : "border-gray-300"
-              }`}
+              className={`textarea textarea-bordered w-full ${typeError ? "border-red-500" : "border-gray-300"
+                }`}
               placeholder="Escribe tu opinion"
             ></textarea>
             {typeError && <p className="text-red-500">{typeError}</p>}

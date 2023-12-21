@@ -1,19 +1,37 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import CardSkeleton from "./components/CardSkeleton/CardSkeleton";
 import PlaceCard from "./components/PlaceCard/PlaceCard";
-import { Suspense, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { Place } from "../home/reducer/placesSlice";
+import { Place, setPlaces } from "../home/reducer/placesSlice";
 import SearchInput from "./components/SearchInput/SearchInput";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
+import axios from "axios";
+import { useDispatch } from "react-redux";
 
 function SearchPage() {
+  const dispatch = useDispatch();
   const [searchParams] = useSearchParams();
   const q = searchParams.get("q");
   // const [place, setPlace] = useState<Place | null>(null);
   const place = useSelector((state: RootState) => state.places.place);
 
   const [similarPlaces, setSimilarPlaces] = useState<Array<Place>>([]);
+
+  useEffect(() => {
+    const getPalces = async () => {
+      const response = await axios({
+        method: "Get",
+        url: `${import.meta.env.VITE_API_URL}/places`,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      dispatch(setPlaces(response.data));
+    };
+    getPalces();
+  }, []);
 
   return (
     <section id="search" className="min-h-screen">
