@@ -25,7 +25,7 @@ async function userReviews(req, res) {
   const userId = req.params.userId
   console.log(userId)
   try {
-    const reviews = await Review.find({ userId: userId })
+    const reviews = await Review.find({ user: userId }).populate("place")
     return res.status(200).json(reviews);
   } catch (err) {
     res.status(400).json(err);

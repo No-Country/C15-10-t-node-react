@@ -2,8 +2,8 @@ const { mongoose, Schema } = require("../db");
 
 const reviewsSchema = new mongoose.Schema(
   {
-    placeId: { type: Schema.Types.ObjectId, ref: "places" },
-    userId: { type: Schema.Types.ObjectId, ref: "users" },
+    place: { type: Schema.Types.ObjectId, ref: "places" },
+    user: { type: Schema.Types.ObjectId, ref: "users" },
     comment: String,
     rating: Number,
   },
