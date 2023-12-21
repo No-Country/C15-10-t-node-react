@@ -1,8 +1,7 @@
 import { CheckIcon, PencilIcon, QuoteIcon, TrashIcon, X } from "lucide-react";
 import { Suspense, useState } from "react";
-import useFetch from "../../../../hooks/useFetch";
 import { useDispatch, useSelector, useStore } from "react-redux";
-import { Store, Reviews } from "../../profile.type";
+import { Store } from "../../profile.type";
 import { destroyReview, updateReview } from "../../reducer/reviewsSlice";
 import axios from "axios";
 import { RootState } from "../../../../store/store";
@@ -17,18 +16,9 @@ export default function ReviewList() {
   const dispatch = useDispatch();
   const reviews = useSelector((state: RootState) => state.places.place.reviews);
   const store: Store = useStore();
-  const { id, firstname, lastname, token } = store.getState().auth.user;
+  const { firstname, lastname, token } = store.getState().auth.user;
 
-  const {
-    loading,
-  }: {
-    data: Reviews[];
-    loading: boolean;
-    error: string | undefined;
-  } = useFetch({
-    url: `${import.meta.env.VITE_API_URL}/reviews/user-reviews/${id}`,
-  });
-  if (reviews && reviews.length < 1) {
+  if (!reviews) {
     return (
       <article className="flex flex-col gap-4">
         <div>
@@ -87,7 +77,7 @@ export default function ReviewList() {
   return (
     <article className="flex flex-col gap-4">
       <Suspense fallback={<div className="skeleton card"></div>}>
-        {loading && <div className="skeleton card"></div>}
+        {/* {loading && <div className="skeleton card"></div>} */}
         {reviews &&
           reviews.map((review) => (
             <div key={review._id} className="card bg-base-100 border">
