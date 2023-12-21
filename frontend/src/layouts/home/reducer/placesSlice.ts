@@ -41,8 +41,8 @@ export const placesSlice = createSlice({
     setPlace: (state, action: PayloadAction<Place>) => {
       state.place = action.payload;
     },
-    updatePlaceReviews: (state, action: PayloadAction<Review[]>) => {
-      state.place.reviews.push(...action.payload);
+    updatePlaceReviews: (state, action: PayloadAction<Review>) => {
+      state.place.reviews.push(action.payload);
       state.place.reviews = state.place.reviews.sort(
         (a, b) =>
           new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()

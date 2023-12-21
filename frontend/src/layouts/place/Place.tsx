@@ -74,7 +74,7 @@ function Place() {
             rating: newRating,
           }
         );
-        dispatch(updatePlaceReviews([response.data]));
+        dispatch(updatePlaceReviews(response.data));
       } catch (error) {
         if (error instanceof AxiosError) {
           setTypeError(error.response?.data.message);
