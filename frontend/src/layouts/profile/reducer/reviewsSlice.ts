@@ -9,6 +9,9 @@ export interface Review {
   createdAt: string;
   updatedAt: string;
   comment: string;
+  place: {
+    name: string;
+  };
 }
 
 interface reviewState {
