@@ -39,7 +39,6 @@ const ReviewItem: React.FC<{ review: Review }> = ({ review }) => {
                     },
                 }
             );
-            console.log(id)
             dispatch(updateReview(response.data));
             setToggle(!toggle);
 

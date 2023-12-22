@@ -33,7 +33,6 @@ export function Register() {
           "Content-Type": "application/json",
         },
       });
-      console.log(response.data);
       dispatch(setUser(response.data));
       navigate(`/user/${response.data.id}`);
     } else {
