@@ -97,7 +97,7 @@ export const Nav: React.FC = () => {
                 <input
                   type="search"
                   id="default-search"
-                  className="block shadow-xl w-full p-5 ps-10 text-sm outline-none text-base-content border-2 border-gray-300 rounded-full ring-gray-300 placeholder:text-gray-500 placeholder:text-sm focus:ring-inset sm:text-sm sm:leading-6"
+                  className="block w-full p-5 ps-10 text-sm outline-none text-base-content border-2 border-gray-300 rounded-full ring-gray-300 placeholder:text-gray-500 placeholder:text-sm focus:ring-inset sm:text-sm sm:leading-6"
                   placeholder={placeHolderText}
                   onClick={() => setAutoCompleteVisible(true)}
                   defaultValue={text}
