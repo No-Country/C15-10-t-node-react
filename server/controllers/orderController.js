@@ -40,7 +40,6 @@ async function store(req, res) {
 async function update(req, res) {
   const updated = true;
 
-  console.log("ordenes");
   const order = await Order.findByIdAndUpdate(
     req.body.orderId,
     {

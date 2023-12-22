@@ -9,6 +9,13 @@ import { Rating } from "react-daisyui";
 import { RootState } from "../../store/store";
 import { setPlace, updatePlaceReviews } from "../home/reducer/placesSlice";
 import Lightbox from "yet-another-react-lightbox";
+import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet'
+import L from 'leaflet';
+import logo from "../../assets/wind.png"
+import 'leaflet/dist/leaflet.css';
+
+
+
 import "yet-another-react-lightbox/styles.css";
 
 interface User {
@@ -38,6 +45,9 @@ interface Review {
   updatedAt: string;
   comment: string;
 }
+
+
+
 function Place() {
   const dispatch = useDispatch();
   const user = useSelector((state: RootState) => state.auth.user);
@@ -46,6 +56,7 @@ function Place() {
   const [newRating, setNewRating] = useState<number>(1);
   const [typeError, setTypeError] = useState("");
   const [submitLoading, setSubmitLoading] = useState(false);
+  const [open, setOpen] = useState(false);
   const { id } = useParams();
 
   const [searchParams] = useSearchParams();
@@ -74,9 +85,7 @@ function Place() {
     getPalces();
   }, []);
 
-  // Lightbox
 
-  const [open, setOpen] = useState(false);
 
   const handleSubmit = useCallback(
     async (e: React.FormEvent) => {
@@ -111,10 +120,19 @@ function Place() {
     },
     [comment, id, user, newRating, dispatch]
   );
+
+  const customIcon = new L.Icon({
+    iconUrl: logo, // Ruta a tu propio ícono de marcador
+    iconSize: [32, 32], // Tamaño del ícono
+    iconAnchor: [16, 32], // Punto de anclaje del ícono
+    popupAnchor: [0, -32], // Punto de anclaje del popup
+  });
+
+
   return (
     <main
       id="place"
-      className="min-h-screen container-md mx-auto lg:max-w-screen-lg overflow-hidden"
+      className="min-h-screen container-md flex flex-col gap-y-5 mx-auto lg:max-w-screen-lg overflow-hidden"
     >
       <section className="flex flex-col py-20 px-4 gap-10">
         <div className="mt-6"></div>
@@ -167,6 +185,28 @@ function Place() {
             "Con nuestra aplicacion podras encontrar un destino para tus vacaciones"}
         </p>
       </article>
+
+      {place &&
+        <MapContainer className="h-[400px] w-full" center={[place.coords[0], place.coords[1]]} zoom={12} scrollWheelZoom={true}>
+          <TileLayer
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+          <Marker position={[place.coords[0], place.coords[1]]} icon={customIcon}>
+            <Popup  >
+              <div className="flex flex-col w-72 gap-2">
+
+                {place.name}
+                <img
+                  src={place.imgs[0]}
+                  alt={place.name}
+                  className="h-32 w-full rounded object-cover"
+                />
+              </div>
+            </Popup>
+          </Marker>
+        </MapContainer>
+      }
       <article className="flex flex-col px-4 gap-10">
         <h2 className="text-3xl font-bold px-2 md:text-left text-center">
           Descubre las opiniones de los viajeros
@@ -205,12 +245,12 @@ function Place() {
                 </div>
               );
             })) || (
-            <div className="flex items-baseline artboard artboard-horizontal w-full h-[400px] bg-[#0000008c] rounded">
-              <p className="text-2xl md:text-5xl p-4 text-center m-auto font-bold text-white">
-                Lo sentimos, no hay reviews para mostrar
-              </p>
-            </div>
-          )}
+              <div className="flex items-baseline artboard artboard-horizontal w-full h-[400px] bg-[#0000008c] rounded">
+                <p className="text-2xl md:text-5xl p-4 text-center m-auto font-bold text-white">
+                  Lo sentimos, no hay reviews para mostrar
+                </p>
+              </div>
+            )}
         </div>
       </article>
       <div className="divider my-4"></div>
@@ -256,9 +296,8 @@ function Place() {
                 setComment(e.target.value);
                 setTypeError("");
               }}
-              className={`textarea textarea-bordered w-full ${
-                typeError ? "border-red-500" : "border-gray-300"
-              }`}
+              className={`textarea textarea-bordered w-full ${typeError ? "border-red-500" : "border-gray-300"
+                }`}
               placeholder="Escribe tu opinion"
             ></textarea>
             {typeError && <p className="text-red-500">{typeError}</p>}

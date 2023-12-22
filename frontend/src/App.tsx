@@ -19,8 +19,26 @@ function App() {
       <Navbar></Navbar>
       <Routes>
         <Route path="/" element={<Home />}></Route>
-        <Route path="/login" element={<Login />}></Route>
-        <Route path="/register" element={<Register></Register>}></Route>
+        <Route
+          path="/login"
+          element={
+            !user ? (
+              <Login />
+            ) : (
+              <Navigate to="/" replace={true} />
+            )
+          }
+        ></Route>
+        <Route
+          path="/register"
+          element={
+            !user ? (
+              <Register />
+            ) : (
+              <Navigate to="/" replace={true} />
+            )
+          }
+        ></Route>
         <Route path="/search" element={<Search></Search>}></Route>
         <Route path="/place/:id" element={<Place></Place>}></Route>
         <Route
