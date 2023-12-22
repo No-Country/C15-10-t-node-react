@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import { agenda } from "./agenda";
-import { PencilIcon, TrashIcon } from "lucide-react";
+// import { PencilIcon, TrashIcon } from "lucide-react";
 
 export default function AgendaList() {
   return (
@@ -37,14 +37,15 @@ export default function AgendaList() {
                       {item.date}
                     </span>
                   </div>
-                  <div className="flex gap-2">
+                  {/* Hasta no tener funcionalidad no utilizar */}
+                  {/* <div className="flex gap-2">
                     <button className="rounded-full btn btn-primary">
                       <PencilIcon />
                     </button>
                     <button className="rounded-full btn btn-error">
                       <TrashIcon />
                     </button>
-                  </div>
+                  </div> */}
                 </section>
               </div>
             </article>

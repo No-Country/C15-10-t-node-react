@@ -13,7 +13,9 @@ export default function UserData() {
             fallback={<div className="skeleton w-[16rem] rounded-full"></div>}
           >
             <div className="w-[16rem] rounded-full">
-              <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+              <img
+                src={`https://source.unsplash.com/random/256x256?sig=${currentUser.firstname}`}
+              />
             </div>
           </Suspense>
         </div>

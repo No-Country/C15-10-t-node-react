@@ -8,15 +8,17 @@ import axios, { AxiosError } from "axios";
 import { Rating } from "react-daisyui";
 import { RootState } from "../../store/store";
 import { setPlace, updatePlaceReviews } from "../home/reducer/placesSlice";
+import Lightbox from "yet-another-react-lightbox";
+import "yet-another-react-lightbox/styles.css";
 
 interface User {
-  token: string,
-  id: string,
-  email: string,
-  address: string,
-  phone: string,
-  firstname: string,
-  lastname: string,
+  token: string;
+  id: string;
+  email: string;
+  address: string;
+  phone: string;
+  firstname: string;
+  lastname: string;
 }
 
 interface Place {
@@ -51,21 +53,6 @@ function Place() {
   const similarPlaces = useState<Array<Place>>([]);
   const setSimilarPlaces = similarPlaces[1];
 
-  const gridStyle = {
-    display: "grid",
-    gridTemplateColumns: "1fr 0.5fr",
-    gridTemplateRows: "1fr",
-    gap: "4px",
-    gridAutoFlow: "row",
-    gridTemplateAreas: "'. rest'",
-    rest: {
-      display: "grid",
-      gridTemplateColumns: "1fr",
-      gridTemplateRows: "1fr 1fr",
-      gap: "4px",
-    },
-  };
-
   const {
     error,
     loading,
@@ -86,6 +73,10 @@ function Place() {
     };
     getPalces();
   }, []);
+
+  // Lightbox
+
+  const [open, setOpen] = useState(false);
 
   const handleSubmit = useCallback(
     async (e: React.FormEvent) => {
@@ -141,36 +132,33 @@ function Place() {
             </p>
           </div>
         ) : (
-          <figure className="grid grid-cols-2" style={gridStyle}>
-            {place && (
-              <>
-                <img
-                  height={400}
-                  width={"full"}
-                  src={place.imgs[0]}
-                  alt={place.name}
-                />
-                <div style={gridStyle.rest}>
-                  {place.imgs.map((img: string, index: number) => {
-                    if (index === 0) return null;
-                    if (index > 2) return null;
-                    return (
-                      <img
-                        key={index}
-                        height={400}
-                        width={"full"}
-                        src={img}
-                        alt={place.name}
-                      />
-                    );
-                  })}
-                </div>
-              </>
-            )}
+          <figure className="grid grid-cols-3 grid-rows-2 hover:cursor-pointer">
+            <img
+              src={place.imgs[0]}
+              alt={place.name}
+              className="col-span-2 row-span-2 aspect-video h-full"
+              onClick={() => setOpen(true)}
+            />
+            {place.imgs.slice(1, 3).map((img: string, index: number) => (
+              <img
+                key={index}
+                src={img}
+                alt={place.name}
+                className="col-span-1 aspect-video h-full"
+                onClick={() => setOpen(true)}
+              />
+            ))}
           </figure>
         )}
+        {open && (
+          <Lightbox
+            open={open}
+            close={() => setOpen(false)}
+            slides={place.imgs.map((src, index) => ({ src, index }))}
+          />
+        )}
       </section>
-      <article className="flex flex-col px-4 gap-4">
+      <article className="flex flex-col px-4 gap-4 mb-10">
         <h2 className="px-2 text-3xl font-bold md:text-left text-center">
           Conoce {(place && place.name) || "un lugar"}
         </h2>
@@ -180,7 +168,7 @@ function Place() {
         </p>
       </article>
       <article className="flex flex-col px-4 gap-10">
-        <h2 className="text-3xl font-bold mb-4 px-2 md:text-left text-center">
+        <h2 className="text-3xl font-bold px-2 md:text-left text-center">
           Descubre las opiniones de los viajeros
         </h2>
         <div>
@@ -200,7 +188,13 @@ function Place() {
                       className="avatar rounded-full h-32 w-32"
                     />
                     <div>
-                      {review.user && review.user.firstname && review.user.lastname && <h2 className="text-2xl">{review.user.firstname} {review.user.lastname} </h2>}
+                      {review.user &&
+                        review.user.firstname &&
+                        review.user.lastname && (
+                          <h2 className="text-2xl">
+                            {review.user.firstname} {review.user.lastname}{" "}
+                          </h2>
+                        )}
                       <p>{review.comment}</p>
                       <StarsInputs stars={review.rating} />
                     </div>
@@ -211,12 +205,12 @@ function Place() {
                 </div>
               );
             })) || (
-              <div className="flex items-baseline artboard artboard-horizontal w-full h-[400px] bg-[#0000008c] rounded">
-                <p className="text-2xl md:text-5xl p-4 text-center m-auto font-bold text-white">
-                  Lo sentimos, no hay reviews para mostrar
-                </p>
-              </div>
-            )}
+            <div className="flex items-baseline artboard artboard-horizontal w-full h-[400px] bg-[#0000008c] rounded">
+              <p className="text-2xl md:text-5xl p-4 text-center m-auto font-bold text-white">
+                Lo sentimos, no hay reviews para mostrar
+              </p>
+            </div>
+          )}
         </div>
       </article>
       <div className="divider my-4"></div>
@@ -262,8 +256,9 @@ function Place() {
                 setComment(e.target.value);
                 setTypeError("");
               }}
-              className={`textarea textarea-bordered w-full ${typeError ? "border-red-500" : "border-gray-300"
-                }`}
+              className={`textarea textarea-bordered w-full ${
+                typeError ? "border-red-500" : "border-gray-300"
+              }`}
               placeholder="Escribe tu opinion"
             ></textarea>
             {typeError && <p className="text-red-500">{typeError}</p>}
