@@ -2,11 +2,9 @@ const Place = require("../models/Place");
 const Review = require("../models/Review");
 const User = require("../models/User");
 
-
-
 async function index(req, res) {
   try {
-    const reviews = await Review.find()
+    const reviews = await Review.find();
     return res.status(200).json(reviews);
   } catch (err) {
     res.status(400).json(err);
@@ -15,7 +13,8 @@ async function index(req, res) {
 
 async function show(req, res) {
   try {
-    const review = await Review.findById(req.params.id)
+    const { userId } = req.params;
+    const review = await Review.findById(userId);
     return res.status(200).json(review);
   } catch (err) {
     res.status(400).json(err);
@@ -23,17 +22,17 @@ async function show(req, res) {
 }
 
 async function userReviews(req, res) {
-  const userId = req.params.userId
-  const user = await User.findById(userId)
+  const userId = req.params.userId;
+  const user = await User.findById(userId);
   try {
     const reviews = await Review.find({ user: userId }).populate({
-      path: 'place',
-      select: ["name", "imgs"]
+      path: "place",
+      select: ["name", "imgs"],
     });
 
     return res.status(200).json(reviews);
   } catch (err) {
-    console.log(err)
+    console.log(err);
     res.status(400).json(err);
   }
 }
@@ -46,7 +45,7 @@ async function store(req, res) {
       place: req.body.place,
       rating: req.body.rating,
     });
-    const review = await Review.findOne(newReview)
+    const review = await Review.findOne(newReview);
     const updatePlace = await Place.findById(review.place);
 
     updatePlace.reviews.push(review._id);
@@ -59,18 +58,16 @@ async function store(req, res) {
   }
 }
 
-
-
 async function update(req, res) {
   try {
     await Review.findByIdAndUpdate(req.params.id, {
       comment: req.body.comment,
-      rating: req.body.rating
+      rating: req.body.rating,
     });
     const commentUpdated = await Review.findById(req.params.id).populate({
-      path: 'place',
-      select: ["name", "imgs"]
-    });;
+      path: "place",
+      select: ["name", "imgs"],
+    });
 
     res.status(201).json(commentUpdated);
   } catch (err) {
