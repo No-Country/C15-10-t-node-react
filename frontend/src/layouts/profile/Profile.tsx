@@ -18,7 +18,6 @@ export default function Profile() {
                 role="tab"
                 className="tab text-xl"
                 aria-label="Agenda"
-                defaultChecked
               />
               <div
                 role="tabpanel"
@@ -32,6 +31,7 @@ export default function Profile() {
                 role="tab"
                 className="tab text-xl"
                 aria-label="Reseña"
+                defaultChecked
               />
               <div
                 role="tabpanel"
