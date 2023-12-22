@@ -10,13 +10,13 @@ import { RootState } from "../../store/store";
 import { setPlace, updatePlaceReviews } from "../home/reducer/placesSlice";
 
 interface User {
-  token: string,
-  id: string,
-  email: string,
-  address: string,
-  phone: string,
-  firstname: string,
-  lastname: string,
+  token: string;
+  id: string;
+  email: string;
+  address: string;
+  phone: string;
+  firstname: string;
+  lastname: string;
 }
 
 interface Place {
@@ -145,10 +145,11 @@ function Place() {
             {place && (
               <>
                 <img
-                  height={400}
+                  height={320}
                   width={"full"}
                   src={place.imgs[0]}
                   alt={place.name}
+                  className="aspect-video"
                 />
                 <div style={gridStyle.rest}>
                   {place.imgs.map((img: string, index: number) => {
@@ -157,10 +158,11 @@ function Place() {
                     return (
                       <img
                         key={index}
-                        height={400}
+                        height={320}
                         width={"full"}
                         src={img}
                         alt={place.name}
+                        className="aspect-video"
                       />
                     );
                   })}
@@ -200,7 +202,13 @@ function Place() {
                       className="avatar rounded-full h-32 w-32"
                     />
                     <div>
-                      {review.user && review.user.firstname && review.user.lastname && <h2 className="text-2xl">{review.user.firstname} {review.user.lastname} </h2>}
+                      {review.user &&
+                        review.user.firstname &&
+                        review.user.lastname && (
+                          <h2 className="text-2xl">
+                            {review.user.firstname} {review.user.lastname}{" "}
+                          </h2>
+                        )}
                       <p>{review.comment}</p>
                       <StarsInputs stars={review.rating} />
                     </div>
@@ -211,12 +219,12 @@ function Place() {
                 </div>
               );
             })) || (
-              <div className="flex items-baseline artboard artboard-horizontal w-full h-[400px] bg-[#0000008c] rounded">
-                <p className="text-2xl md:text-5xl p-4 text-center m-auto font-bold text-white">
-                  Lo sentimos, no hay reviews para mostrar
-                </p>
-              </div>
-            )}
+            <div className="flex items-baseline artboard artboard-horizontal w-full h-[400px] bg-[#0000008c] rounded">
+              <p className="text-2xl md:text-5xl p-4 text-center m-auto font-bold text-white">
+                Lo sentimos, no hay reviews para mostrar
+              </p>
+            </div>
+          )}
         </div>
       </article>
       <div className="divider my-4"></div>
@@ -262,8 +270,9 @@ function Place() {
                 setComment(e.target.value);
                 setTypeError("");
               }}
-              className={`textarea textarea-bordered w-full ${typeError ? "border-red-500" : "border-gray-300"
-                }`}
+              className={`textarea textarea-bordered w-full ${
+                typeError ? "border-red-500" : "border-gray-300"
+              }`}
               placeholder="Escribe tu opinion"
             ></textarea>
             {typeError && <p className="text-red-500">{typeError}</p>}
