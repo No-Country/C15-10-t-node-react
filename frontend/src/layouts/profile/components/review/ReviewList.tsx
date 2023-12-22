@@ -5,10 +5,7 @@ import { setReviews } from "../../reducer/reviewsSlice";
 import { RootState } from "../../../../store/store";
 import ReviewItem from "./ReviewItem";
 
-
 export default function ReviewList() {
-
-
   const dispatch = useDispatch();
   const reviews = useSelector((state: RootState) => state.reviews.reviews);
   const user = useSelector((state: RootState) => state.auth.user);
@@ -23,11 +20,13 @@ export default function ReviewList() {
     getReviews();
   }, []);
 
-  if (!reviews) {
+  if (!reviews || reviews.length === 0) {
     return (
-      <article className="flex flex-col gap-4">
+      <article className="flex flex-col gap-4 bg-slate-100 rounded p-10">
         <div>
-          <h1>Parece que no hay reseñas para mostrar.</h1>
+          <h1 className="text-2xl text-bold text-center">
+            Parece que no hay reseñas para mostrar.
+          </h1>
         </div>
       </article>
     );
