@@ -43,7 +43,6 @@ function FeaturedDestinations() {
   };
 
   useEffect(() => {
-    console.log(places);
     if (carousel?.current) {
       carousel.current.scrollLeft =
         (carousel.current.offsetWidth ?? 0) * currentIndex;
