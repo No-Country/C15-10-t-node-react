@@ -8,6 +8,8 @@ import axios, { AxiosError } from "axios";
 import { Rating } from "react-daisyui";
 import { RootState } from "../../store/store";
 import { setPlace, updatePlaceReviews } from "../home/reducer/placesSlice";
+import Lightbox from "yet-another-react-lightbox";
+import "yet-another-react-lightbox/styles.css";
 
 interface User {
   token: string;
@@ -51,21 +53,6 @@ function Place() {
   const similarPlaces = useState<Array<Place>>([]);
   const setSimilarPlaces = similarPlaces[1];
 
-  const gridStyle = {
-    display: "grid",
-    gridTemplateColumns: "1fr 0.5fr",
-    gridTemplateRows: "1fr",
-    gap: "4px",
-    gridAutoFlow: "row",
-    gridTemplateAreas: "'. rest'",
-    rest: {
-      display: "grid",
-      gridTemplateColumns: "1fr",
-      gridTemplateRows: "1fr 1fr",
-      gap: "4px",
-    },
-  };
-
   const {
     error,
     loading,
@@ -86,6 +73,10 @@ function Place() {
     };
     getPalces();
   }, []);
+
+  // Lightbox
+
+  const [open, setOpen] = useState(false);
 
   const handleSubmit = useCallback(
     async (e: React.FormEvent) => {
@@ -141,35 +132,30 @@ function Place() {
             </p>
           </div>
         ) : (
-          <figure className="grid grid-cols-2" style={gridStyle}>
-            {place && (
-              <>
-                <img
-                  height={320}
-                  width={"full"}
-                  src={place.imgs[0]}
-                  alt={place.name}
-                  className="aspect-video"
-                />
-                <div style={gridStyle.rest}>
-                  {place.imgs.map((img: string, index: number) => {
-                    if (index === 0) return null;
-                    if (index > 2) return null;
-                    return (
-                      <img
-                        key={index}
-                        height={320}
-                        width={"full"}
-                        src={img}
-                        alt={place.name}
-                        className="aspect-video"
-                      />
-                    );
-                  })}
-                </div>
-              </>
-            )}
+          <figure className="grid grid-cols-3 grid-rows-2 hover:cursor-pointer">
+            <img
+              src={place.imgs[0]}
+              alt={place.name}
+              className="col-span-2 row-span-2 aspect-video h-full"
+              onClick={() => setOpen(true)}
+            />
+            {place.imgs.slice(1, 3).map((img: string, index: number) => (
+              <img
+                key={index}
+                src={img}
+                alt={place.name}
+                className="col-span-1 aspect-video h-full"
+                onClick={() => setOpen(true)}
+              />
+            ))}
           </figure>
+        )}
+        {open && (
+          <Lightbox
+            open={open}
+            close={() => setOpen(false)}
+            slides={place.imgs.map((src, index) => ({ src, index }))}
+          />
         )}
       </section>
       <article className="flex flex-col px-4 gap-4">
