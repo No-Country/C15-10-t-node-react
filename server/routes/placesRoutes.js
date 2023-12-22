@@ -6,19 +6,19 @@ const { expressjwt: checkJwt } = require("express-jwt");
 router.get("/", placesController.index);
 router.get("/:id", placesController.show);
 router.post(
-    "/",
-    checkJwt({ secret: process.env.JWT_CUSTOMER_SECRET_KEY, algorithms: ["HS256"] }),
-    placesController.store,
+  "/",
+  checkJwt({ secret: process.env.JWT_CUSTOMER_SECRET_KEY, algorithms: ["HS256"] }),
+  placesController.store,
 );
 router.patch(
-    "/:id",
-    checkJwt({ secret: process.env.JWT_CUSTOMER_SECRET_KEY, algorithms: ["HS256"] }),
-    placesController.update,
+  "/:id",
+  checkJwt({ secret: process.env.JWT_CUSTOMER_SECRET_KEY, algorithms: ["HS256"] }),
+  placesController.update,
 );
 router.delete(
-    "/",
-    checkJwt({ secret: process.env.JWT_ADMIN_SECRET_KEY, algorithms: ["HS256"] }),
-    placesController.destroy,
+  "/",
+  checkJwt({ secret: process.env.JWT_ADMIN_SECRET_KEY, algorithms: ["HS256"] }),
+  placesController.destroy,
 );
 
 module.exports = router;

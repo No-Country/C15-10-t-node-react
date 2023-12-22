@@ -1,33 +1,28 @@
-import { useState } from "react";
-//import { BsStarFill, BsStarHalf } from "react-icons/bs";
+import { useState, useEffect } from "react";
+
 import FavoriteButton from "../FavoriteButton/FavoriteButton";
+import { Place } from "../../layouts/home/reducer/placesSlice";
+import renderStars from "../../utils/startsHelper";
 
-interface PlaceObj {
-  place: { imgs: string[]; name: string; description: string };
-}
+type PlaceObj = Place
 
-function CardContent({ place }: PlaceObj) {
+function CardContent({ place }: {place: PlaceObj}) {
   const [isFavorite, setIsFavorite] = useState(true);
-
+  const [average, setAverage] = useState(4.5);
+  useEffect(() => {
+    if (place.reviews.length === 0) {
+      return;
+    }
+    const rating =
+    place.reviews.reduce((a, b) => {
+      return a + b.rating;
+    }, 0) / place.reviews.length || 1;
+    setAverage(rating)
+  }, [place.reviews])
   const toggleFavorite = () => {
     setIsFavorite(!isFavorite);
   };
-
-  /* const renderStars = () => {
-    const stars = [];
-    const integerPart = Math.floor(rating);
-    const hasDecimal = rating % 1 !== 0;
-
-    for (let i = 0; i < integerPart; i++) {
-      stars.push(<BsStarFill key={i} className="text-yellow-500" />);
-    }
-
-    if (hasDecimal) {
-      stars.push(<BsStarHalf key="half" className="text-yellow-500" />);
-    }
-
-    return stars;
-  }; */
+  
 
   return (
     <div className="card card-compact w-full bg-green-600 shadow-xl mt-3 md:h-96 h-[23rem] mx-1">
@@ -44,14 +39,6 @@ function CardContent({ place }: PlaceObj) {
           {place.name}
         </h2>
       </div>
-
-      {/* Acomodar esto porque queda fuera de la card sin acotar el string */}
-
-      {/* <div className="card-body sm:h-16 h-14">
-        <h2 className="card-title text-green-50 md:text-xl sm:text-lg text-base">
-          {}
-        </h2>
-      </div>       */}
       <p className="text-white pb-1 md:text-base text-sm">
         <strong className="text-green-100">
           {place.description.substring(0, 50)}
@@ -60,10 +47,10 @@ function CardContent({ place }: PlaceObj) {
 
       <div className="p-4">
         <div className="card-actions">
-          {/* <div className="flex flex-row mx-auto items-center">
-            {renderStars()}
-            <p className="text-base text-gray-200 mx-1">{rating}</p>
-          </div> */}
+          <div className="flex flex-row items-center sm:text-base text-sm">
+            {renderStars(average)}
+            <span className="ml-1"><b>{average}</b></span>
+          </div>
         </div>
         <p className="text-white pb-1 md:text-lg text-sm">
           Desde <strong className="text-green-100">$1000</strong> por adulto
