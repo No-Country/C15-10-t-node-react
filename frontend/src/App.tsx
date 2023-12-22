@@ -9,6 +9,7 @@ import Search from "./layouts/search/SearchPage";
 import Place from "./layouts/place/Place";
 import Footer from "./components/Footer/Footer";
 import Home from "./layouts/home/Home";
+import NotFound from "./layouts/notFound/404";
 
 function App() {
   const user = useSelector((state: RootState) => state.auth.user);
@@ -32,6 +33,7 @@ function App() {
             )
           }
         ></Route>
+        <Route path="*" element={<NotFound />}></Route>
       </Routes>
       <Footer></Footer>
     </>
