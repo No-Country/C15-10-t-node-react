@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { setUser } from "../reducers/authSlice";
-import bgImg from "../../../assets/../images/img4.png";
 import { useNavigate } from "react-router";
 import { useForm } from "react-hook-form";
 import { SubmitHandler } from "react-hook-form";
@@ -251,7 +250,7 @@ export function Register() {
 
       {/* Segunda Columna (Imagen) */}
       <div className="lg:w-1/2 flex-grow">
-        <img className="w-full h-full" src={bgImg} alt="Login Background" />
+        <img className="w-full h-full object-cover" src="https://res.cloudinary.com/dcosddxwt/image/upload/v1702841089/mexico-guadalajara-dia-de-los-muertos-pexels-bruno-cervera-12316510_iluhmo.webp" alt="Login Background" />
       </div>
     </div>
   );
