@@ -172,7 +172,7 @@ function Place() {
           </figure>
         )}
       </section>
-      <article className="flex flex-col px-4 gap-4">
+      <article className="flex flex-col px-4 gap-4 mb-10">
         <h2 className="px-2 text-3xl font-bold md:text-left text-center">
           Conoce {(place && place.name) || "un lugar"}
         </h2>
@@ -182,7 +182,7 @@ function Place() {
         </p>
       </article>
       <article className="flex flex-col px-4 gap-10">
-        <h2 className="text-3xl font-bold mb-4 px-2 md:text-left text-center">
+        <h2 className="text-3xl font-bold px-2 md:text-left text-center">
           Descubre las opiniones de los viajeros
         </h2>
         <div>
