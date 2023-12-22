@@ -30,16 +30,16 @@ function CardContent({ place }: PlaceObj) {
   }; */
 
   return (
-    <div className="card card-compact w-full bg-green-600 shadow-xl mt-3 md:h-96 h-80 mx-1">
+    <div className="card card-compact w-full bg-green-600 shadow-xl mt-3 md:h-96 h-[23rem] mx-1">
       <figure className="relative overflow-hidden group">
         <img
           src={place.imgs[0]}
           alt={place.name}
-          className="w-full transition-transform transform-gpu group-hover:scale-105"
+          className="w-full h-44 object-cover transition-transform transform-gpu group-hover:scale-105"
         />
         <FavoriteButton isFavorite={isFavorite} onClick={toggleFavorite} />
       </figure>
-      <div className="card-body sm:h-16 h-14">
+      <div className="card-body h-16">
         <h2 className="card-title text-green-50 md:text-xl sm:text-lg text-base">
           {place.name}
         </h2>
@@ -52,7 +52,7 @@ function CardContent({ place }: PlaceObj) {
           {}
         </h2>
       </div>       */}
-      <p className="text-white pb-1 md:text-lg sm:text-sm">
+      <p className="text-white pb-1 md:text-base text-sm">
         <strong className="text-green-100">
           {place.description.substring(0, 50)}
         </strong>
@@ -65,7 +65,7 @@ function CardContent({ place }: PlaceObj) {
             <p className="text-base text-gray-200 mx-1">{rating}</p>
           </div> */}
         </div>
-        <p className="text-white pb-1 md:text-lg sm:text-sm">
+        <p className="text-white pb-1 md:text-lg text-sm">
           Desde <strong className="text-green-100">$1000</strong> por adulto
         </p>
         <div className="card-actions">
