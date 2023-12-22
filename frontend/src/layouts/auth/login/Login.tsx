@@ -5,6 +5,7 @@ import logo from "../../../assets/wind.png";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { setUser } from "../reducers/authSlice";
+
 interface IFormInput {
   password: string;
   email: string;
